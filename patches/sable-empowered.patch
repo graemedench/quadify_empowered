@@ -939,10 +939,28 @@ index f3bfd26..73264ab 100644
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea..16163da 100644
+index e283aea..d6b4ef3 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
-@@ -28,6 +28,7 @@ class MenuScreen(Screen):
+@@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
+ the clock at the root.
+ """
+ from .base import Screen
++from pathlib import Path
++import re
++import socket
++import subprocess
+ 
+ _BACK = "__back__"
+ 
+@@ -22,12 +26,14 @@ class MenuScreen(Screen):
+         super().__init__(app)
+         self.root = self._build_tree()
+         self.stack = [self._frame("MENU", self.root)]
++        self._wifi_entry = None
+ 
+     def _build_tree(self):
+         return [
              ("Now Playing", self._now_playing),
              ("Display Mode", [
                  ("Modern: Panel", lambda: self._set_modern("panel")),
@@ -950,15 +968,20 @@ index e283aea..16163da 100644
                  ("Modern: Cinema", lambda: self._set_modern("cinema")),
                  ("Spectrum Bars", lambda: self._set_spectrum("bars")),
                  ("Spectrum Dots", lambda: self._set_spectrum("dots")),
-@@ -36,6 +37,7 @@ class MenuScreen(Screen):
+@@ -36,6 +42,12 @@ class MenuScreen(Screen):
                  ("VU Meter", lambda: self._set_spectrum("vu")),
                  ("Back", _BACK),
              ], self._display_mode_label),
 +            ("Audio Output", self._audio_output_items(), self._audio_output_label),
++            ("Network", [
++                ("IP Address", self._show_ip),
++                ("Wi-Fi Networks", self._scan_wifi),
++                ("Back", _BACK),
++            ], self._network_label),
              ("Brightness", [
                  ("Low", lambda: self._set_brightness("low")),
                  ("Medium", lambda: self._set_brightness("medium")),
-@@ -66,6 +68,56 @@ class MenuScreen(Screen):
+@@ -66,6 +78,133 @@ class MenuScreen(Screen):
          style = self.app.settings.get("display", "spectrum_style", default="bars")
          return "VU" if style == "vu" else style.capitalize()
  
@@ -1009,13 +1032,90 @@ index e283aea..16163da 100644
 +            self.stack = [self._frame("MENU", self.root)]
 +            self.app.render()
 +
++    def _network_status(self):
++        ip = self._ip_address()
++        try:
++            if Path("/sys/class/net/eth0/operstate").read_text().strip() == "up":
++                return "WIRED", ip
++        except OSError:
++            pass
++        try:
++            ssid = subprocess.check_output(["/sbin/iwgetid", "-r"], text=True,
++                                           stderr=subprocess.DEVNULL).strip()
++        except Exception:
++            ssid = ""
++        return ("WI-FI: " + ssid if ssid else "NOT CONNECTED"), ip
++
++    def _network_label(self):
++        kind, _ip = self._network_status()
++        return kind[:18]
++
++    @staticmethod
++    def _ip_address():
++        try:
++            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
++            sock.connect(("8.8.8.8", 80))
++            value = sock.getsockname()[0]
++            sock.close()
++            return value
++        except OSError:
++            return None
++
++    def _show_ip(self):
++        kind, ip = self._network_status()
++        self.app.show_osd(kind, ip or "NO IP ADDRESS", duration=3.0)
++
++    def _scan_wifi(self):
++        try:
++            raw = subprocess.check_output(
++                ["sudo", "-n", "/sbin/iwlist", "wlan0", "scan"],
++                text=True, stderr=subprocess.DEVNULL, timeout=12)
++            ssids = []
++            for ssid in re.findall(r'ESSID:"([^"]+)"', raw):
++                if ssid and ssid not in ssids:
++                    ssids.append(ssid)
++            if not ssids:
++                self.app.show_osd("WI-FI", "NO NETWORKS", duration=2.0)
++                return
++            items = [(ssid, lambda ssid=ssid: self._start_wifi_entry(ssid)) for ssid in ssids[:20]]
++            items.append(("Back", _BACK))
++            self.stack.append(self._frame("WI-FI NETWORKS", items))
++        except Exception:
++            self.app.show_osd("WI-FI", "SCAN FAILED", duration=2.0)
++
++    def _start_wifi_entry(self, ssid):
++        self._wifi_entry = {"ssid": ssid, "password": "", "index": 0}
++        self.app.fsm.reset_menu_timer()
++
++    def _wifi_char(self):
++        return ["JOIN", "CANCEL", "<"] + list("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -_!@#$%&*+.,/:;?")
++
++    def _wifi_select(self):
++        entry = self._wifi_entry
++        char = self._wifi_char()[entry["index"]]
++        if char == "<":
++            entry["password"] = entry["password"][:-1]
++        elif char == "CANCEL":
++            self._wifi_entry = None
++            return
++        elif char == "JOIN":
++            if not entry["password"]:
++                self.app.show_osd("WI-FI", "PASSWORD EMPTY", duration=2.0)
++                return
++            if self.app.listener and self.app.listener.connect_wifi(entry["ssid"], entry["password"]):
++                self.app.show_osd("WI-FI", "CONNECTING", duration=3.0)
++                self._wifi_entry = None
++                self.app.go(self.app.base_screen())
++        else:
++            entry["password"] += char
++
 +    def _set_audio_output(self, output):
 +        self.app.set_audio_output(output)
 +        self.app.go(self.app.base_screen())
      @staticmethod
      def _unpack(item):
          """Items are (label, target) or (label, target, value_fn)."""
-@@ -83,7 +135,10 @@ class MenuScreen(Screen):
+@@ -83,16 +222,26 @@ class MenuScreen(Screen):
  
      # --- navigation ---
      def on_enter(self, **kwargs):
@@ -1026,6 +1126,52 @@ index e283aea..16163da 100644
          self.app.fsm.reset_menu_timer()
  
      def handle_scroll(self, delta):
+-        f = self._cur
+-        f["index"] = max(0, min(f["index"] + delta, len(f["items"]) - 1))
++        if self._wifi_entry is not None:
++            chars = self._wifi_char()
++            self._wifi_entry["index"] = (self._wifi_entry["index"] + delta) % len(chars)
++        else:
++            f = self._cur
++            f["index"] = max(0, min(f["index"] + delta, len(f["items"]) - 1))
+         self.app.fsm.reset_menu_timer()
+ 
+     def handle_select(self):
+         self.app.fsm.reset_menu_timer()
++        if self._wifi_entry is not None:
++            self._wifi_select()
++            return
+         f = self._cur
+         _label, target, _vfn = self._unpack(f["items"][f["index"]])
+         if target == _BACK:
+@@ -103,7 +252,10 @@ class MenuScreen(Screen):
+             target()
+ 
+     def handle_back(self):
+-        # long-press: up one level, or leave the menu at the root.
++        # Long-press cancels password entry, otherwise goes up one level.
++        if self._wifi_entry is not None:
++            self._wifi_entry = None
++            return
+         self._pop()
+ 
+     def _pop(self):
+@@ -155,6 +307,15 @@ class MenuScreen(Screen):
+         return None              # a leaf action / back -> no affordance
+ 
+     def render(self, canvas, draw, w, h):
++        if self._wifi_entry is not None:
++            entry = self._wifi_entry
++            chars = self._wifi_char()
++            char = chars[entry["index"]]
++            label = char if char in ("JOIN", "CANCEL") else ("DELETE" if char == "<" else char)
++            rows = [("Entered", entry["password"][-16:] or "-"), ("Password", label), ("Press", "ADD")]
++            self.draw_menu_surface(canvas, draw, w, h, ("WI-FI: " + entry["ssid"])[:20], rows, 1,
++                                   key_prefix="wifi", top=self.TOP, row_h=self.ROW_H, nrows=self.ROWS)
++            return
+         f = self._cur
+         rows = []
+         for item in f["items"]:
 diff --git a/src/sable/screens/modern.py b/src/sable/screens/modern.py
 index 2623ea7..99ac6aa 100644
 --- a/src/sable/screens/modern.py
@@ -1400,7 +1546,7 @@ index d39be58..6450e1d 100644
 +        with self._lock:
 +            return json.loads(json.dumps(self._data))
 diff --git a/src/sable/volumio/listener.py b/src/sable/volumio/listener.py
-index d3e94a2..eb0df53 100644
+index d3e94a2..3f4c056 100644
 --- a/src/sable/volumio/listener.py
 +++ b/src/sable/volumio/listener.py
 @@ -14,6 +14,7 @@ Carry-forward from the old volumio_listener.py:
@@ -1467,7 +1613,7 @@ index d3e94a2..eb0df53 100644
      def play_item(self, item):
          """Replace the queue with a browse item and play it. Used by BrowseScreen
          when the user selects a playable item (song / web radio / playlist) on the
-@@ -202,6 +231,100 @@ class VolumioListener:
+@@ -202,6 +231,113 @@ class VolumioListener:
          except Exception:
              pass
  
@@ -1477,8 +1623,21 @@ index d3e94a2..eb0df53 100644
 +        except Exception:
 +            pass
 +
++    def connect_wifi(self, ssid, password):
++        """Ask Volumio's network controller to save and join a Wi-Fi network."""
++        try:
++            self.sio.emit("callMethod", {
++                "endpoint": "system_controller/network",
++                "method": "wirelessConnect",
++                "data": {"ssid": ssid, "pass": password},
++            })
++            return True
++        except Exception as exc:
++            self.log("connect_wifi error:", exc)
++            return False
++
 +    def _output_device(self, output):
-+        if output in ("headphone_variable", "headphones"): 
++        if output in ("headphone_variable", "headphones"):
 +            return {"value": "1", "label": "Audio Jack",
 +                    "alsacard": "Headphones", "alsadevice": "0"}
 +        if output in ("fixed_line_out", "lineout_variable", "usb_dac"):

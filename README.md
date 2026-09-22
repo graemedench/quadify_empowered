@@ -65,3 +65,7 @@ sudo ./setup-playlist-backup.sh
 ```
 
 It asks for the server, share, username and password **on the Pi**. None of these values are stored in Git. The credentials are saved only on that Pi in a root-only file. Backups run after every boot and every Sunday at 03:15, retaining `latest` plus three rotating numbered copies.
+
+## Network menu
+
+**Settings → Network** shows the active connection type and network name, for example Wi-Fi: MyNetwork, and can display its current IP address. It also includes an emergency Wi-Fi setup flow: scan for a network, select its SSID, then use the panel control to select password characters. The current password is visible only during entry; JOIN, CANCEL, and DELETE are the first picker options. Joining is passed to Volumio's own network controller, so it remains responsible for saved Wi-Fi settings.

@@ -44,4 +44,11 @@ fi
 install -m 0644 "$SABLE_DIR/systemd/sable.service" /etc/systemd/system/sable.service
 install -m 0644 "$SABLE_DIR/systemd/sable-boot-indicator.service" /etc/systemd/system/sable-boot-indicator.service
 systemctl daemon-reload; systemctl enable sable.service sable-boot-indicator.service; systemctl restart sable.service
+# The panel can scan Wi-Fi but connection settings remain owned by Volumio.
+wifi_tmp=$(mktemp)
+printf '%s\n' 'volumio ALL=(root) NOPASSWD: /sbin/iwlist wlan0 scan' > "$wifi_tmp"
+if visudo -cf "$wifi_tmp" >/dev/null 2>&1; then
+  install -o root -g root -m 0440 "$wifi_tmp" /etc/sudoers.d/quadify-empowered-wifi
+fi
+rm -f "$wifi_tmp"
 echo "Quadify Empowered is installed using the $PRESET preset."

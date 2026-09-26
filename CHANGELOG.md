@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-09-26
+
+- Added **Settings → Shutdown** at the bottom of the Settings menu, with a confirmation step before the existing graceful shutdown routine runs.
+
 ## 2026-09-22
 
 - Added a Network panel menu with live connection type, network name and IP-address display.

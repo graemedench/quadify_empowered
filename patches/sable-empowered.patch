@@ -2,7 +2,7 @@ diff --git a/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf 
 new file mode 100644
 index 0000000..9113ce8
 --- /dev/null
-+++ b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf	
++++ b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf
 @@ -0,0 +1,28 @@
 +# Apple aluminium IR remote captured from this Sable unit's HS0038 receiver.
 +begin remote
@@ -939,7 +939,7 @@ index f3bfd26..73264ab 100644
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea..d6b4ef3 100644
+index e283aea..2849fc0 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
 @@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
@@ -981,7 +981,18 @@ index e283aea..d6b4ef3 100644
              ("Brightness", [
                  ("Low", lambda: self._set_brightness("low")),
                  ("Medium", lambda: self._set_brightness("medium")),
-@@ -66,6 +78,133 @@ class MenuScreen(Screen):
+@@ -48,6 +60,10 @@ class MenuScreen(Screen):
+                 ("Upside-down", lambda: self._set_rotate(180)),
+                 ("Back", _BACK),
+             ], self._rotate_label),
++            ("Shutdown", [
++                ("Confirm Shutdown", self._shutdown),
++                ("Cancel", _BACK),
++            ]),
+         ]
+ 
+     def _rotate_label(self):
+@@ -66,6 +82,139 @@ class MenuScreen(Screen):
          style = self.app.settings.get("display", "spectrum_style", default="bars")
          return "VU" if style == "vu" else style.capitalize()
  
@@ -1065,6 +1076,12 @@ index e283aea..d6b4ef3 100644
 +        kind, ip = self._network_status()
 +        self.app.show_osd(kind, ip or "NO IP ADDRESS", duration=3.0)
 +
++    def _shutdown(self):
++        # Reuse Sable's existing graceful sequence: stop playback, show the
++        # shutdown screen, blank the OLED, ask Volumio to shut down, then use
++        # the system fallback only if needed.
++        self.app.begin_shutdown()
++
 +    def _scan_wifi(self):
 +        try:
 +            raw = subprocess.check_output(
@@ -1115,7 +1132,7 @@ index e283aea..d6b4ef3 100644
      @staticmethod
      def _unpack(item):
          """Items are (label, target) or (label, target, value_fn)."""
-@@ -83,16 +222,26 @@ class MenuScreen(Screen):
+@@ -83,16 +232,26 @@ class MenuScreen(Screen):
  
      # --- navigation ---
      def on_enter(self, **kwargs):
@@ -1144,7 +1161,7 @@ index e283aea..d6b4ef3 100644
          f = self._cur
          _label, target, _vfn = self._unpack(f["items"][f["index"]])
          if target == _BACK:
-@@ -103,7 +252,10 @@ class MenuScreen(Screen):
+@@ -103,7 +262,10 @@ class MenuScreen(Screen):
              target()
  
      def handle_back(self):
@@ -1156,7 +1173,7 @@ index e283aea..d6b4ef3 100644
          self._pop()
  
      def _pop(self):
-@@ -155,6 +307,15 @@ class MenuScreen(Screen):
+@@ -155,6 +317,15 @@ class MenuScreen(Screen):
          return None              # a leaf action / back -> no affordance
  
      def render(self, canvas, draw, w, h):

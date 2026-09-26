@@ -66,6 +66,10 @@ sudo ./setup-playlist-backup.sh
 
 It asks for the server, share, username and password **on the Pi**. None of these values are stored in Git. The credentials are saved only on that Pi in a root-only file. Backups run after every boot and every Sunday at 03:15, retaining `latest` plus three rotating numbered copies.
 
+## Quick Back navigation
+
+Every Settings submenu and music-browsing list ends with **Back**. Select it to return immediately; there is no need to wait for the automatic timeout.
+
 ## Shutdown from the panel
 
 At the bottom of **Settings**, choose **Shutdown**, then **Confirm Shutdown**. This uses Sable's graceful shutdown sequence; it stops playback cleanly and turns off the display before power-off.

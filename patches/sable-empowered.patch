@@ -851,10 +851,19 @@ index 0000000..fc54cdd
 +            self._thread.join(timeout=self.poll_s * 3)
 \ No newline at end of file
 diff --git a/src/sable/screens/browse.py b/src/sable/screens/browse.py
-index d6f071f..3d086d4 100644
+index d6f071f..ac49807 100644
 --- a/src/sable/screens/browse.py
 +++ b/src/sable/screens/browse.py
-@@ -22,13 +22,20 @@ _ROOTS = [
+@@ -14,21 +14,28 @@ from .base import Screen
+ 
+ # Synthetic top level -- the focused set the user asked for.
+ _ROOTS = [
+-    {"title": "Back", "_back": True},
+     {"title": "Favourites", "uri": "favourites", "_folder": True},
+     {"title": "Playlists", "uri": "playlists", "_folder": True},
+     {"title": "Radio", "uri": "radio", "_folder": True},
++    {"title": "Back", "_back": True},
+ ]
  
  # Volumio item types that are containers to drill into (everything else plays).
  _FOLDER_TYPES = {"folder", "folders", "internal-folder", "streaming-category",
@@ -901,6 +910,18 @@ index d6f071f..3d086d4 100644
              self.app.go(self.app.nowplaying_screen())
  
      def handle_back(self):
+@@ -153,7 +169,10 @@ class BrowseScreen(Screen):
+         items, _prev = _items_from_response(data)
+         if len(_play_all_tracks(items)) >= 2:     # album/track list (not radio)
+             items = [{"title": "Play all", "_play_all": True}] + items
+-        items = [{"title": "Back", "_back": True}] + items
++        # Keep Back at the bottom on every browsed level.  That makes it
++        # reachable without waiting for the menu time-out, while leaving
++        # the content (and Play all, when present) at the top.
++        items.append({"title": "Back", "_back": True})
+         frame = self._frame(getattr(self, "_pending_title", "..."), items)
+         if self._replace_top:
+             self.stack[-1] = frame       # carousel entry: result becomes the root
 diff --git a/src/sable/screens/home.py b/src/sable/screens/home.py
 index f3bfd26..73264ab 100644
 --- a/src/sable/screens/home.py
@@ -939,7 +960,7 @@ index f3bfd26..73264ab 100644
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea..2849fc0 100644
+index e283aea..0242b3a 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
 @@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
@@ -981,7 +1002,7 @@ index e283aea..2849fc0 100644
              ("Brightness", [
                  ("Low", lambda: self._set_brightness("low")),
                  ("Medium", lambda: self._set_brightness("medium")),
-@@ -48,6 +60,10 @@ class MenuScreen(Screen):
+@@ -48,6 +60,11 @@ class MenuScreen(Screen):
                  ("Upside-down", lambda: self._set_rotate(180)),
                  ("Back", _BACK),
              ], self._rotate_label),
@@ -989,10 +1010,11 @@ index e283aea..2849fc0 100644
 +                ("Confirm Shutdown", self._shutdown),
 +                ("Cancel", _BACK),
 +            ]),
++            ("Back", _BACK),
          ]
  
      def _rotate_label(self):
-@@ -66,6 +82,139 @@ class MenuScreen(Screen):
+@@ -66,6 +83,139 @@ class MenuScreen(Screen):
          style = self.app.settings.get("display", "spectrum_style", default="bars")
          return "VU" if style == "vu" else style.capitalize()
  
@@ -1132,7 +1154,7 @@ index e283aea..2849fc0 100644
      @staticmethod
      def _unpack(item):
          """Items are (label, target) or (label, target, value_fn)."""
-@@ -83,16 +232,26 @@ class MenuScreen(Screen):
+@@ -83,16 +233,26 @@ class MenuScreen(Screen):
  
      # --- navigation ---
      def on_enter(self, **kwargs):
@@ -1161,7 +1183,7 @@ index e283aea..2849fc0 100644
          f = self._cur
          _label, target, _vfn = self._unpack(f["items"][f["index"]])
          if target == _BACK:
-@@ -103,7 +262,10 @@ class MenuScreen(Screen):
+@@ -103,7 +263,10 @@ class MenuScreen(Screen):
              target()
  
      def handle_back(self):
@@ -1173,7 +1195,7 @@ index e283aea..2849fc0 100644
          self._pop()
  
      def _pop(self):
-@@ -155,6 +317,15 @@ class MenuScreen(Screen):
+@@ -155,6 +318,15 @@ class MenuScreen(Screen):
          return None              # a leaf action / back -> no affordance
  
      def render(self, canvas, draw, w, h):

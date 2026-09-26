@@ -3,6 +3,7 @@
 ## 2026-09-26
 
 - Added **Settings → Shutdown** at the bottom of the Settings menu, with a confirmation step before the existing graceful shutdown routine runs.
+- Added a **Back** item at the bottom of Settings and all music-browsing lists, for immediate return without waiting for the timeout.
 
 ## 2026-09-22
 

@@ -4,8 +4,6 @@
 
 - Added the no-drill, reversible rear Ethernet-jack panel STL, fitting photos
   and safety-first fitting notes for the original IEC / POWER OUT opening.
-- Added a 296 × 173.5 mm, photo-derived Rev-A SVG/DXF template for a reversible
-  PCB replacement panel, with 3.5 mm fixing-hole clearance and test-fit notes.
 - Documented the reversible FM4-conversion principle and the planned USB-A+C
   rear-panel option with optional power-text backing plate.
 - Regenerated the Sable enhancement patch from the full current FM4 build.

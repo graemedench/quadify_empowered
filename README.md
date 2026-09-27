@@ -133,11 +133,10 @@ This repository currently includes the matching button-cap print pack, the
 front-panel mounting parts (screen holder, rotary bracket and long knob
 extender), and the reversible rear Ethernet-jack panel.
 
-My FM4 build also has additional rear/enclosure pieces. A photo-derived,
-test-fit-first SVG/DXF template for replacing the original PCB panel is now
-included with the mounting parts; its individual hole centres remain a Rev-A
-trace until physically checked. A USB-A+C rear-panel option is also planned;
-it will use the existing IEC opening and have an optional backing plate to
-cover the original power text, again without drilling. These will be added as
-and when.
+My FM4 build also has additional rear/enclosure pieces, and a cut-out template
+for replacing the original PCB. These parts are intentionally **not included
+yet** while their fit and final revision are being kept separate from the
+current release. A USB-A+C rear-panel option is also planned; it will use the
+existing IEC opening and have an optional backing plate to cover the original
+power text, again without drilling. These will be added as and when.
 

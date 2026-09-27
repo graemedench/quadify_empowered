@@ -116,3 +116,14 @@ The labelled build diagram is available at [docs/FM4-WIRING-DIAGRAM.svg](docs/FM
 The [FM4 build notes](docs/FM4-BUILD-NOTES.md) document the LED-8/IR receiver
 conversion and link the included mounting-part STLs.
 
+## Other FM4 printed parts
+
+This repository currently includes the matching button-cap print pack and the
+front-panel mounting parts: the screen holder, rotary bracket and long knob
+extender.
+
+The FM4 build also has additional rear/enclosure pieces, including an inner
+back-panel clamp plate and a network-port panel. Those parts are intentionally
+**not included yet** while their fit and final revision are being kept separate
+from the front-panel release.
+

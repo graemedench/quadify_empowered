@@ -2,6 +2,14 @@
 
 Quadify Empowered is a **post-install enhancement pack** for [Sable](https://github.com/theshepherdmatt/sable) on Volumio. It does not include, replace, or redistribute Sable itself.
 
+## Personal use and original rights
+
+Quadify Empowered is provided for **personal, non-commercial use**. It must not be sold, resold, or commercially redistributed. All rights in the original Quadify project and its materials remain with the original Quadify creator and publisher; all rights in Sable remain with its publisher. This enhancement pack does not grant any commercial rights in either original project.
+
+## FM4 button print pack
+
+[`FM4 Button Print Pack`](FM4%20Button%20Print%20Pack/) contains the matching printable button-cap files: an all-variants 3MF plate, individual two-colour FDM parts, editable blank-cap source, and one-piece single-colour resin files with 1 mm raised icons (including a plain resin blank cap). See its read-me for the recommended print workflow.
+
 Install standard Volumio and Sable first. This pack adds quicker visible boot feedback, display reliability, a 10-second return to Now Playing, improved TIDAL/Sable Radio navigation, Button 8 save-track, IR support, and a modern low-overhead display mode.
 
 ## Install

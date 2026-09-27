@@ -8,6 +8,9 @@ These are the current printable mounting STL files used on Graeme's FM4.
   the front knob.
 - [`Rear Network Jack`](Rear%20Network%20Jack/) — a no-drill panel that uses
   the original rear IEC / POWER OUT opening for a panel-mount Ethernet extension.
+- [`PCB Replacement Template`](PCB%20Replacement%20Template/) — a 1:1,
+  photo-derived Rev-A SVG/DXF laser-cut template. Test-fit it before using a
+  finished material.
 
 The Ethernet panel and its fitting photos are documented in its own folder.
 Other rear/enclosure parts are still being kept separate while their fit is

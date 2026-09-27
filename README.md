@@ -108,3 +108,8 @@ At the bottom of **Settings**, choose **Shutdown**, then **Confirm Shutdown**. T
 ## Network menu
 
 **Settings → Network** shows the active connection type and network name, for example Wi-Fi: MyNetwork, and can display its current IP address. It also includes an emergency Wi-Fi setup flow: scan for a network, select its SSID, then use the panel control to select password characters. The current password is visible only during entry; JOIN, CANCEL, and DELETE are the first picker options. Joining is passed to Volumio's own network controller, so it remains responsible for saved Wi-Fi settings.
+
+## FM4 wiring diagram
+
+The labelled build diagram is available at [docs/FM4-WIRING-DIAGRAM.svg](docs/FM4-WIRING-DIAGRAM.svg). It records the live FM4 GPIO, I²C, SPI, IR, rotary and shutdown-switch wiring.
+

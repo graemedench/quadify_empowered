@@ -60,7 +60,7 @@
   <text x="1258" y="463" class="h">HS0038 IR RECEIVER</text>
   <text x="1207" y="496" class="t">VCC → 3V3 • GND → GND</text>
   <text x="1207" y="526" class="t">OUT → GPIO27 / Pin 13</text>
-  <text x="1207" y="561" class="s">Apple Aluminium IR remote profile</text>
+  <text x="1207" y="561" class="s">Mounted in the former front-panel LED 8 opening</text>
 
   <rect class="box" x="1165" y="695" width="350" height="145" rx="20"/>
   <text x="1245" y="738" class="h">SHUTDOWN SWITCH</text>
@@ -78,5 +78,6 @@
   <text x="70" y="950" class="h">Power / connection notes</text>
   <text x="70" y="980" class="note">* Check your OLED module’s printed voltage requirement. The MCP23017 and HS0038 receiver must use 3.3 V logic/power.</text>
   <text x="70" y="1008" class="note">USB SMSL DAC plugs into a Pi USB port. The headphone output is the Pi’s built-in 3.5 mm jack. HDMI outputs are intentionally hidden in the Sable menu.</text>
-  <text x="70" y="1038" class="note">Never connect 5 V to a Raspberry Pi GPIO signal pin. Power the Pi off before changing wiring.</text>
+  <text x="70" y="1038" class="note">LED 8 remains electrically connected to the MCP23017 but is pulled back behind the panel to make room for the IR receiver.</text>
+  <text x="70" y="1064" class="note">Never connect 5 V to a Raspberry Pi GPIO signal pin. Power the Pi off before changing wiring.</text>
 </svg>

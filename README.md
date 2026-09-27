@@ -113,3 +113,6 @@ At the bottom of **Settings**, choose **Shutdown**, then **Confirm Shutdown**. T
 
 The labelled build diagram is available at [docs/FM4-WIRING-DIAGRAM.svg](docs/FM4-WIRING-DIAGRAM.svg). It records the live FM4 GPIO, I²C, SPI, IR, rotary and shutdown-switch wiring.
 
+The [FM4 build notes](docs/FM4-BUILD-NOTES.md) document the LED-8/IR receiver
+conversion and link the included mounting-part STLs.
+

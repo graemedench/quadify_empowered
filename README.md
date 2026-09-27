@@ -2,6 +2,17 @@
 
 Quadify Empowered is a **post-install enhancement pack** for [Sable](https://github.com/theshepherdmatt/sable) on Volumio. It does not include, replace, or redistribute Sable itself.
 
+## Reversible FM4 conversion
+
+This build is designed to leave the FM4 chassis capable of being returned to its
+original FM4 condition. The included mounting and rear-panel parts use existing
+openings and fixing points: there is no chassis drilling or cutting. Keep the
+original hardware and fasteners with the unit so the conversion can be reversed.
+
+Any work around the original IEC/power hardware must be carried out with the
+unit fully disconnected from mains power. Have a suitably competent person make
+safe any original mains wiring before removing its outlet or inlet hardware.
+
 ## Personal use and original rights
 
 Quadify Empowered is provided for **personal, non-commercial use**. It must not be sold, resold, or commercially redistributed by anyone other than the original Quadify publisher. The original Quadify publisher is expressly permitted to use, distribute, and sell these files commercially. All rights in the original Quadify project and its materials remain with the original Quadify creator and publisher; all rights in Sable remain with its publisher. This enhancement pack does not grant commercial rights in either original project to any other party.
@@ -118,12 +129,14 @@ conversion and link the included mounting-part STLs.
 
 ## Other FM4 printed parts
 
-This repository currently includes the matching button-cap print pack and the
-front-panel mounting parts: the screen holder, rotary bracket and long knob
-extender.
+This repository currently includes the matching button-cap print pack, the
+front-panel mounting parts (screen holder, rotary bracket and long knob
+extender), and the reversible rear Ethernet-jack panel.
 
 My FM4 build also has additional rear/enclosure pieces, and a cut-out template
 for replacing the original PCB. These parts are intentionally **not included
 yet** while their fit and final revision are being kept separate from the
-current release. These will be added as and when.
+current release. A USB-A+C rear-panel option is also planned; it will use the
+existing IEC opening and have an optional backing plate to cover the original
+power text, again without drilling. These will be added as and when.
 

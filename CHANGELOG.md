@@ -2,6 +2,10 @@
 
 ## 2026-09-27
 
+- Added the no-drill, reversible rear Ethernet-jack panel STL, fitting photos
+  and safety-first fitting notes for the original IEC / POWER OUT opening.
+- Documented the reversible FM4-conversion principle and the planned USB-A+C
+  rear-panel option with optional power-text backing plate.
 - Regenerated the Sable enhancement patch from the full current FM4 build.
 - Added the looping boot LED animation, playback-mode display refinements,
   audio-first display settling and soft-stop behaviour.

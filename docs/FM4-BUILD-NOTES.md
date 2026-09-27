@@ -14,8 +14,20 @@ HS0038 IR receiver.
 This keeps the eight-channel LED hardware reversible while giving the IR sensor
 a neat, front-facing location.
 
+## Rear Ethernet jack conversion
+
+[`Rear Network Jack`](../FM4%20Mounting%20Parts/Rear%20Network%20Jack/) holds a
+panel-mount Ethernet extension in the original rear IEC / **POWER OUT** opening.
+It uses the original opening and fixing points, so no drilling or cutting is
+required.
+
+With the unit disconnected from mains power, have any original mains wiring
+made safe by a suitably competent person before removing the original IEC
+hardware. Retain the original outlet/inlet hardware and screws if the FM4 may
+later be returned to its original condition.
+
 ## Included mounting parts
 
-The current printable front-panel mounting parts are in
+The current printable mounting parts are in
 [`FM4 Mounting Parts`](../FM4%20Mounting%20Parts/): screen holder, rotary-knob
-bracket and knob extender. Back-panel parts are deliberately not included yet.
+bracket, knob extender and the rear Ethernet-jack panel.

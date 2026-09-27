@@ -10,9 +10,21 @@ Quadify Empowered is provided for **personal, non-commercial use**. It must not 
 
 [`FM4 Button Print Pack`](FM4%20Button%20Print%20Pack/) contains the matching printable button-cap files: an all-variants 3MF plate, individual two-colour FDM parts, editable blank-cap source, and one-piece single-colour resin files with 1 mm raised icons (including a plain resin blank cap). See its read-me for the recommended print workflow.
 
-Install standard Volumio and Sable first. This pack adds quicker visible boot feedback, display reliability, a 10-second return to Now Playing, improved TIDAL/Sable Radio navigation, Button 8 save-track, IR support, and a modern low-overhead display mode.
+Install standard Volumio and Sable first. This pack adds reliable OLED/boot feedback, the looping front-panel LED startup pattern, display and audio-performance refinements, improved TIDAL/Sable Radio navigation, configurable radio/TIDAL shortcut buttons, IR support, networking tools, graceful shutdown, and a modern low-overhead display mode.
 
 ## Install
+
+This release is verified against Sable commit
+`3670e503db8124de5890a6df1dc1b68b95d392a6`. For a repeatable clean build:
+
+```bash
+git clone https://github.com/theshepherdmatt/sable.git /home/volumio/sable
+cd /home/volumio/sable
+git checkout 3670e503db8124de5890a6df1dc1b68b95d392a6
+sudo bash install.sh
+```
+
+Then install this enhancement pack:
 
 ```bash
 git clone https://github.com/graemedench/quadify_empowered.git /home/volumio/quadify_empowered
@@ -20,7 +32,18 @@ cd /home/volumio/quadify_empowered
 sudo ./install.sh
 ```
 
-The installer checks the Sable version before it applies anything. If it is not compatible, it stops with no changes. For a deliberately attempted newer-version install, take a backup first and confirm the prompt (or use --force for unattended use); conflicts still stop rather than overwriting files.
+The installer checks the Sable revision before it applies anything. If it is not the verified revision, it stops with no changes. For a deliberately attempted newer-version install, take a backup first and use `--force`; it then asks Git to perform a three-way merge and stops on a conflict rather than overwriting code.
+
+## Current front-panel additions
+
+- Button 1: tap play/pause; hold gives the quiet five-minute soft-stop state.
+- Button 2 cycles Play Single, Play All, Repeat Single, Repeat All and Shuffle.
+- Button 8: tap saves the current item to the TIDAL **Quadify** playlist; hold
+  opens Save Shortcut. Press 5, 6 or 7, choose short/long with the encoder,
+  then push the encoder to save the current radio/TIDAL source.
+- Settings → Shortcuts restores the 5–7 defaults for the selected profile.
+- A long encoder press returns directly to Now Playing from any menu/browse depth.
+- The panel menu provides display, output, network/IP and emergency Wi-Fi setup.
 
 ## Output-menu presets
 
@@ -47,9 +70,9 @@ No music-service credentials or personal Volumio login details are included.
 | Function | Configuration |
 | --- | --- |
 | OLED / panel SPI | `dtparam=spi=on` |
-| IR receiver | HS0038 output on BCM GPIO4; 3.3 V and GND; Apple Aluminium Remote profile |
-| IR device | `/dev/lirc1` (this unit also has the standard GPIO27 IR overlay) |
-| Shutdown button | BCM GPIO17, active-low with pull-up |
+| IR receiver | HS0038 output on BCM GPIO27; 3.3 V and GND; Apple Aluminium Remote profile |
+| IR device | `/dev/lirc1` |
+| Shutdown button | BCM GPIO21, active-low, controlled by Sable |
 | Button 8 | Save current track to Volumio's local `Quadify` playlist |
 
 Reboot after `--graeme` so the IR overlay becomes active. The panel and GPIO wiring must match this profile.

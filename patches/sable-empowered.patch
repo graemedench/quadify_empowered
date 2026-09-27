@@ -1,8 +1,160 @@
+diff --git a/MODPACK.md b/MODPACK.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..2de240f445efac3f40e64eee8f8cc54c9fb9e0a7
+--- /dev/null
++++ b/MODPACK.md
+@@ -0,0 +1,71 @@
++# Quadify Empowered
++
++Quadify Empowered is a personal, community mod pack built on top of a normal
++Sable installation for Volumio 4. It keeps Sable as the player-panel platform;
++it does not replace Volumio, TIDAL or the original Sable project.
++
++## Install
++
++Install Volumio and Sable normally first. Then use this repository as the
++Sable source and run the standard installer:
++
++```sh
++git clone https://github.com/graemedench/quadify_empowered.git /home/volumio/sable
++cd /home/volumio/sable
++sudo bash install.sh
++```
++
++Reboot once if the installer adds SPI, I2C or IR kernel overlays.
++
++### Graeme FM4 preset
++
++For the FM4 used to develop this mod pack, run:
++
++```sh
++sudo bash install.sh --graeme
++```
++
++This restores the personal display/audio/IR preferences and the 5–7 shortcut
++defaults. It does not copy hardware wiring overrides, network credentials,
++TIDAL login details or playlists.
++
++## Added behaviour
++
++- Reliable OLED boot/reinitialisation and an early front-panel LED readiness
++  flourish.
++- A looping startup LED route: **1 → 2 → 4 → 6 → 5 → 3 → 1**.
++- Modern panel, cinema, spectrum, VU and performance display modes, including
++  a compact unboxed playback-mode indicator.
++- Pause/stop improvements: holding play pauses immediately, shows a discreet
++  stopped state with LEDs dark, then performs the real stop after five minutes.
++- Front-panel playback modes: Play Single, Play All, Repeat Single, Repeat All
++  and Shuffle.
++- TIDAL/radio source switching that avoids stale metadata and temporary clock
++  flashes.
++- Button 8 tap saves the current track to the real **Quadify** TIDAL playlist.
++  Holding it opens **Save Shortcut**: press 5, 6 or 7, choose short or long
++  with the encoder, then press the encoder to confirm.
++- Settings → Shortcuts can restore buttons 5–7 to the selected profile's
++  defaults.
++- Button 5/6/7 short and long assignments persist in `settings.json`; Sable
++  remembers TIDAL mixes that it started and reusable radio stream URLs.
++- Long press on the encoder exits any menu or browse depth straight to Now
++  Playing.
++- On-screen network status (wired/Wi-Fi name and IP) plus Wi-Fi joining.
++- General detected-output menu, plus the optional personal fixed/variable
++  line-out and headphone-output menu.
++- IR receiver support and the verified Apple Aluminium Remote profile.
++- Graceful shutdown using the dedicated BCM21 input.
++
++## Keeping changes across updates
++
++Your runtime choices live in `/home/volumio/sable/config/settings.json` and
++are intentionally not committed. Before an update, use `sable-backup`; after
++an update re-run `sudo bash install.sh` and restart/reboot as appropriate.
++
++## Rights
++
++This mod pack is free for personal use. Commercial sale rights remain with the
++original Quadify creator/publisher. The original Quadify publisher is welcome
++to use these additions commercially. Sable and its dependencies remain subject
++to their own upstream licences.
+diff --git a/README.md b/README.md
+index a4642d402537e96766d200aceec68074fc5df33d..d57761be7f90095fa6bafc1cbd6e656507e86977 100644
+--- a/README.md
++++ b/README.md
+@@ -9,6 +9,14 @@ It runs on the Pi as the `sable.service` systemd unit and owns the display +
+ controls; the player stays the player. See `DESIGN.md` for the architecture and
+ `STATUS.md` for current state.
+ 
++## Quadify Empowered mod pack
++
++This repository also carries the **Quadify Empowered** Volumio/FM4 additions:
++front-panel shortcuts, TIDAL/radio refinements, network tools, output selection,
++IR support, shutdown and boot/LED polish. See [MODPACK.md](MODPACK.md) for the
++complete feature list, installation instructions and rights notice. Use
++`sudo bash install.sh --graeme` only when you want the FM4 personal preset.
++
+ **Which player you are on changes three things** -- and only these three. Everything
+ else in this README applies to both:
+ 
+diff --git a/bin/sable-backup.sh b/bin/sable-backup.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..2c6e947dc2ab36426d634863f70a7c92e9827a3d
+--- /dev/null
++++ b/bin/sable-backup.sh
+@@ -0,0 +1,27 @@
++#!/bin/bash
++# Create a portable snapshot of Sable before a Volumio or Sable update.
++set -euo pipefail
++
++SABLE_DIR="${SABLE_DIR:-/home/volumio/sable}"
++BACKUP_DIR="${SABLE_BACKUP_DIR:-/data/sable-backups}"
++STAMP="$(date +%Y%m%d-%H%M%S)"
++ARCHIVE="$BACKUP_DIR/sable-$STAMP.tar.gz"
++SUDO=""; [ "$(id -u)" -ne 0 ] && SUDO="sudo"
++
++[ -d "$SABLE_DIR" ] || { echo "Sable is not present at $SABLE_DIR" >&2; exit 1; }
++$SUDO mkdir -p "$BACKUP_DIR"
++$SUDO tar -C / --ignore-failed-read \
++  --exclude='home/volumio/sable/.git' \
++  -czf "$ARCHIVE" \
++  home/volumio/sable \
++  etc/systemd/system/sable.service \
++  etc/systemd/system/sable-boot-indicator.service \
++  etc/systemd/system/sable-boot-splash.service \
++  boot/userconfig.txt 2>/dev/null
++$SUDO chown volumio:volumio "$ARCHIVE" 2>/dev/null || true
++
++# Keep the five most recent snapshots; the current one is always retained.
++$SUDO find "$BACKUP_DIR" -maxdepth 1 -type f -name 'sable-*.tar.gz' -printf '%T@ %p\n' \
++  | sort -nr | tail -n +6 | cut -d' ' -f2- | xargs -r $SUDO rm -f
++
++echo "Sable backup created: $ARCHIVE"
+\ No newline at end of file
+diff --git a/bin/sable-repair.sh b/bin/sable-repair.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..cf73decbc38e3c82cce859d5d0fd5b8d13e49d44
+--- /dev/null
++++ b/bin/sable-repair.sh
+@@ -0,0 +1,15 @@
++#!/bin/bash
++# Reinstall Sable's system integration after an update, preserving settings.
++set -euo pipefail
++
++SABLE_DIR="${SABLE_DIR:-/home/volumio/sable}"
++[ -d "$SABLE_DIR/src/sable" ] || { echo "Sable code is not present at $SABLE_DIR" >&2; exit 1; }
++
++if command -v sable-backup >/dev/null 2>&1; then
++  sable-backup
++fi
++
++cd "$SABLE_DIR"
++SABLE_DIR="$SABLE_DIR" bash install.sh
++sudo systemctl restart sable.service
++echo "Sable has been repaired and restarted."
+\ No newline at end of file
 diff --git a/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf
 new file mode 100644
-index 0000000..9113ce8
+index 0000000000000000000000000000000000000000..9113ce8033e207357d1e250ae018470e53f0507a
 --- /dev/null
-+++ b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf
++++ b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf	
 @@ -0,0 +1,28 @@
 +# Apple aluminium IR remote captured from this Sable unit's HS0038 receiver.
 +begin remote
@@ -34,35 +186,268 @@ index 0000000..9113ce8
 +end remote
 \ No newline at end of file
 diff --git a/config/settings.default.json b/config/settings.default.json
-index f5ba9b2..3f9696d 100644
+index f5ba9b2bee4a6eacbce434890294005ee47f441e..9593af08afe027b934fb1020cb45ee0c505cb8c1 100644
 --- a/config/settings.default.json
 +++ b/config/settings.default.json
-@@ -2,6 +2,16 @@
-   "_meta": {
-     "rev": 1
-   },
-+  "audio": {
-+    "output": "fixed_line_out",
-+    "menu_mode": "general"
-+  },
+@@ -1,32 +1,21 @@
+ {
+-  "_meta": {
+-    "rev": 1
+-  },
+-  "clock": {
+-    "font": "sans",
+-    "show_date": false,
+-    "show_seconds": false
+-  },
+-  "controls": {
+-    "leds_enabled": true
+-  },
+-  "dac": {
+-    "input_index": 0
+-  },
+-  "display": {
+-    "brightness": "high",
+-    "rotate": 0,
+-    "screen": "modern",
+-    "spectrum": true,
+-    "spectrum_style": "bars"
+-  },
+-  "ir": {
+-    "enabled": true,
+-    "profile": "Xiaomi IR for TV box"
+-  },
+-  "screensaver": {
+-    "idle_s": 3600,
+-    "sleep_s": 600,
+-    "type": "geo"
++  "_meta": {"rev": 4},
++  "display": {"screen": "modern", "theme": "panel", "spectrum_style": "bars", "brightness": "high", "transitions": true, "rotate": 0},
++  "clock": {"show_seconds": false, "show_date": false},
++  "screensaver": {"clock_after_s": 300, "dim_s": 120, "idle_s": 3600},
++  "audio": {"output": "fixed_line_out", "menu_mode": "general"},
++  "playback": {"mode": "stop"},
++  "dac": {"input_index": 0},
++  "ir": {"enabled": true, "profile": "Xiaomi IR for TV box"},
++  "controls": {"leds_enabled": true},
 +  "buttons": {
-+    "btn_8": {
-+      "action": "save_track",
-+      "arg": ""
-+    }
-+  },
-   "clock": {
-     "font": "sans",
-     "show_date": false,
-@@ -29,4 +39,4 @@
-     "sleep_s": 600,
-     "type": "geo"
++    "btn_1": {"action": "play", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_2": {"action": "pause", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_3": {"action": "previous", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_4": {"action": "next", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_5": {"action": "random", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_6": {"action": "repeat", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_7": {"action": "none", "arg": "", "hold_action": "", "hold_arg": ""},
++    "btn_8": {"action": "save_track", "arg": "", "hold_action": "", "hold_arg": ""}
    }
 -}
 \ No newline at end of file
 +}
+diff --git a/config/settings.graeme.json b/config/settings.graeme.json
+new file mode 100755
+index 0000000000000000000000000000000000000000..e7b6595495dbe0938acf1e8e25579aac9422ec62
+--- /dev/null
++++ b/config/settings.graeme.json
+@@ -0,0 +1,89 @@
++{
++  "_meta": {
++    "rev": 4
++  },
++  "audio": {
++    "menu_mode": "personal",
++    "output": "fixed_line_out"
++  },
++  "buttons": {
++    "btn_1": {
++      "action": "play_pause",
++      "arg": "",
++      "hold_action": "",
++      "hold_arg": ""
++    },
++    "btn_2": {
++      "action": "cycle_repeat",
++      "arg": "",
++      "hold_action": "",
++      "hold_arg": ""
++    },
++    "btn_3": {
++      "action": "previous",
++      "arg": "",
++      "hold_action": "",
++      "hold_arg": ""
++    },
++    "btn_4": {
++      "action": "next",
++      "arg": "",
++      "hold_action": "",
++      "hold_arg": ""
++    },
++    "btn_5": {
++      "action": "bbc_radio_2",
++      "arg": "",
++      "hold_action": "play_uri",
++      "hold_arg": "http://www.radiofeeds.net/playlists/bauerflash.pls?station=clyde2-mp3 | Greatest Hits Radio (Glasgow & the West)"
++    },
++    "btn_6": {
++      "action": "bbc_radio_4",
++      "arg": "",
++      "hold_action": "play_uri",
++      "hold_arg": "http://www.radiofeeds.net/playlists/bauerflash.pls?station=absolute80s-mp3 | Absolute 80s"
++    },
++    "btn_7": {
++      "action": "play_uri",
++      "arg": "tidal://mymusic/mixes/0026e9b35979c2633352b995fa995f | My Mix 1",
++      "hold_action": "play_uri",
++      "hold_arg": "tidal://mymusic/mixes/016631b3ba9c5d5a39ea1a74b5e303 | TIDAL Mix"
++    },
++    "btn_8": {
++      "action": "save_track",
++      "arg": "",
++      "hold_action": "",
++      "hold_arg": ""
++    }
++  },
++  "clock": {
++    "show_date": false,
++    "show_seconds": false
++  },
++  "controls": {
++    "leds_enabled": true
++  },
++  "dac": {
++    "input_index": 0
++  },
++  "display": {
++    "brightness": "high",
++    "rotate": 0,
++    "screen": "modern",
++    "spectrum_style": "ribbon",
++    "theme": "panel",
++    "transitions": true
++  },
++  "ir": {
++    "enabled": true,
++    "profile": "Apple Aluminium Remote (this unit)"
++  },
++  "playback": {
++    "mode": "random"
++  },
++  "screensaver": {
++    "clock_after_s": 0,
++    "dim_s": 120,
++    "idle_s": 3600
++  }
++}
+\ No newline at end of file
+diff --git a/install-moode.sh b/install-moode.sh
+index 50bc3ebaa852c8f361f756d9ba8252a0c4d8320c..5cb085278c8bd90cd9db19e834a3467097e2acf9 100755
+--- a/install-moode.sh
++++ b/install-moode.sh
+@@ -99,10 +99,8 @@ else
+ fi
+ 
+ # 4. Kernel overlays (written now; take effect on the next REBOOT) -----------
+-# SPI (OLED), I2C (buttons/LEDs), gpio-ir (IR BCM4). gpio-shutdown wires a safe
+-# power-off button on BCM17 -- remove that line if your board has nothing on
+-# BCM17 and powers off / won't stay up. Audio (USB/HAT/HDMI) is moOde's
+-# concern -- no audio overlay here. On Bookworm+ (moOde 9) the boot partition
++# SPI (OLED), I2C (buttons/LEDs), gpio-ir (IR BCM4), and the existing BCM17
++# gpio-shutdown overlay. Sable uses separate BCM21 for graceful shutdown. On Bookworm+ (moOde 9) the boot partition
+ # is mounted at /boot/firmware and THAT config.txt is the one the bootloader
+ # reads -- a stale, inert /boot/config.txt stub can also exist and silently
+ # eat writes that never take effect (verified on a real moOde 9 Pi 4: SPI/I2C
+diff --git a/install.sh b/install.sh
+index e0b8de5f3fd97eeb2a0acca4191c26713d5c0634..b83ae7925b7b06da464f1eef8fdcb66cb8c8fc51 100755
+--- a/install.sh
++++ b/install.sh
+@@ -14,11 +14,21 @@
+ # manager calls it -- sudo is used only when not already root.
+ set -uo pipefail
+ 
++GRAEME_PRESET=0
++for arg in "$@"; do
++    case "$arg" in
++        --graeme) GRAEME_PRESET=1 ;;
++        *) echo "FATAL: unknown option: $arg (supported: --graeme)"; exit 2 ;;
++    esac
++done
++
+ SABLE_DIR="${SABLE_DIR:-/home/volumio/sable}"
+ UNIT_SRC="$SABLE_DIR/systemd/sable.service"
+ UNIT_DST="/etc/systemd/system/sable.service"
+ BOOT_UNIT_SRC="$SABLE_DIR/systemd/sable-boot-splash.service"
+ BOOT_UNIT_DST="/etc/systemd/system/sable-boot-splash.service"
++INDICATOR_UNIT_SRC="$SABLE_DIR/systemd/sable-boot-indicator.service"
++INDICATOR_UNIT_DST="/etc/systemd/system/sable-boot-indicator.service"
+ DISABLED_DIR="$SABLE_DIR/disabled-units"
+ USERCONFIG="/boot/userconfig.txt"
+ APT_OPTS="-y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold"
+@@ -31,9 +41,19 @@ warn() { echo "[sable-install] WARN: $*" >&2; }
+ # 0. Preconditions -----------------------------------------------------------
+ [ -d "$SABLE_DIR/src/sable" ] || { echo "FATAL: Sable code not found at $SABLE_DIR (clone it first)"; exit 1; }
+ [ -f "$UNIT_SRC" ]           || { echo "FATAL: unit file missing at $UNIT_SRC"; exit 1; }
++[ -f "$INDICATOR_UNIT_SRC" ] || { echo "FATAL: early boot indicator unit missing at $INDICATOR_UNIT_SRC"; exit 1; }
+ command -v python3 >/dev/null || { echo "FATAL: python3 not found"; exit 1; }
+ [ -n "$SUDO" ] && { log "may prompt for the 'volumio' sudo password ..."; sudo -v || { echo "FATAL: sudo required"; exit 1; }; }
+ 
++# The personal option deliberately changes settings only: hardware wiring stays
++# machine-specific. It restores Graeme's audio/menu profile and 5-7 shortcuts.
++if [ "$GRAEME_PRESET" -eq 1 ]; then
++    PRESET="$SABLE_DIR/config/settings.graeme.json"
++    [ -f "$PRESET" ] || { echo "FATAL: Graeme preset missing: $PRESET"; exit 1; }
++    $SUDO install -o volumio -g volumio -m 0644 "$PRESET" "$SABLE_DIR/config/settings.json"
++    log "applied Graeme FM4 settings and shortcut defaults"
++fi
++
+ # 1. Heal apt + system packages ----------------------------------------------
+ # Heal any half-configured dpkg state from a previous run, and drop the dead
+ # nodesource repo that makes `apt-get update` fail on Volumio bookworm.
+@@ -185,7 +205,7 @@ fi
+ 
+ # 4. Retire conflicting quadify units IF present (kept, just moved aside) -----
+ mkdir -p "$DISABLED_DIR"
+-for u in quadify.service cava.service quadify-buttonsleds.service ir_listener.service; do
++for u in quadify.service cava.service quadify-buttonsleds.service ir_listener.service quadify-power.service; do
+     if [ -f "/etc/systemd/system/$u" ]; then
+         log "retiring $u -> $DISABLED_DIR/"
+         $SUDO systemctl stop "$u"    2>/dev/null || true
+@@ -199,8 +219,13 @@ log "installing $UNIT_DST"
+ $SUDO tee "$UNIT_DST" < "$UNIT_SRC" >/dev/null
+ log "installing $BOOT_UNIT_DST"
+ $SUDO tee "$BOOT_UNIT_DST" < "$BOOT_UNIT_SRC" >/dev/null
++log "installing $INDICATOR_UNIT_DST"
++$SUDO tee "$INDICATOR_UNIT_DST" < "$INDICATOR_UNIT_SRC" >/dev/null
++log "installing Sable recovery commands"
++$SUDO install -o root -g root -m 0755 "$SABLE_DIR/bin/sable-backup.sh" /usr/local/bin/sable-backup
++$SUDO install -o root -g root -m 0755 "$SABLE_DIR/bin/sable-repair.sh" /usr/local/bin/sable-repair
+ $SUDO systemctl daemon-reload
+-$SUDO systemctl enable sable.service >/dev/null 2>&1 || true
++$SUDO systemctl enable sable.service sable-boot-indicator.service >/dev/null 2>&1 || true
+ # sable-boot-splash is installed but deliberately NOT enabled, and is actively
+ # disabled here in case an earlier install enabled it.
+ #
+diff --git a/plugin/index.js b/plugin/index.js
+index 711832c7f0dbf452643b02896d1758958d372e14..560240ae83730204724762a184dfa7cf1f3e760e 100755
+--- a/plugin/index.js
++++ b/plugin/index.js
+@@ -302,7 +302,15 @@ SablePlugin.prototype.saveButtonsConfig = function (data) {
+   for (var b = 1; b <= 8; b++) {
+     var act = this._val(data['btn' + b + '_action']) || BTN_DEFAULTS[b];
+     var arg = data['btn' + b + '_arg'] || '';
+-    this._set(s, 'buttons', 'btn_' + b, { action: act, arg: String(arg).trim() });
++    // The web UI edits the normal tap action only. Preserve any configured
++    // long-hold shortcut rather than silently discarding it on a later save.
++    var existing = this._get(s, 'buttons', 'btn_' + b, {}) || {};
++    this._set(s, 'buttons', 'btn_' + b, {
++      action: act,
++      arg: String(arg).trim(),
++      hold_action: existing.hold_action || '',
++      hold_arg: existing.hold_arg || ''
++    });
+   }
+   this._write(s);
+   this._reload();
 diff --git a/src/sable/app.py b/src/sable/app.py
-index 64d9454..f14436d 100644
+index 64d945414952254f29366a0df94c717cbe529821..7cd1fd8be9fd25648d2c9b1e39687b14df1216d8 100644
 --- a/src/sable/app.py
 +++ b/src/sable/app.py
 @@ -18,6 +18,7 @@ import argparse
@@ -73,10 +458,34 @@ index 64d9454..f14436d 100644
  import threading
  import time
  
-@@ -135,6 +136,11 @@ class App:
+@@ -39,7 +40,7 @@ from .screens.splash import SplashScreen
+ from .settings import Settings
+ from .state import StateStore
+ 
+-TRANSPORT = {"play", "pause", "toggle", "next", "previous", "random", "repeat"}
++TRANSPORT = {"play", "pause", "stop", "toggle", "next", "previous", "random", "repeat"}
+ # Sources where the SOURCE (phone/app) owns transport, so a receiver-side
+ # play/pause/skip is futile -- it either does nothing or the source immediately
+ # resumes (AirPlay). Pressing transport here shows a hint instead of fighting it.
+@@ -133,8 +134,24 @@ class App:
+         self._rendered_screen = None
+         self._fade = None              # (old_image, start_monotonic) | None
          self._fade_s = 0.22
-         self._stop_timer = None        # deferred stop->clock fall-back (Fix 2)
-         self._stop_grace_s = 1.5
+-        self._stop_timer = None        # deferred stop->clock fall-back (Fix 2)
+-        self._stop_grace_s = 1.5
++        self._stop_timer = None        # deferred stop->clock fall-back
++        # Keep the stopped now-playing screen visible long enough to be useful;
++        # only five minutes of genuinely static playback returns to the clock.
++        self._stop_grace_s = 300.0
++        # Volumio briefly reports stop while it replaces a station, playlist or
++        # TIDAL mix.  When Sable initiated that change, keep the current panel
++        # visible until the new source is ready instead of flashing the clock.
++        self._source_change_until = 0.0
++        self._source_change_hold_s = 6.0
++        # A panel long-press uses a soft stop: pause now, keep an explicit
++        # STOPPED panel state for five minutes, then make the real stop.
++        self._soft_stop_timer = None
++        self._soft_stopped = False
 +        # Let the player/DAC settle before switching into the CPU-heavy live
 +        # display. Playback begins immediately; only the visual hand-off waits.
 +        self._playback_settle_timer = None
@@ -85,7 +494,7 @@ index 64d9454..f14436d 100644
          self._last_switch_t = 0.0      # auto-transition cooldown (Fix 3)
          self._switch_cooldown_s = 0.5
          self._first_state = True       # suppress stale-stop bounce on boot (Fix 4)
-@@ -187,6 +193,8 @@ class App:
+@@ -187,6 +204,8 @@ class App:
          if self.asleep or self.fsm.current is None:
              return
          status = self.store.get().status
@@ -94,7 +503,7 @@ index 64d9454..f14436d 100644
          if status not in ("play", "pause"):
              return
          if status == "pause" and self._pause_idle:
-@@ -201,6 +209,17 @@ class App:
+@@ -201,6 +220,17 @@ class App:
      # --- state -> FSM + redraw ---
      def _on_state(self, old, new):
          ev = status_event(old, new)
@@ -112,7 +521,7 @@ index 64d9454..f14436d 100644
          first, self._first_state = self._first_state, False
          # Paused-idle -> clock timer: arm on the pause edge, clear on anything else.
          if new.status == "pause" and old.status != "pause":
-@@ -209,12 +228,11 @@ class App:
+@@ -209,16 +239,21 @@ class App:
          elif new.status != "pause":
              self._cancel_pause_timer()
              self._pause_idle = False
@@ -122,16 +531,27 @@ index 64d9454..f14436d 100644
 -            if self._switch_due():
 -                self._stamp_switch()
 -                self.fsm.dispatch("play")
++            self._source_change_until = 0.0
++            self._cancel_soft_stop()
 +            self._arm_playback_settle()
          elif ev == "stop":
 +            self._cancel_playback_settle()
              if first:
                  # First pushState after boot/handoff is often a stale stop from the
                  # previous session -- don't fall to the clock on it (Fix 4).
-@@ -226,6 +244,34 @@ class App:
+                 self.render()
++            elif time.monotonic() < self._source_change_until:
++                # A source change requested from this panel is still resolving.
++                # Do not let Volumio's temporary stop throw the OLED to clock.
++                self.render()
+             else:
+                 # Defer the clock fall-back: a transient stop between tracks/sources
+                 # must not flash the clock (Fix 2).
+@@ -226,7 +261,35 @@ class App:
          else:
              self.render()
  
+-    # --- deferred stop -> clock (Fix 2: 1.5s grace, non-stacking) ---
 +    # --- playback-start display defer (audio/DAC first) ---
 +    def _arm_playback_settle(self):
 +        self._cancel_playback_settle()
@@ -160,10 +580,99 @@ index 64d9454..f14436d 100644
 +            # the first post-settle VU redraw explicit instead of waiting for a
 +            # later Volumio pushState event.
 +            self.render()
-     # --- deferred stop -> clock (Fix 2: 1.5s grace, non-stacking) ---
++    # --- deferred stop -> clock (five-minute grace, non-stacking) ---
      def _arm_stop_timer(self):
          self._cancel_stop_timer()
-@@ -414,6 +460,8 @@ class App:
+         self._stop_timer = threading.Timer(self._stop_grace_s, self._stop_timer_fire)
+@@ -242,10 +305,87 @@ class App:
+         # Re-read status at fire time: only fall to clock if STILL stopped/paused,
+         # so a stop that resolves back to play between tracks never reaches clock.
+         self._stop_timer = None
++        remaining = self._source_change_until - time.monotonic()
++        if remaining > 0:
++            # The stop grace elapsed while a deliberately started source was
++            # still loading. Re-check at the end of that source-change window.
++            self._stop_timer = threading.Timer(remaining, self._stop_timer_fire)
++            self._stop_timer.daemon = True
++            self._stop_timer.start()
++            return
+         if self.store.get().status not in ("play", "pause"):
+             self._stamp_switch()
+             self.fsm.dispatch("stop")
+ 
++    def _begin_source_change(self):
++        """Hold the current screen through Volumio's transient stop state."""
++        self._cancel_soft_stop()
++        self._source_change_until = time.monotonic() + self._source_change_hold_s
++        self._cancel_stop_timer()
++
++    # --- front-panel soft stop -------------------------------------------------
++    def soft_stopped(self):
++        """True while the panel is deliberately showing the five-minute stop."""
++        return self._soft_stopped
++
++    def _cancel_soft_stop(self):
++        if self._soft_stop_timer is not None:
++            self._soft_stop_timer.cancel()
++            self._soft_stop_timer = None
++        self._soft_stopped = False
++
++    def _soft_stop(self):
++        """Pause now, show STOPPED, then perform a real stop after five minutes."""
++        self._cancel_soft_stop()
++        self._soft_stopped = True
++        self._soft_stop_timer = threading.Timer(300.0, self._finish_soft_stop)
++        self._soft_stop_timer.daemon = True
++        self._soft_stop_timer.start()
++        if self.store.get().status == "play":
++            self._transport("pause")
++        # Keep the normal now-playing view in place: Modern renders its small
++        # STOPPED marker while the delayed hard-stop timer is running.
++        self.render()
++
++    def _finish_soft_stop(self):
++        self._soft_stop_timer = None
++        if not self._soft_stopped:
++            return
++        self._soft_stopped = False
++        self._transport("stop")
++        self._cancel_stop_timer()
++        self._stamp_switch()
++        self.fsm.dispatch("stop")
++        self.render()
++
++    def capture_shortcut_button(self, button):
++        """Let the physical 5/6/7 buttons answer the Save Shortcut picker."""
++        menu = self.fsm.screens.get("menu") if self.fsm else None
++        return bool(menu is not None and menu.accept_shortcut_button(button))
++
++    def current_shortcut_source(self):
++        """Return a reusable action/argument/label for the current source."""
++        st = self.store.get()
++        if self.listener is not None:
++            collection = getattr(self.listener, "active_collection_uri", "")
++            if collection:
++                return "play_uri", "%s | %s" % (collection, st.title or "TIDAL Mix"), st.title or "TIDAL Mix"
++        if not st.uri:
++            return None
++        label = st.title or st.uri
++        return "play_uri", "%s | %s" % (st.uri, label), label
++
++    def save_shortcut(self, button, long_press, action, arg):
++        """Persist one learned short/long assignment for buttons 5-7."""
++        key = "btn_%d" % int(button)
++        current = self.settings.get("buttons", key, default={}) or {}
++        current = dict(current)
++        if long_press:
++            current["hold_action"], current["hold_arg"] = action, arg
++        else:
++            current["action"], current["arg"] = action, arg
++        self.settings.set("buttons", key, current)
++
+     # --- deferred pause -> clock (idle clock for paused content) ---
+     def _arm_pause_timer(self):
+         self._cancel_pause_timer()
+@@ -414,6 +554,8 @@ class App:
      def render(self):
          if self.asleep or self._shutting_down:
              return
@@ -172,7 +681,7 @@ index 64d9454..f14436d 100644
          from PIL import ImageDraw
          with self._render_lock:
              img = self.display.blank_canvas()
-@@ -446,11 +494,29 @@ class App:
+@@ -446,11 +588,29 @@ class App:
          self._osd_volume = False
          self.render()
  
@@ -202,7 +711,7 @@ index 64d9454..f14436d 100644
          delta = int(delta or 0)
          if self.listener is not None and delta:
              # Deliberately RELATIVE, not one absolute set.
-@@ -548,6 +614,11 @@ class App:
+@@ -548,6 +708,11 @@ class App:
      def handle(self, cmd, arg=None):
          self.note_activity()
          cur = self.fsm.current
@@ -214,17 +723,63 @@ index 64d9454..f14436d 100644
          if cmd == "scroll":
              cur.handle_scroll(int(arg or 0))
              self.render()
-@@ -587,6 +658,9 @@ class App:
+@@ -568,25 +733,54 @@ class App:
+             else:
+                 self.go("home")
+             self.render()
++        elif cmd == "now_playing":
++            # The encoder's long press is the quick, no-thinking escape from
++            # any Settings/home/browse depth straight back to the music view.
++            self.go(self.nowplaying_screen())
++            self.render()
+         elif cmd in stations.PRESETS:
+             # A built-in station chosen straight from the dropdown. Same path as
+             # play_uri, but the URL and logo come from the table rather than
+             # from something the user had to paste in.
+             if self.listener is not None:
++                self._begin_source_change()
+                 title, uri, art = stations.get(cmd)
+                 self.listener.play_uri(uri, title=title, albumart=art)
+                 self.show_osd("RADIO", title)
+         elif cmd == "play_uri":
              if self.listener is not None and arg:
++                self._begin_source_change()
+                 uri, title, art = _split_uri_arg(arg)
+-                self.listener.play_uri(uri, title=title, albumart=art)
++                if uri.startswith("tidal://mymusic/mixes/"):
++                    self.listener.play_collection_uri(uri)
++                else:
++                    self.listener.play_uri(uri, title=title, albumart=art)
+                 # The URI is a wall of text on a 256px panel; show the station
+                 # name when the user gave us one.
+                 self.show_osd("RADIO", title or uri)
++        elif cmd == "play_pause":
++            if self._source_controls_transport():
++                self.show_osd("AIRPLAY", "source controls")
++            else:
++                self._transport("toggle")
++        elif cmd == "soft_stop":
++            self._soft_stop()
++        elif cmd == "cycle_repeat":
++            self._cycle_playback_mode()
++        elif cmd == "set_playback_mode":
++            self._set_playback_mode(str(arg or "stop"))
+         elif cmd == "play_playlist":
+             if self.listener is not None and arg:
++                self._begin_source_change()
                  self.listener.play_playlist(str(arg))
                  self.show_osd("PLAYLIST", str(arg))
 +        elif cmd == "save_track":
 +            saved = bool(self.listener is not None and self.listener.save_current_track())
 +            self.show_osd("SAVED", "QUADIFY" if saved else "NOTHING PLAYING")
++        elif cmd == "save_shortcut":
++            menu = self.fsm.screens.get("menu")
++            if menu is not None:
++                menu.begin_shortcut_save()
          elif cmd in TRANSPORT:
              if self._source_controls_transport():
                  self.show_osd("AIRPLAY", "source controls")
-@@ -595,9 +669,9 @@ class App:
+@@ -595,9 +789,9 @@ class App:
          elif cmd == "volume":
              self.nudge_volume(1 if arg == "+" else -1)
          elif cmd == "mute":
@@ -236,7 +791,45 @@ index 64d9454..f14436d 100644
          elif cmd == "dac_input":
              self._dac_input()
          elif cmd == "reload_config":
-@@ -829,8 +903,17 @@ class App:
+@@ -738,6 +932,37 @@ class App:
+     def _source_controls_transport(self):
+         return (self.store.get().service or "").strip().lower() in _SOURCE_CONTROLLED
+ 
++    def _playback_mode_label(self, mode):
++        return {
++            "single": "PLAY SINGLE",
++            "all": "PLAY ALL",
++            "track": "REPEAT SINGLE",
++            "playlist": "REPEAT ALL",
++            "random": "SHUFFLE",
++            "stop": "PLAY ALL",  # legacy saved setting
++        }.get(mode, "PLAY ALL")
++
++    def _set_playback_mode(self, mode):
++        if mode == "stop":
++            mode = "all"  # migrate the old wording without changing behaviour
++        if mode not in ("single", "all", "track", "playlist", "random"):
++            mode = "all"
++        self.settings.set("playback", "mode", mode)
++        if self.listener is not None:
++            self.listener.set_playback_mode(mode)
++        self.show_osd(self._playback_mode_label(mode), "PLAY MODE")
++
++    def _cycle_playback_mode(self):
++        modes = ("single", "all", "track", "playlist", "random")
++        current = self.settings.get("playback", "mode", default="all")
++        if current == "stop":
++            current = "all"
++        try:
++            mode = modes[(modes.index(current) + 1) % len(modes)]
++        except ValueError:
++            mode = modes[0]
++        self._set_playback_mode(mode)
++
+     def _transport(self, cmd):
+         # moOde has no `volumio` CLI -- shelling out there failed on EVERY
+         # transport press with "[Errno 2] No such file or directory: 'volumio'",
+@@ -829,8 +1054,17 @@ class App:
          self.log("=== slice complete ===")
  
  
@@ -256,7 +849,7 @@ index 64d9454..f14436d 100644
      display = SimDisplay(hardware.OLED.width, hardware.OLED.height, frames_dir=frames_dir)
      return App(display, settings, dry_run=True)
  
-@@ -1098,6 +1181,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1098,6 +1332,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
      ir = None
      ipc = None
      buttons = None
@@ -265,7 +858,7 @@ index 64d9454..f14436d 100644
      procs = []
      tick = None
  
-@@ -1123,15 +1208,23 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1123,15 +1359,23 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
          tick = threading.Thread(target=tick_loop, daemon=True, name="sable-tick")
          tick.start()
  
@@ -298,7 +891,7 @@ index 64d9454..f14436d 100644
  
          # The listener is started BEFORE the boot gate now, not after it. The
          # gate below waits on Volumio being reachable, so the connection attempt
-@@ -1144,6 +1237,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1144,6 +1388,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
              # list to the home carousel.
              listener.on_browse = app.fsm.screens["browse"].on_browse_data
              listener.on_sources = app.fsm.screens["home"].refresh_sources
@@ -306,7 +899,16 @@ index 64d9454..f14436d 100644
              listener.start()
              log("%s listener started." % _platform())
  
-@@ -1244,6 +1338,13 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1226,7 +1471,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+                 hardware.ROTARY,
+                 on_scroll=lambda d: app.handle("scroll", d),
+                 on_select=lambda: app.handle("select"),
+-                on_long_press=lambda: app.handle("home"),
++                on_long_press=lambda: app.handle("now_playing"),
+             )
+             rotary.start()
+             log("rotary started (BCM%d/%d/%d)."
+@@ -1244,6 +1489,13 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
              ipc = CommandServer(app.handle, log=log)
              ipc.start()
  
@@ -320,7 +922,7 @@ index 64d9454..f14436d 100644
              if app.settings.get("controls", "leds_enabled", default=True):
                  from .inputs.buttons import ButtonsLeds
                  buttons = ButtonsLeds(hardware.MCP, app.handle, app.store, app=app, log=log)
-@@ -1264,6 +1365,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1264,6 +1516,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
      finally:
          log("releasing hardware ...")
          stop.set()
@@ -329,7 +931,7 @@ index 64d9454..f14436d 100644
          # Wait for the render tick to actually stop before touching the panel.
          # stop.set() only ASKS it to; without the join, sleep()/cleanup() below
          # (and cleanup's GPIO.cleanup(), which yanks the pins luma is mid-write
-@@ -1295,6 +1398,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1295,6 +1549,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
          log("SPI/GPIO released.")
          if rotary is not None:
              rotary.stop()
@@ -340,7 +942,7 @@ index 64d9454..f14436d 100644
                  buttons.stop()
 diff --git a/src/sable/boot_indicator.py b/src/sable/boot_indicator.py
 new file mode 100755
-index 0000000..61479c6
+index 0000000000000000000000000000000000000000..61479c6b0c977a906955b1d3e9fc86060f9e45b3
 --- /dev/null
 +++ b/src/sable/boot_indicator.py
 @@ -0,0 +1,80 @@
@@ -426,7 +1028,7 @@ index 0000000..61479c6
 +    raise SystemExit(main())
 \ No newline at end of file
 diff --git a/src/sable/controls.py b/src/sable/controls.py
-index c7f84eb..4843146 100644
+index c7f84eb0fd1f0b3b516855a9018d9efd857c68fc..48431463dc3e4596884dd3e13aad060f56c20b75 100644
 --- a/src/sable/controls.py
 +++ b/src/sable/controls.py
 @@ -24,7 +24,7 @@ BUTTON_MAP = {
@@ -439,7 +1041,7 @@ index c7f84eb..4843146 100644
  
  
 diff --git a/src/sable/fsm.py b/src/sable/fsm.py
-index 0795afc..faf0315 100644
+index 0795afc7bb4d60d9ed941c8c780ae4545c538092..faf0315ab113ebbc5b918b9f5ca316c2846984be 100644
 --- a/src/sable/fsm.py
 +++ b/src/sable/fsm.py
 @@ -1,110 +1,119 @@
@@ -673,7 +1275,7 @@ index 0795afc..faf0315 100644
 +        if self.current is not None and self.current.name in ("menu", "home", "browse"):
 +            self.app.go(self.app.base_screen())
 diff --git a/src/sable/hardware.py b/src/sable/hardware.py
-index 06fefb6..0a7c944 100755
+index 06fefb65fad4d13f92f110c0b8c293c9babe98f5..0a7c94479a86e79267b621dae41a6fd3d577ad09 100755
 --- a/src/sable/hardware.py
 +++ b/src/sable/hardware.py
 @@ -110,7 +110,7 @@ MCP = _build(Mcp23017, "mcp", _OVERRIDES)
@@ -686,10 +1288,22 @@ index 06fefb6..0a7c944 100755
  # LED bit positions on GPIOA (one lit at a time).
  LED_PLAY = 0
 diff --git a/src/sable/inputs/buttons.py b/src/sable/inputs/buttons.py
-index a685ede..ed9ec2f 100644
+index a685edea6860a39079a4f55a113eeff86dc6c2f8..6be04ce64391c5ad8d2fc276dd3ac96593bd70c1 100644
 --- a/src/sable/inputs/buttons.py
 +++ b/src/sable/inputs/buttons.py
-@@ -47,7 +47,7 @@ _BUTTON_ACTION = {
+@@ -31,8 +31,9 @@ LED_REPEAT = 1 << 5
+ LED_SPARE = 1 << 6
+ LED_SPARE2 = 1 << 7
+ 
+-# Boot "power on" sweep order across all eight LEDs.
+-LED_SWEEP = [LED_PLAY, LED_PAUSE, LED_PREV, LED_NEXT, LED_SHUFF, LED_REPEAT, LED_SPARE, LED_SPARE2]
++# Boot "power on" loop.  The final play LED closes the visual loop back to
++# button 1 before normal playback LED behaviour takes over.
++LED_SWEEP = [LED_PLAY, LED_PAUSE, LED_NEXT, LED_REPEAT, LED_SHUFF, LED_PREV, LED_PLAY]
+ 
+ # AirPlay: Volumio reports status=play even when paused and gives no reliable
+ # play/pause signal, so a status LED would lie -- show none for these services.
+@@ -47,16 +48,20 @@ _BUTTON_ACTION = {
      5: ("random", LED_SHUFF),
      6: ("repeat", LED_REPEAT),
      7: (None, LED_SPARE),
@@ -698,17 +1312,101 @@ index a685ede..ed9ec2f 100644
  }
  # Matrix layout: row -> [col0, col1] button ids (matches the proven wiring).
  _BUTTON_MAP = [[1, 2], [3, 4], [5, 6], [7, 8]]
-@@ -55,7 +55,7 @@ _BUTTON_MAP = [[1, 2], [3, 4], [5, 6], [7, 8]]
- # Buttons whose action only fires after a hold (not a tap) -- a bare press-edge
- # is too easy to trigger by accident for something as hard to reverse as a full
- # poweroff. HOLD_S is how long GPIOB must read pressed before it fires.
+ 
+-# Buttons whose action only fires after a hold (not a tap) -- a bare press-edge
+-# is too easy to trigger by accident for something as hard to reverse as a full
+-# poweroff. HOLD_S is how long GPIOB must read pressed before it fires.
 -_HOLD_BUTTONS = {8}
-+_HOLD_BUTTONS = set()
- _HOLD_S = 2.0
+-_HOLD_S = 2.0
++# Button 1 has a useful second action: tap toggles play/pause, while a deliberate
++# hold stops playback. The hold path delays the tap until release, so it cannot
++# accidentally pause and then stop a playing track.
++# Long holds use the optional hold_action / hold_arg saved alongside a button's
++# normal action. Button 1 keeps its built-in stop fallback; the three station/
++# TIDAL buttons below use the personal settings on this FM4.
++_HOLD_BUTTONS = {1, 5, 6, 7, 8}
++_HOLD_ACTIONS = {1: "soft_stop", 8: "save_shortcut"}
++_HOLD_S = 1.2
  
  
+ class ButtonsLeds:
+@@ -210,10 +215,15 @@ class ButtonsLeds:
+             if (started is not None and btn not in self._hold_fired
+                     and now - started >= _HOLD_S):
+                 self._hold_fired.add(btn)
+-                self._on_press(btn)
++                hold_cmd, hold_arg = self._get_hold_action(btn)
++                if hold_cmd:
++                    self._on_press(btn, (hold_cmd, hold_arg))
+         elif not pressed and was_pressed:            # release edge: reset
++            short_press = btn not in self._hold_fired
+             self._hold_start.pop(btn, None)
+             self._hold_fired.discard(btn)
++            if short_press:
++                self._on_press(btn)
+             with self._lock:
+                 self._ephemeral_led = 0
+                 self._write_leds_locked(self._desired_led())
+@@ -251,8 +261,26 @@ class ButtonsLeds:
+                     return (act, arg), led
+         return (dflt_action, None), led
+ 
+-    def _on_press(self, btn):
++    def _get_hold_action(self, btn):
++        """Optional per-button long hold, with Button 1's stop as fallback."""
++        if self._app is not None and hasattr(self._app, "settings"):
++            cfg = self._app.settings.get("buttons", f"btn_{btn}")
++            if cfg and isinstance(cfg, dict) and cfg.get("hold_action"):
++                return cfg["hold_action"], cfg.get("hold_arg")
++        return _HOLD_ACTIONS.get(btn), None
++
++    def _on_press(self, btn, command_override=None):
++        # While the held Save button's shortcut picker is open, buttons 5-7
++        # select a destination instead of starting their usual station/mix.
++        if (command_override is None and self._app is not None
++                and self._app.capture_shortcut_button(btn)):
++            return
+         (cmd, arg), led = self._get_button_action(btn)
++        if command_override is not None:
++            if isinstance(command_override, tuple):
++                cmd, arg = command_override
++            else:
++                cmd, arg = command_override, None
+         self.log("button %d pressed: cmd=%s arg=%s" % (btn, cmd, arg))
+         if cmd and cmd != "none":
+             try:
+@@ -295,6 +323,11 @@ class ButtonsLeds:
+         st = self.store.get()
+         if (st.service or "").strip().lower() in _AIRPLAY_SERVICES:
+             return 0                       # AirPlay: status unknowable -> no LED
++        # A held play button enters Sable's soft-stop state: Volumio is paused
++        # underneath, but the panel deliberately presents it as stopped.  Keep
++        # every LED dark rather than showing the normal pause heartbeat.
++        if self._app is not None and self._app.soft_stopped():
++            return 0
+         status = st.status
+         if status == "play":
+             # On a radio-button layout the meaningful light is "which station is
+@@ -310,13 +343,14 @@ class ButtonsLeds:
+             # Once idle (fallen to the clock) or the panel has slept, stop the
+             # flashing and hold the pause LED SOLID -- calmer, but still lit so you
+             # know it is paused even when the OLED is off. While actively paused on
+-            # the now-playing screen it keeps the gentle heartbeat.
++            # the now-playing screen it keeps the gentle heartbeat. Play/pause is a
++            # single physical button on this panel, so it always uses LED 1.
+             resting = self._app is not None and (
+                 getattr(self._app, "asleep", False)
+                 or getattr(self._app, "_pause_idle", False))
+             if resting:
+-                return LED_PAUSE
+-            return LED_PAUSE if (now % 1.4) < 1.0 else 0    # active-pause heartbeat
++                return LED_PLAY
++            return LED_PLAY if (now % 1.4) < 1.0 else 0     # active-pause heartbeat
+         return 0                                            # stopped: dark
+ 
+     def _station_led(self, st):
 diff --git a/src/sable/inputs/ir.py b/src/sable/inputs/ir.py
-index e4c443d..ad4773e 100644
+index e4c443d73cfe56d178b16bb08fb5f759f91df258..ad4773ef26dacf2a50ed6fd3c968796465824129 100644
 --- a/src/sable/inputs/ir.py
 +++ b/src/sable/inputs/ir.py
 @@ -46,7 +46,10 @@ _REPEATABLE = ("scroll", "volume")
@@ -781,7 +1479,7 @@ index e4c443d..ad4773e 100644
          self._last = {}
 diff --git a/src/sable/inputs/power.py b/src/sable/inputs/power.py
 new file mode 100644
-index 0000000..fc54cdd
+index 0000000000000000000000000000000000000000..fc54cdd93ff97889c5735f5d1c2cfaaed0197c20
 --- /dev/null
 +++ b/src/sable/inputs/power.py
 @@ -0,0 +1,64 @@
@@ -851,7 +1549,7 @@ index 0000000..fc54cdd
 +            self._thread.join(timeout=self.poll_s * 3)
 \ No newline at end of file
 diff --git a/src/sable/screens/browse.py b/src/sable/screens/browse.py
-index d6f071f..ac49807 100644
+index d6f071f7d6e0d7abee87822b2d0ce5ad772dda6f..adcbc5cea65387e6dc40d9b933ba7e87fd0f592d 100644
 --- a/src/sable/screens/browse.py
 +++ b/src/sable/screens/browse.py
 @@ -14,21 +14,28 @@ from .base import Screen
@@ -893,24 +1591,27 @@ index d6f071f..ac49807 100644
          op = self._open
          self._open = None
          if op and op[0]:
-@@ -136,7 +144,15 @@ class BrowseScreen(Screen):
+@@ -136,7 +144,18 @@ class BrowseScreen(Screen):
              self.app.listener.browse(item.get("uri", ""))
          else:
              if self.app.listener is not None:
 -                self.app.listener.play_item(item)
 +                # Selecting a song within an album or Tidal playlist should build
 +                # a queue from that point onward, just like choosing Play all but
-+                # starting at the selected track. Radio remains a single item.
++                # starting at the selected track. In Play Single mode it instead
++                # queues only the selected track. Radio always remains a single
++                # item.
 +                songs = _play_all_tracks(f["items"])
 +                start = next((i for i, song in enumerate(songs) if song is item), None)
-+                if start is None:
++                single = self.app.settings.get("playback", "mode", default="all") == "single"
++                if start is None or single:
 +                    self.app.listener.play_item(item)
 +                else:
 +                    self.app.listener.play_all(songs[start:])
              self.app.go(self.app.nowplaying_screen())
  
      def handle_back(self):
-@@ -153,7 +169,10 @@ class BrowseScreen(Screen):
+@@ -153,7 +172,10 @@ class BrowseScreen(Screen):
          items, _prev = _items_from_response(data)
          if len(_play_all_tracks(items)) >= 2:     # album/track list (not radio)
              items = [{"title": "Play all", "_play_all": True}] + items
@@ -923,7 +1624,7 @@ index d6f071f..ac49807 100644
          if self._replace_top:
              self.stack[-1] = frame       # carousel entry: result becomes the root
 diff --git a/src/sable/screens/home.py b/src/sable/screens/home.py
-index f3bfd26..73264ab 100644
+index f3bfd26169e235674f602893055a8f4a0ad3ee54..73264ab1ac8ad71d6eb5e2826834c6dff33ca047 100644
 --- a/src/sable/screens/home.py
 +++ b/src/sable/screens/home.py
 @@ -39,6 +39,23 @@ def _icon_name(label):
@@ -960,7 +1661,7 @@ index f3bfd26..73264ab 100644
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea..0242b3a 100644
+index e283aea5a6355f999b3e486f0ac08250a43fe4e5..7d024cd9a83551aed99822e10de1f027d1ae9f55 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
 @@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
@@ -974,11 +1675,12 @@ index e283aea..0242b3a 100644
  
  _BACK = "__back__"
  
-@@ -22,12 +26,14 @@ class MenuScreen(Screen):
+@@ -22,12 +26,15 @@ class MenuScreen(Screen):
          super().__init__(app)
          self.root = self._build_tree()
          self.stack = [self._frame("MENU", self.root)]
 +        self._wifi_entry = None
++        self._shortcut_entry = None
  
      def _build_tree(self):
          return [
@@ -989,11 +1691,23 @@ index e283aea..0242b3a 100644
                  ("Modern: Cinema", lambda: self._set_modern("cinema")),
                  ("Spectrum Bars", lambda: self._set_spectrum("bars")),
                  ("Spectrum Dots", lambda: self._set_spectrum("dots")),
-@@ -36,6 +42,12 @@ class MenuScreen(Screen):
+@@ -36,6 +43,24 @@ class MenuScreen(Screen):
                  ("VU Meter", lambda: self._set_spectrum("vu")),
                  ("Back", _BACK),
              ], self._display_mode_label),
 +            ("Audio Output", self._audio_output_items(), self._audio_output_label),
++            ("Playback", [
++                ("Play Single", lambda: self._set_playback_mode("single")),
++                ("Play All", lambda: self._set_playback_mode("all")),
++                ("Repeat Single", lambda: self._set_playback_mode("track")),
++                ("Repeat All", lambda: self._set_playback_mode("playlist")),
++                ("Shuffle", lambda: self._set_playback_mode("random")),
++                ("Back", _BACK),
++            ], self._playback_label),
++            ("Shortcuts", [
++                ("Reset 5-7 Defaults", self._reset_shortcuts),
++                ("Back", _BACK),
++            ]),
 +            ("Network", [
 +                ("IP Address", self._show_ip),
 +                ("Wi-Fi Networks", self._scan_wifi),
@@ -1002,7 +1716,7 @@ index e283aea..0242b3a 100644
              ("Brightness", [
                  ("Low", lambda: self._set_brightness("low")),
                  ("Medium", lambda: self._set_brightness("medium")),
-@@ -48,6 +60,11 @@ class MenuScreen(Screen):
+@@ -48,6 +73,11 @@ class MenuScreen(Screen):
                  ("Upside-down", lambda: self._set_rotate(180)),
                  ("Back", _BACK),
              ], self._rotate_label),
@@ -1014,10 +1728,68 @@ index e283aea..0242b3a 100644
          ]
  
      def _rotate_label(self):
-@@ -66,6 +83,139 @@ class MenuScreen(Screen):
+@@ -66,6 +96,197 @@ class MenuScreen(Screen):
          style = self.app.settings.get("display", "spectrum_style", default="bars")
          return "VU" if style == "vu" else style.capitalize()
  
++    def _playback_label(self):
++        mode = self.app.settings.get("playback", "mode", default="stop")
++        return {
++            "single": "Play Single",
++            "all": "Play All",
++            "track": "Repeat Single",
++            "playlist": "Repeat All",
++            "random": "Shuffle",
++            "stop": "Play All",
++        }.get(mode, "Play All")
++
++    def _set_playback_mode(self, mode):
++        self.app.handle("set_playback_mode", mode)
++        self.app.go(self.app.base_screen())
++
++    def _reset_shortcuts(self):
++        self.app.settings.reset_shortcuts()
++        self.app.show_osd("SHORTCUTS", "DEFAULTS RESTORED")
++        self.app.go(self.app.base_screen())
++
++    def begin_shortcut_save(self):
++        source = self.app.current_shortcut_source()
++        if source is None:
++            self.app.show_osd("SAVE SHORTCUT", "NOTHING PLAYING")
++            return
++        # Enter the ordinary menu first, then replace it with this one-off
++        # capture panel. This keeps a previous/cancelled capture from ever
++        # leaking into a later visit to Settings.
++        self._shortcut_entry = None
++        self.app.go("menu")
++        self._shortcut_entry = {"stage": "button", "source": source, "button": None, "index": 0}
++        self.stack = [self._frame("SAVE SHORTCUT", [])]
++        self.app.render()
++
++    def accept_shortcut_button(self, button):
++        entry = self._shortcut_entry
++        if entry is None or entry["stage"] != "button" or button not in (5, 6, 7):
++            return False
++        entry["button"] = button
++        entry["stage"] = "press"
++        entry["index"] = 0
++        self.app.fsm.reset_menu_timer()
++        self.app.render()
++        return True
++
++    def _shortcut_select(self):
++        entry = self._shortcut_entry
++        if entry is None or entry["stage"] != "press":
++            return
++        action, arg, label = entry["source"]
++        long_press = bool(entry["index"])
++        self.app.save_shortcut(entry["button"], long_press, action, arg)
++        which = "LONG" if long_press else "SHORT"
++        button = entry["button"]
++        self._shortcut_entry = None
++        self.app.show_osd("SAVED BUTTON %d" % button, which + " PRESS")
++        self.app.go(self.app.base_screen())
++
 +    def _audio_output_items(self):
 +        # The personal profile names Graeme's fixed SMSL setup explicitly.
 +        # General installs instead show every usable device reported by Volumio.
@@ -1154,11 +1926,14 @@ index e283aea..0242b3a 100644
      @staticmethod
      def _unpack(item):
          """Items are (label, target) or (label, target, value_fn)."""
-@@ -83,16 +233,26 @@ class MenuScreen(Screen):
+@@ -83,16 +304,34 @@ class MenuScreen(Screen):
  
      # --- navigation ---
      def on_enter(self, **kwargs):
 +        self.root = self._build_tree()
++        # A normal Settings visit always starts at the original top-level menu.
++        # begin_shortcut_save() installs its capture panel immediately after this.
++        self._shortcut_entry = None
          self.stack = [self._frame("MENU", self.root)]
 +        if self.app.listener is not None and hasattr(self.app.listener, "get_audio_outputs"):
 +            self.app.listener.get_audio_outputs()
@@ -1170,6 +1945,8 @@ index e283aea..0242b3a 100644
 +        if self._wifi_entry is not None:
 +            chars = self._wifi_char()
 +            self._wifi_entry["index"] = (self._wifi_entry["index"] + delta) % len(chars)
++        elif self._shortcut_entry is not None and self._shortcut_entry["stage"] == "press":
++            self._shortcut_entry["index"] = (self._shortcut_entry["index"] + delta) % 2
 +        else:
 +            f = self._cur
 +            f["index"] = max(0, min(f["index"] + delta, len(f["items"]) - 1))
@@ -1180,10 +1957,13 @@ index e283aea..0242b3a 100644
 +        if self._wifi_entry is not None:
 +            self._wifi_select()
 +            return
++        if self._shortcut_entry is not None:
++            self._shortcut_select()
++            return
          f = self._cur
          _label, target, _vfn = self._unpack(f["items"][f["index"]])
          if target == _BACK:
-@@ -103,7 +263,10 @@ class MenuScreen(Screen):
+@@ -103,7 +342,14 @@ class MenuScreen(Screen):
              target()
  
      def handle_back(self):
@@ -1192,10 +1972,14 @@ index e283aea..0242b3a 100644
 +        if self._wifi_entry is not None:
 +            self._wifi_entry = None
 +            return
++        if self._shortcut_entry is not None:
++            self._shortcut_entry = None
++            self.app.go(self.app.base_screen())
++            return
          self._pop()
  
      def _pop(self):
-@@ -155,6 +318,15 @@ class MenuScreen(Screen):
+@@ -155,6 +401,28 @@ class MenuScreen(Screen):
          return None              # a leaf action / back -> no affordance
  
      def render(self, canvas, draw, w, h):
@@ -1208,14 +1992,51 @@ index e283aea..0242b3a 100644
 +            self.draw_menu_surface(canvas, draw, w, h, ("WI-FI: " + entry["ssid"])[:20], rows, 1,
 +                                   key_prefix="wifi", top=self.TOP, row_h=self.ROW_H, nrows=self.ROWS)
 +            return
++        if self._shortcut_entry is not None:
++            entry = self._shortcut_entry
++            _action, _arg, label = entry["source"]
++            if entry["stage"] == "button":
++                rows = [("Saving", label[:18]), ("Destination", "PRESS 5, 6 OR 7"), ("Cancel", "HOLD ENCODER")]
++                selected = 1
++            else:
++                press = "LONG PRESS" if entry["index"] else "SHORT PRESS"
++                rows = [("Saving", label[:18]), ("Button", str(entry["button"])), ("Press", press)]
++                selected = 2
++            self.draw_menu_surface(canvas, draw, w, h, "SAVE SHORTCUT", rows, selected,
++                                   key_prefix="shortcut", top=self.TOP, row_h=self.ROW_H, nrows=self.ROWS)
++            return
          f = self._cur
          rows = []
          for item in f["items"]:
 diff --git a/src/sable/screens/modern.py b/src/sable/screens/modern.py
-index 2623ea7..99ac6aa 100644
+index 2623ea7ca389675e828970478f0676416754b26e..3d2a74f6d33bd9aa6dfd0b0971bd2cb96d6be81b 100644
 --- a/src/sable/screens/modern.py
 +++ b/src/sable/screens/modern.py
-@@ -87,6 +87,7 @@ class ModernScreen(Screen):
+@@ -43,6 +43,14 @@ def _service_label(service):
+     return _SERVICE_LABELS.get(s, s.upper())
+ 
+ 
++def _play_mode_badge(mode):
++    """Compact unboxed mode mark, deliberately given room to stay legible."""
++    return {
++        "single": "1", "all": "A", "track": "R1", "playlist": "RA",
++        "random": "S", "stop": "A",
++    }.get(mode, "A")
++
++
+ class ModernScreen(Screen):
+     name = "modern"
+     ART = 64
+@@ -79,7 +87,7 @@ class ModernScreen(Screen):
+     # --- render ---
+     def render(self, canvas, draw, w, h):
+         st = self.app.store.get()
+-        paused = st.status == "pause"
++        paused = st.status == "pause" or self.app.soft_stopped()
+         theme = self.app.settings.get("display", "theme", default="panel")
+         if theme == "cinema":
+             self._render_cinema(canvas, draw, w, h, st, paused)
+@@ -87,6 +95,7 @@ class ModernScreen(Screen):
          self._render_panel(canvas, draw, w, h, st, paused)
  
      def _render_panel(self, canvas, draw, w, h, st, paused):
@@ -1223,7 +2044,31 @@ index 2623ea7..99ac6aa 100644
          aw = self.ART
  
          # --- album art, full height, bleeding into the text field ---
-@@ -116,7 +117,12 @@ class ModernScreen(Screen):
+@@ -100,7 +109,8 @@ class ModernScreen(Screen):
+             self._draw_art_placeholder(canvas, draw, aw, h, dim=paused)
+ 
+         tx = aw + self.FADE + 2
+-        tw = w - tx - 2
++        badge_w = 24
++        tw = w - tx - 2 - badge_w
+ 
+         # --- type hierarchy (radio metadata is sparse -> fill it intelligently) ---
+         line1, line2 = self._title_lines(st)
+@@ -111,12 +121,26 @@ class ModernScreen(Screen):
+                                self.app.fonts.get("sans", 11), tx, 19, tw,
+                                fill=85 if paused else 165)
+ 
++        # The playback-mode mark is deliberately unboxed: the old outline used
++        # valuable pixels and made repeat/shuffle look cramped on the OLED.
++        bx, by = w - badge_w, 1
++        badge = _play_mode_badge(self.app.settings.get("playback", "mode", default="all"))
++        badge_font = self.app.fonts.get("sans_bold", 10)
++        badge_x = bx + max(0, (badge_w - self.text_width(draw, badge, badge_font)) // 2)
++        self.text(canvas, (badge_x, by), badge, badge_font,
++                  fill=115 if paused else 210)
++
+         if paused:
+             self._render_paused(canvas, draw, tx, w, h, st)
              return
  
          # --- double horizontal level bars (now-playing AND spectrum, no switch) ---
@@ -1237,7 +2082,7 @@ index 2623ea7..99ac6aa 100644
              self._render_level_bars(canvas, draw, tx, w, h)
  
          # --- meta line: SOURCE tag (left) + samplerate/bitdepth ... volume.
-@@ -131,9 +137,10 @@ class ModernScreen(Screen):
+@@ -131,9 +155,10 @@ class ModernScreen(Screen):
              mx = tx + self.text_width(draw, tag, meta_f) + 9
          meta = "  ".join(x for x in (st.samplerate, st.bitdepth) if x)
          self.text(canvas, (mx, iy + 1), meta, meta_f, fill=100)
@@ -1251,7 +2096,7 @@ index 2623ea7..99ac6aa 100644
  
  
  
-@@ -170,6 +177,14 @@ class ModernScreen(Screen):
+@@ -170,6 +195,14 @@ class ModernScreen(Screen):
              return head.strip(), tail.strip()
          return title, sub
  
@@ -1266,11 +2111,31 @@ index 2623ea7..99ac6aa 100644
      def _floor_values(self):
          if self._test_floor is not None:
              return self._smoother.update(self._test_floor)
+@@ -224,10 +257,15 @@ class ModernScreen(Screen):
+ 
+     def _render_paused(self, canvas, draw, tx, w, h, st):
+         py = 39
+-        draw.rectangle((tx, py, tx + 4, py + 15), fill=170)
+-        draw.rectangle((tx + 8, py, tx + 12, py + 15), fill=170)
+-        self.text(canvas, (tx + 22, py + 3), "PAUSED",
+-                  self.app.fonts.get("sans", 11), fill=115)
++        if self.app.soft_stopped():
++            draw.rectangle((tx, py + 2, tx + 13, py + 15), fill=170)
++            self.text(canvas, (tx + 22, py + 3), "STOPPED",
++                      self.app.fonts.get("sans", 11), fill=115)
++        else:
++            draw.rectangle((tx, py, tx + 4, py + 15), fill=170)
++            draw.rectangle((tx + 8, py, tx + 12, py + 15), fill=170)
++            self.text(canvas, (tx + 22, py + 3), "PAUSED",
++                      self.app.fonts.get("sans", 11), fill=115)
+         # frozen progress hairline so the listener keeps their place
+         if st.duration_s > 0:
+             pyb = h - 3
 diff --git a/src/sable/settings.py b/src/sable/settings.py
-index d39be58..6450e1d 100644
+index d39be58fc6ae0503adf14b3d422a53e865aa917a..1671b41d7132c8430397383d016861e26373711f 100644
 --- a/src/sable/settings.py
 +++ b/src/sable/settings.py
-@@ -1,152 +1,161 @@
+@@ -1,152 +1,201 @@
 -"""Sable settings -- the ONE source of truth for user preferences.
 -
 -A single JSON file, written atomically (tmp + fsync + rename) to survive power
@@ -1434,6 +2299,19 @@ index d39be58..6450e1d 100644
 +import tempfile
 +import threading
 +
++
++# Graeme's FM4 radio/mix layout. It is intentionally separate from the general
++# defaults so a normal install remains generic, while a personal preset (and
++# the panel's Reset Shortcuts action) can restore this useful starting point.
++GRAEME_SHORTCUTS = {
++    "btn_5": {"action": "bbc_radio_2", "arg": "", "hold_action": "play_uri",
++              "hold_arg": "http://www.radiofeeds.net/playlists/bauerflash.pls?station=clyde2-mp3 | Greatest Hits Radio (Glasgow & the West)"},
++    "btn_6": {"action": "bbc_radio_4", "arg": "", "hold_action": "play_uri",
++              "hold_arg": "http://www.radiofeeds.net/playlists/bauerflash.pls?station=absolute80s-mp3 | Absolute 80s"},
++    "btn_7": {"action": "play_uri", "arg": "tidal://mymusic/mixes/0026e9b35979c2633352b995fa995f | My Mix 1", "hold_action": "play_uri",
++              "hold_arg": "tidal://mymusic/mixes/016631b3ba9c5d5a39ea1a74b5e303 | TIDAL Mix"},
++}
++
 +DEFAULTS = {
 +    "display": {
 +        "screen": "modern",          # modern|spectrum
@@ -1459,6 +2337,11 @@ index d39be58..6450e1d 100644
 +        "output": "fixed_line_out",       # fixed_line_out | lineout_variable | headphone_variable
 +        "menu_mode": "general",        # general (detected outputs) | personal (Graeme preset)
 +    },
++    "playback": {
++        # stop | track | playlist | random. Applied by the Playback menu and
++        # remembered as the front-panel default.
++        "mode": "stop",
++    },
 +    "dac": {
 +        # Persisted HINT only. Tracks the remote INPUT button; user-correctable.
 +        "input_index": 0,
@@ -1466,21 +2349,21 @@ index d39be58..6450e1d 100644
 +    "ir": {"enabled": True, "profile": "Xiaomi IR for TV box"},
 +    "controls": {"leds_enabled": True},
 +    "buttons": {
-+        "btn_1": {"action": "play", "arg": ""},
-+        "btn_2": {"action": "pause", "arg": ""},
-+        "btn_3": {"action": "previous", "arg": ""},
-+        "btn_4": {"action": "next", "arg": ""},
-+        "btn_5": {"action": "random", "arg": ""},
-+        "btn_6": {"action": "repeat", "arg": ""},
-+        "btn_7": {"action": "none", "arg": ""},
++        "btn_1": {"action": "play", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_2": {"action": "pause", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_3": {"action": "previous", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_4": {"action": "next", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_5": {"action": "random", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_6": {"action": "repeat", "arg": "", "hold_action": "", "hold_arg": ""},
++        "btn_7": {"action": "none", "arg": "", "hold_action": "", "hold_arg": ""},
 +        # Button 8 is the power button (hold 2s -- see inputs/buttons.py). It
 +        # shipped as "none" here, which silently beat the "shutdown" default in
 +        # _BUTTON_ACTION: _get_button_action treats any truthy configured action
 +        # as an override, and the string "none" is truthy. Fresh installs got a
 +        # dead power button. Keep this in step with _BUTTON_ACTION.
-+        "btn_8": {"action": "save_track", "arg": ""},
++        "btn_8": {"action": "save_track", "arg": "", "hold_action": "", "hold_arg": ""},
 +    },
-+    "_meta": {"rev": 2},
++    "_meta": {"rev": 4},
 +}
 +
 +_DEFAULT_PATH = os.path.join(
@@ -1547,6 +2430,13 @@ index d39be58..6450e1d 100644
 +            self._data.setdefault("audio", {}).setdefault("menu_mode", "general")
 +            self._data.setdefault("_meta", {})["rev"] = 3
 +            changed = True
++        if rev < 4:
++            # rev 4: button long-press actions are first-class settings. The
++            # deep merge deliberately discards unknown JSON keys, so defining
++            # them above is what makes personal shortcut settings survive a
++            # restart and future UI saves.
++            self._data.setdefault("_meta", {})["rev"] = 4
++            changed = True
 +        return changed
 +
 +    def save(self):
@@ -1581,11 +2471,26 @@ index d39be58..6450e1d 100644
 +            node[path[-1]] = value
 +            self.save()
 +
++    def reset_shortcuts(self):
++        """Restore buttons 5-7 without disturbing other panel preferences."""
++        with self._lock:
++            buttons = self._data.setdefault("buttons", {})
++            # The Graeme installer selects the personal audio menu too. That is
++            # the durable profile flag on older settings files as well.
++            personal = self._data.get("audio", {}).get("menu_mode") == "personal"
++            source = GRAEME_SHORTCUTS if personal else {
++                key: dict(DEFAULTS["buttons"][key])
++                for key in ("btn_5", "btn_6", "btn_7")
++            }
++            for key, value in source.items():
++                buttons[key] = dict(value)
++            self.save()
++
 +    def as_dict(self):
 +        with self._lock:
 +            return json.loads(json.dumps(self._data))
 diff --git a/src/sable/volumio/listener.py b/src/sable/volumio/listener.py
-index d3e94a2..3f4c056 100644
+index d3e94a2bb1c5072c8592b59d4fddc2b44616dbcb..541066e35866eae17acb3433cdb45f77c5d973f9 100644
 --- a/src/sable/volumio/listener.py
 +++ b/src/sable/volumio/listener.py
 @@ -14,6 +14,7 @@ Carry-forward from the old volumio_listener.py:
@@ -1596,16 +2501,18 @@ index d3e94a2..3f4c056 100644
  import threading
  import time
  
-@@ -35,6 +36,8 @@ class VolumioListener:
+@@ -35,6 +36,10 @@ class VolumioListener:
          self.on_browse = None
          self.on_sources = None
          self.on_connect = None  # set by the app: fires once per successful connect
 +        self.on_outputs = None
++        self._queue_from_browse = None  # collection URI waiting for its browse reply
++        self.active_collection_uri = ""  # last Sable-started TIDAL collection
 +        self.audio_outputs = []
          self.browse_sources = []   # latest getBrowseSources result (HomeScreen reads it)
          self.sio = socketio.Client(reconnection=False)  # we own reconnect
          self._wire()
-@@ -47,6 +50,7 @@ class VolumioListener:
+@@ -47,6 +52,7 @@ class VolumioListener:
              self.log("volumio: connected", self.url)
              sio.emit("getState")          # query current state
              sio.emit("getBrowseSources")  # query available services
@@ -1613,7 +2520,28 @@ index d3e94a2..3f4c056 100644
              if self.on_connect:
                  try:
                      self.on_connect()
-@@ -95,6 +99,16 @@ class VolumioListener:
+@@ -76,6 +82,20 @@ class VolumioListener:
+         @sio.on("pushBrowseLibrary")
+         def _on_push_browse_library(data):
+             self.log("  pushBrowseLibrary -> received")
++            # A configurable button may point to a Tidal Mix (a browsable
++            # collection, not a playable song). Turn its reply into a queue
++            # before sending normal browser navigation callbacks.
++            if self._queue_from_browse is not None:
++                requested = self._queue_from_browse
++                self._queue_from_browse = None
++                nav = (data or {}).get("navigation", {}) if isinstance(data, dict) else {}
++                items = []
++                for listing in nav.get("lists", []) or []:
++                    if isinstance(listing, dict):
++                        items.extend(listing.get("items", []) or [])
++                self.log("  collection %s -> %d tracks" % (requested, len(items)))
++                self.play_all(items)
++                return
+             cb = self.on_browse
+             if cb:
+                 try:
+@@ -95,6 +115,16 @@ class VolumioListener:
                  except Exception as exc:
                      self.log("  on_sources error:", exc)
  
@@ -1630,7 +2558,64 @@ index d3e94a2..3f4c056 100644
          @sio.on("pushToastMessage")
          def _on_toast(data):
              msg = data.get("message") if isinstance(data, dict) else data
-@@ -184,6 +198,21 @@ class VolumioListener:
+@@ -167,28 +197,84 @@ class VolumioListener:
+         dict -- those already carry their own service in the URI scheme, and
+         guessing "webradio" for them would break the routing that does work.
+         """
++        self.active_collection_uri = ""
+         item = {"uri": uri}
+         if str(uri).startswith(("http://", "https://")):
+             item.update(service="webradio", type="webradio",
+                         title=title or "Web Radio")
+             if albumart:
+                 item["albumart"] = albumart
++            # Volumio's first pushState after a station switch often contains
++            # the new title but omits artist/album. Clear the previous track's
++            # metadata immediately so a TIDAL artist cannot linger below the
++            # new radio station while its stream metadata settles.
++            self.store.apply_pushstate({
++                "status": "play", "title": item["title"], "artist": "",
++                "album": "", "albumart": albumart or "", "service": "webradio",
++                "uri": uri, "stream": True, "seek": 0, "duration": 0,
++            })
+         try:
+             self.sio.emit("replaceAndPlay", item)
+         except Exception as exc:
+             self.log("play_uri error:", exc)
+ 
++    def play_collection_uri(self, uri):
++        """Browse a collection URI (such as a Tidal Mix) and queue its tracks."""
++        try:
++            self.active_collection_uri = str(uri)
++            self._queue_from_browse = str(uri)
++            self.sio.emit("browseLibrary", {"uri": str(uri)})
++        except Exception as exc:
++            self._queue_from_browse = None
++            self.log("play_collection_uri error:", exc)
++
++    def set_playback_mode(self, mode):
++        """Set Volumio's mutually exclusive front-panel playback behaviour."""
++        modes = {
++            "single": (False, False, False),
++            "all": (False, False, False),
++            "track": (True, True, False),
++            "playlist": (True, False, False),
++            "random": (False, False, True),
++        }
++        repeat, repeat_single, random = modes.get(str(mode), modes["all"])
++        try:
++            # Set both values every time: Volumio otherwise retains the previous
++            # random/repeat flag, making the panel cycle ambiguous.
++            self.sio.emit("setRepeat", {
++                "value": repeat, "repeatSingle": repeat_single})
++            self.sio.emit("setRandom", {"value": random})
++        except Exception as exc:
++            self.log("set_playback_mode error:", exc)
++
+     def play_playlist(self, name):
+         try:
++            self.active_collection_uri = ""
+             self.sio.emit("playPlaylist", {"name": name})
          except Exception as exc:
              self.log("play_playlist error:", exc)
  
@@ -1652,7 +2637,13 @@ index d3e94a2..3f4c056 100644
      def play_item(self, item):
          """Replace the queue with a browse item and play it. Used by BrowseScreen
          when the user selects a playable item (song / web radio / playlist) on the
-@@ -202,6 +231,113 @@ class VolumioListener:
+         panel. `item` is a Volumio browse item dict ({uri, service, type, title})."""
+         try:
++            self.active_collection_uri = ""
+             self.sio.emit("replaceAndPlay", item)
+         except Exception:
+             pass
+@@ -202,6 +288,113 @@ class VolumioListener:
          except Exception:
              pass
  
@@ -1768,7 +2759,7 @@ index d3e94a2..3f4c056 100644
          append the rest. `items` are Volumio browse leaves ({uri, service, type,
 diff --git a/systemd/sable-boot-indicator.service b/systemd/sable-boot-indicator.service
 new file mode 100644
-index 0000000..ab3f7de
+index 0000000000000000000000000000000000000000..ab3f7de9e7c16127ae0bb667cd360d0bced39f9c
 --- /dev/null
 +++ b/systemd/sable-boot-indicator.service
 @@ -0,0 +1,17 @@
@@ -1793,7 +2784,7 @@ index 0000000..ab3f7de
 diff --git a/systemd/sable.service b/systemd/sable.service
 old mode 100755
 new mode 100644
-index bd5baa7..30e0bc1
+index bd5baa7b9b45992b774bffeb97d9d372761ad4b2..30e0bc11188b808a5da3565e4c7ffef3674a3f1f
 --- a/systemd/sable.service
 +++ b/systemd/sable.service
 @@ -2,15 +2,10 @@
@@ -1837,3 +2828,297 @@ index bd5baa7..30e0bc1
  KillSignal=SIGTERM
  TimeoutStopSec=8
  
+diff --git a/tests/test_browse.py b/tests/test_browse.py
+index 977a92c305637b2b6b4a9af374f1fdfd97318cfc..6b7f98e9d86bf5ec06dba7675db37fd0ad0b0768 100644
+--- a/tests/test_browse.py
++++ b/tests/test_browse.py
+@@ -5,7 +5,7 @@ import sys
+ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+ 
+ from sable.app import build_sim_app
+-from sable.screens.browse import _playables
++from sable.screens.browse import _is_folder, _playables
+ 
+ 
+ class FakeListener:
+@@ -39,6 +39,12 @@ def _resp(items):
+     return {"navigation": {"lists": [{"items": items}]}}
+ 
+ 
++def test_tidal_navigation_types_are_folders():
++    assert _is_folder({"type": "item-no-menu", "uri": "tidal://mymusic/albums/az"})
++    assert _is_folder({"type": "folder-with-favourites", "uri": "tidal://playlist"})
++    assert _is_folder({"type": "playlist", "uri": "playlists/Quadify"})
++
++
+ def test_playables_filters_to_songs():
+     items = _songs(3) + [{"title": "Sub", "type": "folder", "uri": "f"}]
+     assert len(_playables(items)) == 3
+@@ -98,6 +104,18 @@ def test_select_play_all_plays_the_songs():
+     assert app.listener.played is not None and len(app.listener.played) == 3
+ 
+ 
++def test_selecting_a_track_plays_from_that_track_onward():
++    app = build_sim_app(frames_dir=None)
++    app.listener = FakeListener()
++    b = app.fsm.screens["browse"]
++    songs = _songs(4)
++    b.stack = [{"title": "Tidal playlist", "items": [{"title": "Back", "_back": True}] + songs,
++                "index": 3}]  # Back is index 0, so this selects T2
++    b.loading = False
++    b.handle_select()
++    assert [song["uri"] for song in app.listener.played] == ["u2", "u3"]
++
++
+ def main():
+     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
+     for t in tests:
+diff --git a/tests/test_home.py b/tests/test_home.py
+index 514253f37a72801822e8bc2592532105ad00f492..8c693558c2f2f8461c90de8cb787a0870f58987e 100644
+--- a/tests/test_home.py
++++ b/tests/test_home.py
+@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+ from PIL import Image, ImageDraw
+ 
+ from sable.app import build_sim_app
++from sable.screens.home import _source_uri
+ 
+ 
+ def _app_home():
+@@ -51,6 +52,10 @@ def test_select_source_opens_browse():
+     assert app.fsm.current.name == "browse"
+ 
+ 
++def test_tidal_source_uses_plugin_name_when_uri_is_absent():
++    assert _source_uri({"name": "TIDAL", "pluginName": "tidal"}) == "tidal"
++    assert _source_uri({"name": "TIDAL"}) == "tidal"
++
+ def test_renders_nonblank():
+     app, h = _app_home()
+     h.index = 2
+diff --git a/tests/test_ir.py b/tests/test_ir.py
+index 7f6b00b17db1b12faf9829a06eb5b67eec47c0e5..f7b6103c60f40d6ed603bf129431e448bbb88e39 100644
+--- a/tests/test_ir.py
++++ b/tests/test_ir.py
+@@ -26,16 +26,23 @@ def test_nowplaying_buttons():
+ def test_menu_buttons():
+     # SELECT (KEY_MENU) and RIGHT select; LEFT backs out; UP/DOWN scroll;
+     # PLAY/PAUSE (KEY_OK) still toggles playback.
+-    assert command_for("KEY_MENU", "menu") == ("select", None)
++    assert command_for("KEY_MENU", "menu") == ("back", None)
+     assert command_for("KEY_RIGHT", "menu") == ("select", None)
+     assert command_for("KEY_LEFT", "menu") == ("back", None)
+     assert command_for("KEY_UP", "menu") == ("scroll", -1)
++    assert command_for("KEY_UP", "modern") == ("volume", "+")
++    assert command_for("KEY_DOWN", "modern") == ("volume", "-")
+     assert command_for("KEY_DOWN", "browse") == ("scroll", 1)
++    assert command_for("KEY_LEFT", "home") == ("scroll", -1)
++    assert command_for("KEY_RIGHT", "home") == ("scroll", 1)
++    assert command_for("KEY_UP", "home") is None
++    assert command_for("KEY_ENTER", "home", ok_selects=True) == ("select", None)
+     # KEY_OK: toggle by default (ApEvo's PLAY/PAUSE bar, SELECT is a separate
+     # KEY_MENU button); "select" only for profiles in OK_SELECTS_PROFILES
+     # (e.g. Xiaomi, whose center button IS the confirm button).
+     assert command_for("KEY_OK", "menu") == ("toggle", None)
+     assert command_for("KEY_OK", "menu", ok_selects=True) == ("select", None)
++    assert command_for("KEY_ENTER", "menu", ok_selects=True) == ("select", None)
+     assert command_for("KEY_OK", "modern", ok_selects=True) == ("toggle", None)
+     assert command_for("KEY_PLAY", "menu", ok_selects=True) == ("toggle", None)
+ 
+diff --git a/tests/test_leds.py b/tests/test_leds.py
+index f820449ea03d89903f712735ca993681d92a5041..98688a865744acff07972d0b8e744e7ab3870ae2 100644
+--- a/tests/test_leds.py
++++ b/tests/test_leds.py
+@@ -27,7 +27,7 @@ def test_stopped_is_dark():
+ 
+ def test_paused_pulses_when_active():
+     bl = _bl("pause")                                # no app -> active pause
+-    assert bl._desired_led(now=0.0) == LED_PAUSE     # on phase of the heartbeat
++    assert bl._desired_led(now=0.0) == LED_PLAY      # play/pause shares button 1
+     assert bl._desired_led(now=1.2) == 0             # off phase
+ 
+ 
+@@ -40,16 +40,16 @@ def test_paused_solid_when_idle_on_clock():
+     bl = _bl("pause")
+     bl._app = _FakeApp()
+     bl._app._pause_idle = True
+-    assert bl._desired_led(now=0.0) == LED_PAUSE     # solid -- both phases lit
+-    assert bl._desired_led(now=1.2) == LED_PAUSE
++    assert bl._desired_led(now=0.0) == LED_PLAY      # solid -- both phases lit
++    assert bl._desired_led(now=1.2) == LED_PLAY
+ 
+ 
+ def test_paused_solid_when_asleep():
+     bl = _bl("pause")
+     bl._app = _FakeApp()
+     bl._app.asleep = True
+-    assert bl._desired_led(now=0.0) == LED_PAUSE
+-    assert bl._desired_led(now=1.2) == LED_PAUSE
++    assert bl._desired_led(now=0.0) == LED_PLAY
++    assert bl._desired_led(now=1.2) == LED_PLAY
+ 
+ 
+ def test_airplay_shows_no_status_led():
+@@ -81,13 +81,13 @@ def test_led_byte_reversed_ribbon():
+         assert hardware.led_byte(hardware.led_byte(led, rev), rev) == led
+ 
+ 
+-def test_boot_sweep_covers_all_seven_leds():
++def test_boot_sweep_covers_all_eight_leds():
+     bits = 0
+     for led in LED_SWEEP:
+         bits |= led
+-    assert bits == 0b1111111                          # all 7 LED bits set
+-    assert len(LED_SWEEP) == 7
+-    assert len(set(LED_SWEEP)) == 7                   # no duplicates
++    assert bits == 0b11111111                         # all 8 LED bits set
++    assert len(LED_SWEEP) == 8
++    assert len(set(LED_SWEEP)) == 8                   # no duplicates
+ 
+ 
+ def main():
+diff --git a/tests/test_menu.py b/tests/test_menu.py
+index 93853638e2082352b54d3344ff358ed9feb2b9b8..e0ae22303a8446eb8764c858b85b5b89f4e26647 100644
+--- a/tests/test_menu.py
++++ b/tests/test_menu.py
+@@ -34,6 +34,8 @@ def test_display_mode_label_reflects_settings():
+     assert m._display_mode_label() == "Panel"
+     d["theme"] = "cinema"
+     assert m._display_mode_label() == "Cinema"
++    d["theme"] = "performance"
++    assert m._display_mode_label() == "Performance"
+     d["screen"] = "spectrum"
+     d["spectrum_style"] = "mirror"
+     assert m._display_mode_label() == "Mirror"
+diff --git a/tests/test_transitions.py b/tests/test_transitions.py
+index 78f589a5b98f342de6f1f59beb60e033c5f2ff7d..08d584cd536cac3b0d9fe54b133ddeaeff4e3590 100644
+--- a/tests/test_transitions.py
++++ b/tests/test_transitions.py
+@@ -35,6 +35,66 @@ def _set(app, **fields):
+     app.store._state = app.store._state.merged(fields)
+ 
+ 
++# --- Navigation inactivity ---------------------------------------------------
++
++def test_entering_navigation_arms_the_ten_second_timer():
++    app = _app()
++    app.fsm.go("menu")
++    assert app.fsm.menu_inactivity_s == 10.0
++    assert app.fsm._menu_timer is not None
++    app.fsm._cancel_menu_timer()
++
++
++
++def test_navigation_timeout_returns_to_now_playing_when_active():
++    app = _app()
++    _set(app, status="play", service="mpd")
++    app.fsm.go("browse")
++    app.fsm._menu_expired()
++    assert app.fsm.current.name == "modern"
++
++
++def test_navigation_timeout_returns_to_clock_when_stopped():
++    app = _app()
++    app.fsm.go("browse")
++    app.fsm._menu_expired()
++    assert app.fsm.current.name == "clock"
++
++# --- Audio-first display hand-off --------------------------------------------
++
++def test_playback_settle_defers_nowplaying_screen():
++    app = _app()
++    app.fsm.go("clock")
++    app._first_state = False
++    _set(app, status="stop")
++    app._on_state(PlayerState(status="stop"), PlayerState(status="play", service="mpd"))
++    assert app.fsm.current.name == "clock"
++    assert app._playback_settle_timer is not None
++    _set(app, status="play", service="mpd")
++    app._last_switch_t = 0
++    app._playback_settle_fire()
++    assert app.fsm.current.name == "modern"
++
++
++def test_playback_settle_forces_a_redraw_when_already_on_nowplaying():
++    app = _app()
++    app.fsm.go("modern")
++    _set(app, status="play", service="mpd")
++    rendered = []
++    app.render = lambda: rendered.append(True)
++    app._playback_settle_fire()
++    assert rendered == [True]
++
++
++def test_track_change_while_playing_rearms_playback_settle():
++    app = _app()
++    app._first_state = False
++    old = PlayerState(status="play", service="mpd", uri="old-stream", title="Old")
++    new = PlayerState(status="play", service="mpd", uri="new-stream", title="New")
++    app._on_state(old, new)
++    assert app._playback_settle_timer is not None
++    app._cancel_playback_settle()
++
+ # --- Fix 1: gate spectrum on the audio source -------------------------------
+ 
+ def test_source_feeds_cava_predicate():
+diff --git a/tests/test_volume.py b/tests/test_volume.py
+index d8fa9eff93e220ecab2dfc701f111f37b442c6b2..ba47d90838722eb87a1f4aaddd66593e1daadd25 100644
+--- a/tests/test_volume.py
++++ b/tests/test_volume.py
+@@ -23,6 +23,7 @@ def test_nudge_emits_direction_and_flags_osd():
+     app = build_sim_app(frames_dir=None)
+     app.display.ascii_preview = False
+     app.listener = FakeVol()
++    app.settings.set("audio", "output", "headphone_variable")
+     app.nudge_volume(1)
+     assert app.listener.calls == ["+"]
+     assert app._osd_volume
+@@ -35,6 +36,7 @@ def test_now_playing_scroll_is_volume():
+     app = build_sim_app(frames_dir=None)
+     app.display.ascii_preview = False
+     app.listener = FakeVol()
++    app.settings.set("audio", "output", "headphone_variable")
+     app.store.apply_pushstate({"status": "play", "service": "mpd"})
+     app.go("modern")
+     app.fsm.current.handle_scroll(1)
+@@ -45,6 +47,7 @@ def test_volume_command_routes_through_nudge():
+     app = build_sim_app(frames_dir=None)
+     app.display.ascii_preview = False
+     app.listener = FakeVol()
++    app.settings.set("audio", "output", "headphone_variable")
+     app.handle("volume", "+")
+     app.handle("volume", "-")
+     assert app.listener.calls == ["+", "-"]
+@@ -54,10 +57,32 @@ def test_mute_command_sets_mute():
+     app = build_sim_app(frames_dir=None)
+     app.display.ascii_preview = False
+     app.listener = FakeVol()
++    app.settings.set("audio", "output", "headphone_variable")
+     app.handle("mute")
+     assert app.listener.calls == ["mute"]
+ 
+ 
++def test_usb_dac_ignores_volume_and_mute():
++    app = build_sim_app(frames_dir=None)
++    app.display.ascii_preview = False
++    app.listener = FakeVol()
++    app.settings.set("audio", "output", "usb_dac")
++    app.nudge_volume(1)
++    app.handle("mute")
++    assert app.listener.calls == []
++    assert not app._osd_volume
++
++
++def test_headphones_enable_volume_control():
++    app = build_sim_app(frames_dir=None)
++    app.display.ascii_preview = False
++    app.listener = FakeVol()
++    app.settings.set("audio", "output", "headphone_variable")
++    app.nudge_volume(1)
++    assert app.listener.calls == ["+"]
++    assert app._osd_volume
++
++
+ def main():
+     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
+     for t in tests:

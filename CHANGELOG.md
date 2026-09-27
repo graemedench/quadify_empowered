@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-09-27
+
+- Regenerated the Sable enhancement patch from the full current FM4 build.
+- Added the looping boot LED animation, playback-mode display refinements,
+  audio-first display settling and soft-stop behaviour.
+- Added button 5–7 short/long shortcut learning: hold Save (8), press a target
+  button, choose short/long with the encoder, then confirm with the encoder.
+- Added Settings → Shortcuts → Reset 5–7 Defaults.
+- A long encoder press now exits directly to Now Playing from menu/browse depth.
+- Added a fully documented `--graeme` preset with the current button, display,
+  audio and Apple IR defaults.
+- The installer now identifies the verified Sable base and supports an explicit
+  `--force` three-way-merge attempt for other versions.
+
 ## 2026-09-26
 
 - Added **Settings → Shutdown** at the bottom of the Settings menu, with a confirmation step before the existing graceful shutdown routine runs.

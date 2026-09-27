@@ -122,8 +122,8 @@ This repository currently includes the matching button-cap print pack and the
 front-panel mounting parts: the screen holder, rotary bracket and long knob
 extender.
 
-The FM4 build also has additional rear/enclosure pieces, including an inner
-back-panel clamp plate and a network-port panel. Those parts are intentionally
-**not included yet** while their fit and final revision are being kept separate
-from the front-panel release.
+My FM4 build also has additional rear/enclosure pieces, and a cut-out template
+for replacing the original PCB. These parts are intentionally **not included
+yet** while their fit and final revision are being kept separate from the
+current release. These will be added as and when.
 

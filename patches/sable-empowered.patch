@@ -1,6 +1,6 @@
 diff --git a/MODPACK.md b/MODPACK.md
 new file mode 100644
-index 0000000000000000000000000000000000000000..2de240f445efac3f40e64eee8f8cc54c9fb9e0a7
+index 0000000..2de240f
 --- /dev/null
 +++ b/MODPACK.md
 @@ -0,0 +1,71 @@
@@ -76,7 +76,7 @@ index 0000000000000000000000000000000000000000..2de240f445efac3f40e64eee8f8cc54c
 +to use these additions commercially. Sable and its dependencies remain subject
 +to their own upstream licences.
 diff --git a/README.md b/README.md
-index a4642d402537e96766d200aceec68074fc5df33d..d57761be7f90095fa6bafc1cbd6e656507e86977 100644
+index a4642d4..d57761b 100644
 --- a/README.md
 +++ b/README.md
 @@ -9,6 +9,14 @@ It runs on the Pi as the `sable.service` systemd unit and owns the display +
@@ -96,7 +96,7 @@ index a4642d402537e96766d200aceec68074fc5df33d..d57761be7f90095fa6bafc1cbd6e6565
  
 diff --git a/bin/sable-backup.sh b/bin/sable-backup.sh
 new file mode 100755
-index 0000000000000000000000000000000000000000..2c6e947dc2ab36426d634863f70a7c92e9827a3d
+index 0000000..2c6e947
 --- /dev/null
 +++ b/bin/sable-backup.sh
 @@ -0,0 +1,27 @@
@@ -130,7 +130,7 @@ index 0000000000000000000000000000000000000000..2c6e947dc2ab36426d634863f70a7c92
 \ No newline at end of file
 diff --git a/bin/sable-repair.sh b/bin/sable-repair.sh
 new file mode 100755
-index 0000000000000000000000000000000000000000..cf73decbc38e3c82cce859d5d0fd5b8d13e49d44
+index 0000000..cf73dec
 --- /dev/null
 +++ b/bin/sable-repair.sh
 @@ -0,0 +1,15 @@
@@ -152,7 +152,7 @@ index 0000000000000000000000000000000000000000..cf73decbc38e3c82cce859d5d0fd5b8d
 \ No newline at end of file
 diff --git a/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf
 new file mode 100644
-index 0000000000000000000000000000000000000000..9113ce8033e207357d1e250ae018470e53f0507a
+index 0000000..9113ce8
 --- /dev/null
 +++ b/config/lirc/profiles/Apple Aluminium Remote (this unit)/lircd.conf	
 @@ -0,0 +1,28 @@
@@ -186,7 +186,7 @@ index 0000000000000000000000000000000000000000..9113ce8033e207357d1e250ae018470e
 +end remote
 \ No newline at end of file
 diff --git a/config/settings.default.json b/config/settings.default.json
-index f5ba9b2bee4a6eacbce434890294005ee47f441e..9593af08afe027b934fb1020cb45ee0c505cb8c1 100644
+index f5ba9b2..9593af0 100644
 --- a/config/settings.default.json
 +++ b/config/settings.default.json
 @@ -1,32 +1,21 @@
@@ -244,7 +244,7 @@ index f5ba9b2bee4a6eacbce434890294005ee47f441e..9593af08afe027b934fb1020cb45ee0c
 +}
 diff --git a/config/settings.graeme.json b/config/settings.graeme.json
 new file mode 100755
-index 0000000000000000000000000000000000000000..e7b6595495dbe0938acf1e8e25579aac9422ec62
+index 0000000..e7b6595
 --- /dev/null
 +++ b/config/settings.graeme.json
 @@ -0,0 +1,89 @@
@@ -339,7 +339,7 @@ index 0000000000000000000000000000000000000000..e7b6595495dbe0938acf1e8e25579aac
 +}
 \ No newline at end of file
 diff --git a/install-moode.sh b/install-moode.sh
-index 50bc3ebaa852c8f361f756d9ba8252a0c4d8320c..5cb085278c8bd90cd9db19e834a3467097e2acf9 100755
+index 50bc3eb..5cb0852 100755
 --- a/install-moode.sh
 +++ b/install-moode.sh
 @@ -99,10 +99,8 @@ else
@@ -356,7 +356,7 @@ index 50bc3ebaa852c8f361f756d9ba8252a0c4d8320c..5cb085278c8bd90cd9db19e834a34670
  # reads -- a stale, inert /boot/config.txt stub can also exist and silently
  # eat writes that never take effect (verified on a real moOde 9 Pi 4: SPI/I2C
 diff --git a/install.sh b/install.sh
-index e0b8de5f3fd97eeb2a0acca4191c26713d5c0634..b83ae7925b7b06da464f1eef8fdcb66cb8c8fc51 100755
+index e0b8de5..b83ae79 100755
 --- a/install.sh
 +++ b/install.sh
 @@ -14,11 +14,21 @@
@@ -426,16 +426,15 @@ index e0b8de5f3fd97eeb2a0acca4191c26713d5c0634..b83ae7925b7b06da464f1eef8fdcb66c
  # disabled here in case an earlier install enabled it.
  #
 diff --git a/plugin/index.js b/plugin/index.js
-index 711832c7f0dbf452643b02896d1758958d372e14..560240ae83730204724762a184dfa7cf1f3e760e 100755
+index 711832c..2549410 100755
 --- a/plugin/index.js
 +++ b/plugin/index.js
-@@ -302,7 +302,15 @@ SablePlugin.prototype.saveButtonsConfig = function (data) {
+@@ -302,7 +302,14 @@ SablePlugin.prototype.saveButtonsConfig = function (data) {
    for (var b = 1; b <= 8; b++) {
      var act = this._val(data['btn' + b + '_action']) || BTN_DEFAULTS[b];
      var arg = data['btn' + b + '_arg'] || '';
 -    this._set(s, 'buttons', 'btn_' + b, { action: act, arg: String(arg).trim() });
-+    // The web UI edits the normal tap action only. Preserve any configured
-+    // long-hold shortcut rather than silently discarding it on a later save.
++    // Preserve a configured long-hold shortcut when the normal button action is saved.
 +    var existing = this._get(s, 'buttons', 'btn_' + b, {}) || {};
 +    this._set(s, 'buttons', 'btn_' + b, {
 +      action: act,
@@ -447,7 +446,7 @@ index 711832c7f0dbf452643b02896d1758958d372e14..560240ae83730204724762a184dfa7cf
    this._write(s);
    this._reload();
 diff --git a/src/sable/app.py b/src/sable/app.py
-index 64d945414952254f29366a0df94c717cbe529821..7cd1fd8be9fd25648d2c9b1e39687b14df1216d8 100644
+index 64d9454..7cd1fd8 100644
 --- a/src/sable/app.py
 +++ b/src/sable/app.py
 @@ -18,6 +18,7 @@ import argparse
@@ -942,7 +941,7 @@ index 64d945414952254f29366a0df94c717cbe529821..7cd1fd8be9fd25648d2c9b1e39687b14
                  buttons.stop()
 diff --git a/src/sable/boot_indicator.py b/src/sable/boot_indicator.py
 new file mode 100755
-index 0000000000000000000000000000000000000000..61479c6b0c977a906955b1d3e9fc86060f9e45b3
+index 0000000..61479c6
 --- /dev/null
 +++ b/src/sable/boot_indicator.py
 @@ -0,0 +1,80 @@
@@ -1028,7 +1027,7 @@ index 0000000000000000000000000000000000000000..61479c6b0c977a906955b1d3e9fc8606
 +    raise SystemExit(main())
 \ No newline at end of file
 diff --git a/src/sable/controls.py b/src/sable/controls.py
-index c7f84eb0fd1f0b3b516855a9018d9efd857c68fc..48431463dc3e4596884dd3e13aad060f56c20b75 100644
+index c7f84eb..4843146 100644
 --- a/src/sable/controls.py
 +++ b/src/sable/controls.py
 @@ -24,7 +24,7 @@ BUTTON_MAP = {
@@ -1041,7 +1040,7 @@ index c7f84eb0fd1f0b3b516855a9018d9efd857c68fc..48431463dc3e4596884dd3e13aad060f
  
  
 diff --git a/src/sable/fsm.py b/src/sable/fsm.py
-index 0795afc7bb4d60d9ed941c8c780ae4545c538092..faf0315ab113ebbc5b918b9f5ca316c2846984be 100644
+index 0795afc..faf0315 100644
 --- a/src/sable/fsm.py
 +++ b/src/sable/fsm.py
 @@ -1,110 +1,119 @@
@@ -1275,7 +1274,7 @@ index 0795afc7bb4d60d9ed941c8c780ae4545c538092..faf0315ab113ebbc5b918b9f5ca316c2
 +        if self.current is not None and self.current.name in ("menu", "home", "browse"):
 +            self.app.go(self.app.base_screen())
 diff --git a/src/sable/hardware.py b/src/sable/hardware.py
-index 06fefb65fad4d13f92f110c0b8c293c9babe98f5..0a7c94479a86e79267b621dae41a6fd3d577ad09 100755
+index 06fefb6..0a7c944 100755
 --- a/src/sable/hardware.py
 +++ b/src/sable/hardware.py
 @@ -110,7 +110,7 @@ MCP = _build(Mcp23017, "mcp", _OVERRIDES)
@@ -1288,7 +1287,7 @@ index 06fefb65fad4d13f92f110c0b8c293c9babe98f5..0a7c94479a86e79267b621dae41a6fd3
  # LED bit positions on GPIOA (one lit at a time).
  LED_PLAY = 0
 diff --git a/src/sable/inputs/buttons.py b/src/sable/inputs/buttons.py
-index a685edea6860a39079a4f55a113eeff86dc6c2f8..6be04ce64391c5ad8d2fc276dd3ac96593bd70c1 100644
+index a685ede..6be04ce 100644
 --- a/src/sable/inputs/buttons.py
 +++ b/src/sable/inputs/buttons.py
 @@ -31,8 +31,9 @@ LED_REPEAT = 1 << 5
@@ -1406,7 +1405,7 @@ index a685edea6860a39079a4f55a113eeff86dc6c2f8..6be04ce64391c5ad8d2fc276dd3ac965
  
      def _station_led(self, st):
 diff --git a/src/sable/inputs/ir.py b/src/sable/inputs/ir.py
-index e4c443d73cfe56d178b16bb08fb5f759f91df258..ad4773ef26dacf2a50ed6fd3c968796465824129 100644
+index e4c443d..ad4773e 100644
 --- a/src/sable/inputs/ir.py
 +++ b/src/sable/inputs/ir.py
 @@ -46,7 +46,10 @@ _REPEATABLE = ("scroll", "volume")
@@ -1479,7 +1478,7 @@ index e4c443d73cfe56d178b16bb08fb5f759f91df258..ad4773ef26dacf2a50ed6fd3c9687964
          self._last = {}
 diff --git a/src/sable/inputs/power.py b/src/sable/inputs/power.py
 new file mode 100644
-index 0000000000000000000000000000000000000000..fc54cdd93ff97889c5735f5d1c2cfaaed0197c20
+index 0000000..fc54cdd
 --- /dev/null
 +++ b/src/sable/inputs/power.py
 @@ -0,0 +1,64 @@
@@ -1549,7 +1548,7 @@ index 0000000000000000000000000000000000000000..fc54cdd93ff97889c5735f5d1c2cfaae
 +            self._thread.join(timeout=self.poll_s * 3)
 \ No newline at end of file
 diff --git a/src/sable/screens/browse.py b/src/sable/screens/browse.py
-index d6f071f7d6e0d7abee87822b2d0ce5ad772dda6f..adcbc5cea65387e6dc40d9b933ba7e87fd0f592d 100644
+index d6f071f..adcbc5c 100644
 --- a/src/sable/screens/browse.py
 +++ b/src/sable/screens/browse.py
 @@ -14,21 +14,28 @@ from .base import Screen
@@ -1624,7 +1623,7 @@ index d6f071f7d6e0d7abee87822b2d0ce5ad772dda6f..adcbc5cea65387e6dc40d9b933ba7e87
          if self._replace_top:
              self.stack[-1] = frame       # carousel entry: result becomes the root
 diff --git a/src/sable/screens/home.py b/src/sable/screens/home.py
-index f3bfd26169e235674f602893055a8f4a0ad3ee54..73264ab1ac8ad71d6eb5e2826834c6dff33ca047 100644
+index f3bfd26..73264ab 100644
 --- a/src/sable/screens/home.py
 +++ b/src/sable/screens/home.py
 @@ -39,6 +39,23 @@ def _icon_name(label):
@@ -1661,7 +1660,7 @@ index f3bfd26169e235674f602893055a8f4a0ad3ee54..73264ab1ac8ad71d6eb5e2826834c6df
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea5a6355f999b3e486f0ac08250a43fe4e5..7d024cd9a83551aed99822e10de1f027d1ae9f55 100644
+index e283aea..7d024cd 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
 @@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
@@ -2009,7 +2008,7 @@ index e283aea5a6355f999b3e486f0ac08250a43fe4e5..7d024cd9a83551aed99822e10de1f027
          rows = []
          for item in f["items"]:
 diff --git a/src/sable/screens/modern.py b/src/sable/screens/modern.py
-index 2623ea7ca389675e828970478f0676416754b26e..3d2a74f6d33bd9aa6dfd0b0971bd2cb96d6be81b 100644
+index 2623ea7..3d2a74f 100644
 --- a/src/sable/screens/modern.py
 +++ b/src/sable/screens/modern.py
 @@ -43,6 +43,14 @@ def _service_label(service):
@@ -2132,7 +2131,7 @@ index 2623ea7ca389675e828970478f0676416754b26e..3d2a74f6d33bd9aa6dfd0b0971bd2cb9
          if st.duration_s > 0:
              pyb = h - 3
 diff --git a/src/sable/settings.py b/src/sable/settings.py
-index d39be58fc6ae0503adf14b3d422a53e865aa917a..1671b41d7132c8430397383d016861e26373711f 100644
+index d39be58..1671b41 100644
 --- a/src/sable/settings.py
 +++ b/src/sable/settings.py
 @@ -1,152 +1,201 @@
@@ -2490,7 +2489,7 @@ index d39be58fc6ae0503adf14b3d422a53e865aa917a..1671b41d7132c8430397383d016861e2
 +        with self._lock:
 +            return json.loads(json.dumps(self._data))
 diff --git a/src/sable/volumio/listener.py b/src/sable/volumio/listener.py
-index d3e94a2bb1c5072c8592b59d4fddc2b44616dbcb..541066e35866eae17acb3433cdb45f77c5d973f9 100644
+index d3e94a2..541066e 100644
 --- a/src/sable/volumio/listener.py
 +++ b/src/sable/volumio/listener.py
 @@ -14,6 +14,7 @@ Carry-forward from the old volumio_listener.py:
@@ -2759,7 +2758,7 @@ index d3e94a2bb1c5072c8592b59d4fddc2b44616dbcb..541066e35866eae17acb3433cdb45f77
          append the rest. `items` are Volumio browse leaves ({uri, service, type,
 diff --git a/systemd/sable-boot-indicator.service b/systemd/sable-boot-indicator.service
 new file mode 100644
-index 0000000000000000000000000000000000000000..ab3f7de9e7c16127ae0bb667cd360d0bced39f9c
+index 0000000..ab3f7de
 --- /dev/null
 +++ b/systemd/sable-boot-indicator.service
 @@ -0,0 +1,17 @@
@@ -2784,7 +2783,7 @@ index 0000000000000000000000000000000000000000..ab3f7de9e7c16127ae0bb667cd360d0b
 diff --git a/systemd/sable.service b/systemd/sable.service
 old mode 100755
 new mode 100644
-index bd5baa7b9b45992b774bffeb97d9d372761ad4b2..30e0bc11188b808a5da3565e4c7ffef3674a3f1f
+index bd5baa7..30e0bc1
 --- a/systemd/sable.service
 +++ b/systemd/sable.service
 @@ -2,15 +2,10 @@
@@ -2829,7 +2828,7 @@ index bd5baa7b9b45992b774bffeb97d9d372761ad4b2..30e0bc11188b808a5da3565e4c7ffef3
  TimeoutStopSec=8
  
 diff --git a/tests/test_browse.py b/tests/test_browse.py
-index 977a92c305637b2b6b4a9af374f1fdfd97318cfc..6b7f98e9d86bf5ec06dba7675db37fd0ad0b0768 100644
+index 977a92c..6b7f98e 100644
 --- a/tests/test_browse.py
 +++ b/tests/test_browse.py
 @@ -5,7 +5,7 @@ import sys
@@ -2874,7 +2873,7 @@ index 977a92c305637b2b6b4a9af374f1fdfd97318cfc..6b7f98e9d86bf5ec06dba7675db37fd0
      tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
      for t in tests:
 diff --git a/tests/test_home.py b/tests/test_home.py
-index 514253f37a72801822e8bc2592532105ad00f492..8c693558c2f2f8461c90de8cb787a0870f58987e 100644
+index 514253f..8c69355 100644
 --- a/tests/test_home.py
 +++ b/tests/test_home.py
 @@ -7,6 +7,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
@@ -2897,7 +2896,7 @@ index 514253f37a72801822e8bc2592532105ad00f492..8c693558c2f2f8461c90de8cb787a087
      app, h = _app_home()
      h.index = 2
 diff --git a/tests/test_ir.py b/tests/test_ir.py
-index 7f6b00b17db1b12faf9829a06eb5b67eec47c0e5..f7b6103c60f40d6ed603bf129431e448bbb88e39 100644
+index 7f6b00b..f7b6103 100644
 --- a/tests/test_ir.py
 +++ b/tests/test_ir.py
 @@ -26,16 +26,23 @@ def test_nowplaying_buttons():
@@ -2926,7 +2925,7 @@ index 7f6b00b17db1b12faf9829a06eb5b67eec47c0e5..f7b6103c60f40d6ed603bf129431e448
      assert command_for("KEY_PLAY", "menu", ok_selects=True) == ("toggle", None)
  
 diff --git a/tests/test_leds.py b/tests/test_leds.py
-index f820449ea03d89903f712735ca993681d92a5041..98688a865744acff07972d0b8e744e7ab3870ae2 100644
+index f820449..98688a8 100644
 --- a/tests/test_leds.py
 +++ b/tests/test_leds.py
 @@ -27,7 +27,7 @@ def test_stopped_is_dark():
@@ -2978,7 +2977,7 @@ index f820449ea03d89903f712735ca993681d92a5041..98688a865744acff07972d0b8e744e7a
  
  def main():
 diff --git a/tests/test_menu.py b/tests/test_menu.py
-index 93853638e2082352b54d3344ff358ed9feb2b9b8..e0ae22303a8446eb8764c858b85b5b89f4e26647 100644
+index 9385363..e0ae223 100644
 --- a/tests/test_menu.py
 +++ b/tests/test_menu.py
 @@ -34,6 +34,8 @@ def test_display_mode_label_reflects_settings():
@@ -2991,7 +2990,7 @@ index 93853638e2082352b54d3344ff358ed9feb2b9b8..e0ae22303a8446eb8764c858b85b5b89
      d["spectrum_style"] = "mirror"
      assert m._display_mode_label() == "Mirror"
 diff --git a/tests/test_transitions.py b/tests/test_transitions.py
-index 78f589a5b98f342de6f1f59beb60e033c5f2ff7d..08d584cd536cac3b0d9fe54b133ddeaeff4e3590 100644
+index 78f589a..08d584c 100644
 --- a/tests/test_transitions.py
 +++ b/tests/test_transitions.py
 @@ -35,6 +35,66 @@ def _set(app, **fields):
@@ -3062,7 +3061,7 @@ index 78f589a5b98f342de6f1f59beb60e033c5f2ff7d..08d584cd536cac3b0d9fe54b133ddeae
  
  def test_source_feeds_cava_predicate():
 diff --git a/tests/test_volume.py b/tests/test_volume.py
-index d8fa9eff93e220ecab2dfc701f111f37b442c6b2..ba47d90838722eb87a1f4aaddd66593e1daadd25 100644
+index d8fa9ef..ba47d90 100644
 --- a/tests/test_volume.py
 +++ b/tests/test_volume.py
 @@ -23,6 +23,7 @@ def test_nudge_emits_direction_and_flags_osd():

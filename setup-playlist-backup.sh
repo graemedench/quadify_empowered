@@ -18,7 +18,9 @@ chmod 600 /etc/quadify/playlist-backup.conf
 cat > /usr/local/sbin/quadify-playlist-backup <<'SCRIPT'
 #!/bin/sh
 set -eu
-. /etc/quadify/playlist-backup.conf
+server=$(sed -n 's/^server=//p' /etc/quadify/playlist-backup.conf)
+share=$(sed -n 's/^share=//p' /etc/quadify/playlist-backup.conf)
+[ -n "$server" ] && [ -n "$share" ] || { logger -t quadify-playlist-backup "Backup server/share configuration is missing"; exit 1; }
 PLAYLIST=/data/playlist/Quadify
 CREDS=/etc/quadify/playlist-backup.credentials
 STATE=/var/lib/quadify-playlist-backup-slot

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-01
+
+- Hardened the installer against executable-bit changes made by Volumio's Sable plugin deployment.
+- Rebuilt the Sable enhancement patch from a verified clean base and added a clean-apply verification step to the release process.
+- The installer now rebuilds and refreshes Sable's Volumio settings-page payload automatically.
+- Fixed playlist-backup setup for server or share names containing spaces.
+
 ## 2026-09-27
 
 - Added the no-drill, reversible rear Ethernet-jack panel STL, fitting photos

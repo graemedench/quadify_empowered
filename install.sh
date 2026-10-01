@@ -22,6 +22,16 @@ if [ "$HEAD" != "$SABLE_BASE" ] && [ "$FORCE" -ne 1 ]; then
   echo "Nothing was changed. Re-run with --force only after taking a backup."
   exit 1
 fi
+# The Volumio plugin installer can change executable bits while copying files.
+# Restore the repository's tracked modes before checking the patch, while leaving
+# file contents untouched.
+while IFS=$'\t' read -r mode path; do
+  case "$mode" in
+    100644) chmod 0644 "$SABLE_DIR/$path" ;;
+    100755) chmod 0755 "$SABLE_DIR/$path" ;;
+  esac
+done < <(runuser -u volumio -- git -C "$SABLE_DIR" ls-files -s | awk '{print $1 "\t" $4}')
+
 if runuser -u volumio -- git -C "$SABLE_DIR" apply --reverse --check "$PATCH"; then
   echo "This Quadify Empowered patch is already applied."
 elif runuser -u volumio -- git -C "$SABLE_DIR" apply --check "$PATCH"; then
@@ -70,7 +80,16 @@ if [ "$PRESET" = "graeme" ]; then
 fi
 install -m 0644 "$SABLE_DIR/systemd/sable.service" /etc/systemd/system/sable.service
 install -m 0644 "$SABLE_DIR/systemd/sable-boot-indicator.service" /etc/systemd/system/sable-boot-indicator.service
-systemctl daemon-reload; systemctl enable sable.service sable-boot-indicator.service; systemctl restart sable.service
+systemctl daemon-reload
+systemctl enable sable.service sable-boot-indicator.service
+# The Volumio web settings page lives in the plugin payload, not the source tree.
+# Refresh it whenever this package changes plugin/index.js or UI configuration.
+if [ -x "$SABLE_DIR/tools/build-plugin.sh" ] && command -v volumio >/dev/null 2>&1; then
+  runuser -u volumio -- bash "$SABLE_DIR/tools/build-plugin.sh"
+  runuser -u volumio -- bash -c 'cd "$1/plugin" && volumio plugin refresh' -- "$SABLE_DIR"
+  volumio vrestart
+fi
+systemctl restart sable.service
 # The panel can scan Wi-Fi but connection settings remain owned by Volumio.
 wifi_tmp=$(mktemp)
 printf '%s\n' 'volumio ALL=(root) NOPASSWD: /sbin/iwlist wlan0 scan' > "$wifi_tmp"

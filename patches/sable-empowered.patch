@@ -94,6 +94,52 @@ index a4642d4..d57761b 100644
  **Which player you are on changes three things** -- and only these three. Everything
  else in this README applies to both:
  
+diff --git a/assets/menu/audio_cd.png b/assets/menu/audio_cd.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0f7a53251207239225fb3b079ad0b8784950695d
+GIT binary patch
+literal 1864
+zcmV-O2e<f%P)<h;3K|Lk000e1NJLTq002M$002M;00000j{+_N000LMNkl<Zc$}qI
+zTWnlc6<zz>d*{xK?HP|B;~6{lXcFw$acmNkL@A&Mikzeo6<-9X5TqZiN=3v6se}-1
+z;0HcvgaoKxp+zXPO=u-5p^^|(LnsMx;|6NSvFiu69LJ7dGoBegX6`*_^D$%3JFV#X
+z8qGa>oxRWAYoE1&Pq^q~eC7WOfCMos0DvH3RSu;z00~F{5FQ34Hvm8gSrVfZ00{}W
+z_I`F>DA>fH*jQxX#_b58Wjy+bMH*l}{_;I$W{xKk@gy^I<gHVFKr244=pRkO|DA8_
+zhCLr!PbvvO2*X|FcVqF7zZ`-lKLS9v9nXEQ9@9%}l1LB%U}jdr<qJ9N-#vd{Fh2x<
+zNF6)ZsXkn?ghn~}Be0TsO{j9|C%-OmA`d_)oc%Gz7rf@2D7tcDTdVD$i_fm)AyA&Z
+z@73dpVG;Jop>?e|X~eb}4val<OSek`2<5wcXlAOhS=o;HNuyNONvU94<Y+De<=fv~
+zZu6x;WDnV8O3bS6UOjp%8->XFS9|%;(CR*KiU`W|%hCXBL~nbp9F$qRtsk2FOYcau
+zTci!izGIc430a<=g|0<X`5x%<Z12o+XT~1NtS#dL*ockzFYwma41i{T>FnxMt7F?r
+z)#~N=$Hx3@?+a4P4S`4>Z0oOWNl|v!#DkKFNUt7a?}tKVJrL^qZ4+WgZrG}!ygkV=
+z<5#&Mkg7eCnh)nzIjIUyxmy71(dDCGP}(+t#?RJFR(tYN&+rq2h^QpY6kbSEMF1e_
+zdQvW#(#Y+8B)wkARx+8gi#gAFV)e)#B{BelzZjmi<^~s8rz`}MUpjZRw}(B_DiOt$
+z_GJ2W0Gj;mw+9lsWV7CHs_n>`VJ<JSCqUD4RKzWMWMZ$y00G4A$(nx=KuVha8aGQ2
+z0Ohp$`e)W)2D*<s2U7(IWOXzg7!V3NK-^J3Z#x)FhCMS^+fd1pNx7zfGvaW#q3(^p
+zd+NaZn}t3sG<<$QC<s8{5wV(iLdd{_;qj=@m2>*16V+}lwMowE#EaLvDc_#O29AIM
+z0Wc0>ZHp5O1B;`hQIUE%UdbB?e@iOPhU=9`sDNA|CA(dUpaYC%B(n!FbdIhZ?z>y9
+zHkwatTD3R&D~$N--@TV#S7arF#s)zLu`^()yc#0m*7_aTY(DwJzw(|JoqzK<hog1(
+z3u=4K(-<Qb0J}oTf~u9il^F+HUpaG?wBfHG@L76nqPC!)bKKkkf&jopy+gSd*0f}E
+z{F<($5xcQ(UC3Ey!5#=$$Z2T>iy7>&m;unb$pDw(rT{=iy@OI-r!r^!VQCmPAHL&c
+zs<8`A8G0IktcYHaWo;!8u!QyQOAVGK&aF;6Wku^sA*W1x6$~9L65~yJei}rAy2qWB
+z{jNXUUOO0nql%MljUO1yxtqwF90NlDga~xbPqLam?oXnk?}Dg*`+`AGU%PwL()FB+
+zU}3DvObF;lMZR=kea?9*X;an4-~YVe6}0?#>)Vsp{vC4|+Yrj(7)l6Em-0=nD!4|X
+z4?c5Ri%Z?>Gu6i0SHF32sluMV{{DiVfgpDBjr8##_DyT=6=Z^>vnz6OI3^+7p_8Aw
+zG~`kswnY8Tda{{7sa-9P_GxM63;xrI{>_4lAW5NMbYhlkS_5~lEV>l{5G>)_(PY?)
+z_;92(MwwLFmrm5o6!4ujp14=n+68-M@al3!`Y~k~SXr712h7b1<8n-s>6S)ZKjMC`
+zgnm+z0kCuVW)3>RW_PH$J@9CsCexM3+Txqen&S7I$#58k!&G&3Ic#Cp9c%Y10we#R
+zOd0{EbE!}XNdjhonQ15G|0~*>@iSXs3qXm{S1aqvND6@L8gDKW$O?uUMqkf;8<~C(
+z*=3g1p=^Y5OI^A;!gM-C+b<KK#DgC>!e!q=vYM*1%8byt(|74=M&)F(FZGw+2sD-x
+zC14}8jZUfEt)a<hM1ew);_1n@YO73tA-ln?w(MJWx6u=kt#>rr&LbyRx~fuTd{FKd
+zn*b1{LOr|9r*CRo7q)$*(gu#j_It`iL3T@p0!Yd|J?-A7&g;c84^qE%Y_%s~m7YPA
+zyU`Y8nfv#B+WXY`l0p;E?SpRxXa6hpQd5$MUAHOFu`4W}IbTNV0-6lIa%^)niV_g)
+z_)nxQw6l8b)O9_ts`7Se5@(;+mZuX+6L}Z}R<d$O5U-tHeu&%$1as%lA47CHVL^y(
+zsiBxPS5pvo&Ri~>SxSvOz0dUm^9!3v2?jtA4rfiHj=^92K2<odl(=%ijIM8exgEgT
+zdR%}VUZ)P+zw+8UvUp@FnKMl>wEdqu(i!vs0OGOXe_p#4Pk;D00DurS0Iezz0FW3@
+zZUE3wa(XRGKtY^!S1UjJK5Y0Vq*bbV`1t(^*Z%+<Ts5r-FixTX0000<MNUMnLSTab
+CFLkQ`
+
+literal 0
+HcmV?d00001
+
 diff --git a/bin/sable-backup.sh b/bin/sable-backup.sh
 new file mode 100755
 index 0000000..2c6e947
@@ -338,6 +384,858 @@ index 0000000..e7b6595
 +  }
 +}
 \ No newline at end of file
+diff --git a/docs/2026-10-02-cd-boot.md b/docs/2026-10-02-cd-boot.md
+new file mode 100644
+index 0000000..852d09c
+--- /dev/null
++++ b/docs/2026-10-02-cd-boot.md
+@@ -0,0 +1,31 @@
++# CD menu and startup update - 2026-10-02
++
++Default Pi: 192.168.1.19, user volumio, source /home/volumio/sable.
++
++Measured current boot: kernel 13.274 s; userspace 25.194 s. Sable service
++started at monotonic 49.85 s; Volumio connected at 56.55 s. The clock gate
++expired at 177.09 s, only then starting rotary, IR and buttons.
++
++Changes:
++- Player connectivity now releases normal Sable startup independently of NTP.
++- NTP checking continues on a daemon thread. The idle screen says Ready to play
++  until time is trusted, rather than displaying a potentially wrong clock.
++- Audio CD maps to assets/menu/audio_cd.png, a distinct disc glyph.
++- A Rip CD row appears only when Volumio advertises the CD rip action.
++- Rip CD requests getRipInfo; cdRipStart supplies metadata and destinations.
++  Selecting Rip to Internal Memory submits ripCD with the complete returned
++  metadata and destinationDrive, matching the installed Volumio web client.
++- Cancel, absent destinations, disabled ripping, send failures and option
++  timeouts are handled. Backend notifications appear on the rip status frame;
++  detailed progress remains in Volumio.
++- AGENTS.md records .19 as the persistent project default.
++- Corrected an existing joined Restart/RestartSec line in the service SOURCE.
++  The installed /etc service was not edited or reloaded in this update.
++
++Validation: 8 new CD/boot tests, 6 home tests, 8 browse tests, 1 splash test
++passed; changed Python modules compile; ascii_guard passed. Carousel preview:
++previews/audio-cd.png. Rip API and destination were read from the live Pi;
++no actual rip was started and playback was left alone. No restart or reboot
++was issued. New cold-boot timing and a complete rip remain to be verified.
++
++Pre-edit file backups: backups/2026-10-02-cd-boot-225058/.
+diff --git a/docs/2026-10-02-cd-recovery.md b/docs/2026-10-02-cd-recovery.md
+new file mode 100644
+index 0000000..a2798f8
+--- /dev/null
++++ b/docs/2026-10-02-cd-recovery.md
+@@ -0,0 +1,34 @@
++# CD menu recovery and two ripping formats
++
++User requested restoring the clock gate after the faster startup felt unreliable.
++Full startup again requires clock sync AND player connectivity, bounded by the
++existing display.boot_gate_s (120 seconds). The time checker stays off-thread.
++
++CD menu loading was not reproducible in a fresh connected client, but live logs
++showed player reconnects. Pending navigation is now resent on reconnect; explicit
++navigation cancels an outstanding shortcut collection and filters mismatched
++reply URIs. Loading gets 25 seconds without the old 10-second menu expiry,
++then shows Retry and Back. A successful reply gives a fresh navigation interval.
++
++Live home-to-CD integration test: 21 rows loaded from the inserted R.E.M. CD,
++starting with Play all, Rip HQ, Rip MP3 and the tracks. Preview:
++previews/cd-rip-menu.png.
++
++Rip HQ = original-resolution lossless FLAC. Rip MP3 = 320 kbps MP3.
++Volumio supplies CD metadata and available storage. Sable uses the already
++installed cdparanoia and ffmpeg to rip sequentially; it does not modify
++Volumio's protected CD plugin or global abcde config. Files go under:
++<selected drive>/CD Rips/<artist>/<album> - HQ or MP3 <unique suffix>/.
++Tags include artist, album, title, track number and year when supplied.
++Destination/disc identity/free space are checked. Existing files are not
++replaced; concurrent Sable/abcde rips are rejected. CD playback is stopped only
++when a rip begins. New files trigger Volumio's updateDb command on completion.
++Progress can be reopened by selecting a rip option while a job is running.
++Power interruption stops a job; completed tracks remain, with no auto-resume.
++
++Tests cover menu/reconnect/timeout/clock logic, navigation, real ffmpeg encoding
++on synthetic PCM (FLAC decoded bytes equal the original; MP3 verified 320 kbps),
++and changed-disc rejection. No actual disc was ripped and no service restarted.
++Hardware menu behaviour, complete physical CD ripping and next boot remain
++user/live checks after reboot. Previous backup:
++backups/2026-10-02-cd-recovery-231517/.
+diff --git a/docs/2026-10-02-clock-storage.md b/docs/2026-10-02-clock-storage.md
+new file mode 100644
+index 0000000..c106a7e
+--- /dev/null
++++ b/docs/2026-10-02-clock-storage.md
+@@ -0,0 +1,31 @@
++# Clock display and destination corrections
++
++Restored the original ClockScreen even after the bounded boot clock timeout.
++The Ready to play / Clock syncing replacement screen is removed.
++The boot gate still waits for time AND player connectivity, or its timeout.
++
++ntpsec stepped the clock at 23:28:39 but Sable only recognized synchronization
++at 23:34:01. Instead of rejecting leap_alarm unconditionally, the clock checker
++can now confirm three distinct fresh peer samples (<=90 sec old), all within
++128 ms of local time and agreeing within 50 ms. Stale, unreachable, invalid,
++noisy and obviously incorrect samples are rejected. Stratum alone is not used.
++
++ntpsec already uses iburst and -g -N, but /var/lib/ntpsec/ntp.drift was absent.
++Saved its measured frequency -14.644592 ppm when the selected peer existed and
++offset was -2.004 ms, owned ntpsec:ntpsec, for next-start calibration. Existing
++daemon configuration and running process were not changed. Startup improvement
++still requires measurement at next boot. NTPsec reference:
++https://docs.ntpsec.org/latest/ntpd.html#_starting_ntp_best_current_practice
++
++The ripping destination check incorrectly rejected /mnt/INTERNAL because it
++resolves to /data/INTERNAL. USB similarly resolves from /mnt/USB to /media.
++Both allowed roots are now resolved before comparison. A selected USB disk must
++still be a live mount. Library refresh uses the logical INTERNAL/CD Rips or
++USB/<disk>/CD Rips path, not its physical storage path.
++
++Verified Samba's Internal Storage share points at /data/INTERNAL, and performed
++a temporary write/readability check in the real CD Rips folder (test file removed
++by its context manager). Live clock check returns true. Three clock/storage
++regression tests, 13 CD/boot tests and three rip/encoding tests passed.
++No physical CD was ripped, and no service restart or reboot was issued.
++USB choice comes from Volumio's availableDrives; no USB pen was present to test.
+diff --git a/docs/2026-10-02-rip-options.md b/docs/2026-10-02-rip-options.md
+new file mode 100644
+index 0000000..2442847
+--- /dev/null
++++ b/docs/2026-10-02-rip-options.md
+@@ -0,0 +1,18 @@
++# Rip options timeout: diagnosed and corrected
++
++Volumio journal during user failures showed getRipInfo invoking abcde -a cddb,
++which failed with missing oggenc and EISDIR reading the CDDB file. Consequently
++no cdRipStart reply reached Sable. Merely increasing the timeout would not fix it.
++
++Sable now caches the CD navigation metadata it actually displayed, reads the
++current disc TOC with cd-discid, validates the track count and lists internal
++storage plus mounted USB disks directly. This runs on a background thread;
++no getRipInfo call or abcde/oggenc is involved. The existing ripping worker
++still validates disc identity again before reading tracks. No external CD
++plugin or packages were modified. Unavailable drives and read errors report
++clear messages; timeout/error screens no longer say Keep Pi powered on.
++
++Both HQ and MP3 destination menus were tested end-to-end against the real
++inserted CD without selecting the destination or initiating a rip. Twenty
++regression checks passed across CD/boot, encoding and clock/storage tests.
++No service restart or reboot issued. A full physical rip still needs a live run.
+diff --git a/docs/2026-10-03-library-storage.md b/docs/2026-10-03-library-storage.md
+new file mode 100644
+index 0000000..6433e4a
+--- /dev/null
++++ b/docs/2026-10-03-library-storage.md
+@@ -0,0 +1,16 @@
++# Library refresh and storage settings
++
++Settings > Music Library offers Refresh now and Auto refresh (Off, 15 minutes,
++or hourly). This Pi is configured for 15 minutes. Requests use Volumio's
++updateDb API for an incremental library update. Periodic requests wait while
++a CD rip is active; disconnected/ripping retries are limited to once per minute.
++The installed MPD configuration has auto_update disabled and Volumio's fswatch
++call is commented out. No Volumio core or system configuration was changed.
++
++Settings > Storage lists Internal Storage and mounted USB/network volumes.
++Each row shows free decimal GB; select a row for free/total capacity. Reopen
++the list to refresh drive detection and capacity. Unmounted drives are omitted.
++
++Validation: two focused library/storage tests, five menu tests and eighteen
++CD/boot tests passed. Storage preview rendered from this Pi's real storage.
++No restart or reboot performed. Changes load on the next Sable start.
+diff --git a/docs/2026-10-03-rip-permissions.md b/docs/2026-10-03-rip-permissions.md
+new file mode 100644
+index 0000000..2cab6d5
+--- /dev/null
++++ b/docs/2026-10-03-rip-permissions.md
+@@ -0,0 +1,8 @@
++# Ripped album visibility
++
++The unique album directory created with tempfile.mkdtemp inherited mode 0700.
++MPD runs as mpd, so it could list the artist parent but not the album contents.
++Set new album directories to 0755 and finished songs to 0644. Temporary track
++folders remain private. Corrected the completed R.E.M. album and requested a
++scoped Volumio updateDb. API browse now returns the album and its 17 tracks.
++All five worker tests pass, including output permissions for FLAC and MP3.
+diff --git a/docs/2026-10-03-rip-progress.md b/docs/2026-10-03-rip-progress.md
+new file mode 100644
+index 0000000..16b8950
+--- /dev/null
++++ b/docs/2026-10-03-rip-progress.md
+@@ -0,0 +1,17 @@
++# CD rip progress and controls
++
++Progress stays visible and awake until the rip finishes or the user exits.
++The bar measures the current track: reading fills the first half from WAV
++bytes against the disc TOC; encoding fills the second half from ffmpeg
++reported audio time. It resets each track. The separate counter remains 4/17.
++Cancel terminates the current reader/encoder, removes temporary track files,
++and retains completed songs. Exit and continue closes the progress screen
++without stopping the background rip. Existing music is never overwritten.
++
++Validation: 18 CD/boot checks and 5 worker checks passed, including real
++FLAC lossless sample verification, real 320kbps MP3 encoding, subprocess
++cancellation, measured progress, track reset, screen timeout and idle guards.
++Rendered preview: docs/previews/cd-rip-progress.png.
++
++Files are saved on .19. No restart or reboot was performed; the existing
++rip was left running. Changes take effect after the next Sable start.
+diff --git a/docs/previews/audio-cd.png b/docs/previews/audio-cd.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1677f430d050e575b98028e50372eae697b3a411
+GIT binary patch
+literal 19092
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/docs/previews/cd-rip-menu.png b/docs/previews/cd-rip-menu.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..681d604c99f17fd9ba9968b66b3184789d45b0f3
+GIT binary patch
+literal 10925
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/docs/previews/cd-rip-progress.png b/docs/previews/cd-rip-progress.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d0b04e6f22c67506a224eadc34c5d7fa0caf6ed2
+GIT binary patch
+literal 1612
+zcmbW1eM}Q~7{`BonPtYR3v((#YQmgZ6oJ*UBI9L>GN!0=T3yS81kD1Kp;Rff9<3~K
+zGb)XXfeDB%Xqe-rD7FRU0OvMTl&b=F*iz07p-6Y_1bU|}*cD+M{4xL7?~ltp$@9DC
+zdA{GzJtwwrjpNSsn+pKo#(xsK0|2)7l>vObPvEmv@*IFUzVWdi@60YCES5u;giGGo
+z-q`<k824K~;(L5UcgWaZ2TOjR6Y37x$X&I0y)oJdAvxzZ8ZVL}%fprI$b^aS%s4HN
+z8b`C57MndgO#|cu+1b|S#p!Tg9NCqhzKs7cTKEl;T9mt1AHA69553I$jZ7+(bF+6c
+zLEf9dhcub4ii(5Hc)7FTMNw-;<nFe?65xMD)E3+|z$_r(ktK|n5C*u(2JDJ<MrT@|
+z=zOG>TX*T5=F9b}{dgLFRnLtpa!@Lfi7YAK$9|RR3l>(^&tINEJYonRmWoxY0)fwa
+zVEGR~oh&bAb&FG|d|XkDD(C3~SX9>2agPpJI;#vy8Bmu2?Zn!{dCmP0kWi=Bx%u;q
+z3eIBzohhwm?Llt~lvq1&mlCs&XrVY^u_-a8UX)z)(o@>f+jHzK!1gw?1;o_YGgwS(
+zCgB8|Ud7&-UUwp3f6KAbq>eig!pBRSSV)_ewP8vIWtHG%n*Y&#LCOlT>y*GXMroZ=
+zyJOh%nXRs<7TTS^pB7;qCnUjIu?Rsgl-*Zpf^@mIJ()B5Z)c2FT29(6Wov9k)GEgO
+z>vL_1RVjDf_Wl<VCpjozqYb~-jCwYst4j{StX4i#ojmEAUOGRys0lj@H`G`DSZFTu
+zCOakAm2+CNM24I8>YYt8M~Q^GrJGf)(h}$B`Wf!K3st$TRmwjCF|Q40Ml#^NPj9<=
+zdzeAf+T08nfWTKZRF3P6UymOnKY4nl15_<Y6(h`3gOM_01TGlLm2pOCNN(Kmk0HjP
+zDhNittX+WVQOZ=yh82y@YDV1(8iN}+$M^x(pu_8esUQj?37s=h*Q9U%!fc1Erf@w<
+zN~H_Mm_XCwM_&qE@n;}*OVcB7zwh&kUN2MK9R&q2K9`+KYeRPKKV*}0j^U>!kz>v>
+zI^b7B>yzmDgY1L6=#%N&SnFrl+9+G8HoJeiPK)MceoM#NaV4_1Wzjfvm=o~bG*MIc
+zCh__|LCt`JnQd72Q8YbaSGZaeA!iDY|665N>)xQ{M57nX*rYi5@_Xh7%Y>mB?7S%?
+zrhc$VKK?r(6^A*WUhvK&Z17!4hFKgC6Hx@c44Fm?J<occIA&-V3rllU*t&jcgEWaB
+z7DB2{$Fsp{Me_t!aM%6Jj^O#O!ZO<ai5)RCo*8xVK$8BnKQ6Vpq2V0m3&-{6hA>S{
+zV#?pUQY)aZpU6kktd>kzjN_sxege@PuiZ9Ei*9yCsZp0&tdx$ckIYeZruAOy4Yrv?
+z%A9+{eo3nco!<=<Lyz7nun~kZ!C{(tRlwQaJA&K9)||stiX)dq_NDdZp4Hzs*=FpG
+zi6-s1!EQ_1(OTY1@dOH_k$Tim@@2S+N1Ji~2#~?eJ*DYa+!E{i<~HfOsgZn7S9dj(
+zML;0102$H*d`@0H;CSkUo|xb)88d~}XJUWE4t2N{q+nqoE$(Z4;iVG`I(BWc6i;{_
+Nzj149_4?$ze*l0~pHct-
+
+literal 0
+HcmV?d00001
+
+diff --git a/docs/previews/storage-menu.png b/docs/previews/storage-menu.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..edc85921ef552dba3ca7973dd62af2af6ac81d99
+GIT binary patch
+literal 1632
+zcmbtUTTqi%5I#R3!3$)5s-P0kDYY;Z1%`^FfS?lrZ3PiUN(2JY(orxCnP^D}7wuGT
+zGE_<t6hhGv<PrpnspLW|D1t(q8WIwOV1$GrB%nw_E+hpXLdJ)_^gNuiXZGx#-EVil
+zf@6{4_UpE;0|3|`jzAv=z-C#5fZg&A>>@FX0N8pQMjtrw(=Fwwq7ZdxBN+GJ>gTyN
+z-|lfJx{vZi?>_;*-_Uniq$%{fEVVDsjrN<;;qHpsA9gZj*DFQ0X0P~;4(;yfIJ1|3
+zk4`UH@oTwC22y7J9t{(*e|`T(%-6`ou6k{ZkgOBv_TT@||3@G|Et?dq1*LIBhuZQS
+zN%}3u^o#O=>WZ^|gq9)3y-e%z&)q@9w;;F221Lvp!9T%0YwFD~;HF$ohlPRC8)j?l
+zU-j7xuaT>QeR*X2g9&?5vRw1D(B@Q|kM39AU87q!5U1OMvSNstx?zs>4hrC2EC$>C
+zAmI2J*xn{Xaq06*zdzC&T7qq7kMa=$3*)1zwQ-F^Ra@#jMY8@S6M<C(j;#mGWV3tA
+ztXJglGlYv%Zm7HmPrG8Ze*9n=CqW=__Ybr>kYWYC_!5Nv=W)tmG%o@3^X{>i&+R@&
+zw-ThH$~w-Yb-x;w6<u9HWjn$=&9L(nDIO&eB{NsS82*OgfIV_PI|YVKZnZu$y;r1*
+zucV8~gwt}qVq&D;pA^|NA6PAnzgVe9TI7FC27Wo+$*NDR@hNO?=&$RHWsn4(O(Rw3
+z@Cn_<xmNmM5{7DI>sawaIkBiNS2)UDDxNklhU9@mm$JP|@L%iZ(g}ual9F(HKUEdp
+zBPSRc1V@;L?x}#^MMo#f-jO0h%HIn28ip6{smVElq7*ZH1?en@T26hUOo`KyD>Xh+
+zX;5gCp1mMki1L<0HO@*FM`s|OREMEiTi`Bd3DfC$W^VGXH)OP-y))o9whJ8cG}CBW
+zYBaDLk&IYcRID&0KOgBXZQ7aL`ht_Mmh|+xPr^%k7fV}t1J-<H`t`T8SQ-g~Q#g?Y
+z{+l6lJzRKD^G!VMWN(aSQ7)FqYD}F9gwbo-05AXe&#P&JureUWlb+)Y?`cv<HVV5+
+zCWF98V8P@AuwWW^O*INSj;e(CvU()Zeo`KnL{`{afXr4Rj>*Tap2Kg`Lwuf9^X+V>
+zTxB)7C$;USp^G(!*;7a5alB{KQ|UgzlRH*hKMhX=%&b#f{=Dtg0JV2$YqBeMPG8>J
+zJbS=<-X!iG4l*Tq;3d8O#ux=cW|0mh0pY98GVKzN-9ZM^pJs&Q<`?mx4-NAsm$ui)
+z?NTWbz|Tn_s*tFM(p1Lj`8%F2YMbI8TD$SV6iGZrf?FKplTGOotx#MxK8Vg7SZzqm
+zhl!qGt^ReQkvO~NhAtCF^&F`Zm)*ZmuL@tfkefeAfd-{nN!-T|>WmlyXIrRfaG}n~
+zBXB&%zbo!?#xAN_rp0d?m1HXSgvd`Ae3x_f`_+yh4M40Jhf3O5v55zv_H7G5lor9}
+z(Rs*7h2p9xPC(sf4(QVvEQwfZWU<K`VFpqJMGTgNn)yOVf!ucYPpE#>ZdtAT=&Wrs
+zF<UeD=DokwN4{C1olZHB@z1Y`C)(nK{rhB_usIghtbPIgnW1S<duGC45+Kyw=13eB
+zHP$yed6F__)KG<~JK3Tjfg{M;4m=jA4MCNxrlUScTQfzVOz62q7ObO8i{c*t%G9bs
+zG|=pQkw9;u+e!B7$k08an(AvdZN9mFMSIo^-ls_X&->hUEwaVebAuZxt8c~C;X{#V
+J`a$gFe*yhpw{rjh
+
+literal 0
+HcmV?d00001
+
 diff --git a/install-moode.sh b/install-moode.sh
 index 50bc3eb..5cb0852 100755
 --- a/install-moode.sh
@@ -446,7 +1344,7 @@ index 711832c..2549410 100755
    this._write(s);
    this._reload();
 diff --git a/src/sable/app.py b/src/sable/app.py
-index 64d9454..7cd1fd8 100644
+index 64d9454..fbe818a 100644
 --- a/src/sable/app.py
 +++ b/src/sable/app.py
 @@ -18,6 +18,7 @@ import argparse
@@ -671,7 +1569,21 @@ index 64d9454..7cd1fd8 100644
      # --- deferred pause -> clock (idle clock for paused content) ---
      def _arm_pause_timer(self):
          self._cancel_pause_timer()
-@@ -414,6 +554,8 @@ class App:
+@@ -359,8 +499,12 @@ class App:
+         A PAUSED now-playing screen is kept bright (you may resume) until the
+         pause timer falls it to the clock; only then does the dim/sleep ladder
+         run -- so the clock appears bright before it dims."""
++        refresh = getattr(self.listener, "tick_library_refresh", None)
++        if refresh:
++            refresh(now, self.settings.get("library", "refresh_minutes", default=0))
+         cur = self.fsm.current.name if self.fsm.current is not None else None
+-        if self.store.get().status == "play" or cur == "menu":
++        if (self.store.get().status == "play" or cur == "menu"
++                or (cur == "browse" and self.fsm.current.rip_in_progress)):
+             self.note_activity()
+             return
+         if cur in ("modern", "spectrum") and not self._pause_idle:
+@@ -414,6 +558,8 @@ class App:
      def render(self):
          if self.asleep or self._shutting_down:
              return
@@ -680,7 +1592,7 @@ index 64d9454..7cd1fd8 100644
          from PIL import ImageDraw
          with self._render_lock:
              img = self.display.blank_canvas()
-@@ -446,11 +588,29 @@ class App:
+@@ -446,11 +592,29 @@ class App:
          self._osd_volume = False
          self.render()
  
@@ -710,7 +1622,7 @@ index 64d9454..7cd1fd8 100644
          delta = int(delta or 0)
          if self.listener is not None and delta:
              # Deliberately RELATIVE, not one absolute set.
-@@ -548,6 +708,11 @@ class App:
+@@ -548,6 +712,11 @@ class App:
      def handle(self, cmd, arg=None):
          self.note_activity()
          cur = self.fsm.current
@@ -722,7 +1634,7 @@ index 64d9454..7cd1fd8 100644
          if cmd == "scroll":
              cur.handle_scroll(int(arg or 0))
              self.render()
-@@ -568,25 +733,54 @@ class App:
+@@ -568,25 +737,54 @@ class App:
              else:
                  self.go("home")
              self.render()
@@ -778,7 +1690,7 @@ index 64d9454..7cd1fd8 100644
          elif cmd in TRANSPORT:
              if self._source_controls_transport():
                  self.show_osd("AIRPLAY", "source controls")
-@@ -595,9 +789,9 @@ class App:
+@@ -595,9 +793,9 @@ class App:
          elif cmd == "volume":
              self.nudge_volume(1 if arg == "+" else -1)
          elif cmd == "mute":
@@ -790,7 +1702,7 @@ index 64d9454..7cd1fd8 100644
          elif cmd == "dac_input":
              self._dac_input()
          elif cmd == "reload_config":
-@@ -738,6 +932,37 @@ class App:
+@@ -738,6 +936,37 @@ class App:
      def _source_controls_transport(self):
          return (self.store.get().service or "").strip().lower() in _SOURCE_CONTROLLED
  
@@ -828,7 +1740,7 @@ index 64d9454..7cd1fd8 100644
      def _transport(self, cmd):
          # moOde has no `volumio` CLI -- shelling out there failed on EVERY
          # transport press with "[Errno 2] No such file or directory: 'volumio'",
-@@ -829,8 +1054,17 @@ class App:
+@@ -829,8 +1058,17 @@ class App:
          self.log("=== slice complete ===")
  
  
@@ -848,7 +1760,18 @@ index 64d9454..7cd1fd8 100644
      display = SimDisplay(hardware.OLED.width, hardware.OLED.height, frames_dir=frames_dir)
      return App(display, settings, dry_run=True)
  
-@@ -1098,6 +1332,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1051,6 +1289,10 @@ def _start_spectrum_source(root, log=print):
+     return [tone, cava]
+ 
+ 
++def _boot_ready(stage, player_ready, clock_synced):
++    return bool(player_ready and clock_synced)
++
++
+ def run_hardware(stage="clock", rotate=None, contrast=None,
+                  fps=20, log=print):
+     """FIRST real-OLED path. Hard-refuses while the live plugin runs so it can
+@@ -1098,6 +1340,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
      ir = None
      ipc = None
      buttons = None
@@ -857,7 +1780,7 @@ index 64d9454..7cd1fd8 100644
      procs = []
      tick = None
  
-@@ -1123,15 +1359,23 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1123,15 +1367,23 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
          tick = threading.Thread(target=tick_loop, daemon=True, name="sable-tick")
          tick.start()
  
@@ -890,15 +1813,84 @@ index 64d9454..7cd1fd8 100644
  
          # The listener is started BEFORE the boot gate now, not after it. The
          # gate below waits on Volumio being reachable, so the connection attempt
-@@ -1144,6 +1388,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1143,20 +1395,28 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+             # Route async browse responses to the BrowseScreen, and the live source
              # list to the home carousel.
              listener.on_browse = app.fsm.screens["browse"].on_browse_data
++            listener.on_rip_info = app.fsm.screens["browse"].on_rip_info
++            listener.on_rip_status = app.fsm.screens["browse"].on_rip_status
              listener.on_sources = app.fsm.screens["home"].refresh_sources
 +            listener.on_outputs = app.fsm.screens["menu"].refresh_audio_outputs
              listener.start()
              log("%s listener started." % _platform())
  
-@@ -1226,7 +1471,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+-        # --- boot gate: hold the splash until the unit is genuinely READY ------
+-        # Ready means BOTH: the clock is right, and Volumio is up. Either one
+-        # alone leaves the panel telling a lie -- the clock screen with a bogus
+-        # time (ntpd has not stepped yet), or a plausible-looking clock on a box
+-        # that cannot actually play anything for another half minute, which
+-        # reads as "broken" rather than "still starting".
+-        #
+-        # The old 45s clock budget was also too tight: ntpd steps at ~40s on
+-        # this box, so a slightly slow network fell through to a wrong clock,
+-        # which is the one thing this gate exists to prevent.
++        # Check time off-thread so the splash remains responsive. Full startup
++        # waits for clock sync and player connectivity, or the saved timeout.
++        app.clock_synced = False
++        def _sync_clock():
++            while not stop.is_set():
++                if clock_gate.is_synced():
++                    app.clock_synced = True
++                    log("clock: synchronised")
++                    return
++                if stop.wait(2.0):
++                    return
++        threading.Thread(target=_sync_clock, daemon=True,
++                         name="sable-clock-sync").start()
++
++        # Wait for both time and the player, with a bounded offline fallback.
+         gate_s = settings.get("display", "boot_gate_s", default=120.0)
+         try:
+             gate_s = max(0.0, float(gate_s))
+@@ -1179,30 +1439,19 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+             app.render()
+ 
+         deadline = time.monotonic() + gate_s
+-        synced = False
+         while not stop.is_set():
+-            if not synced:
+-                synced = clock_gate.is_synced()
+             ready = _volumio_ready()
+-            if synced and ready:
++            if _boot_ready(stage, ready, app.clock_synced):
+                 break
+             if time.monotonic() >= deadline:
+-                log("boot gate: timed out (clock=%s volumio=%s) -- continuing"
+-                    % (synced, ready))
++                log("boot gate: timed out (clock=%s player=%s) -- continuing"
++                    % (app.clock_synced, ready))
+                 break
+-            # The clock wait is BY FAR the longest phase -- measured ~34s of a
+-            # ~36s splash on this box, because ntpd is slower to discipline the
+-            # clock than Volumio is to come up. Naming it ("setting the clock")
+-            # meant that one technical message owned almost the whole boot, so
+-            # the generic reassurance is the right thing there. The player wait
+-            # is short and worth naming, since that IS the interesting holdup
+-            # when it happens -- and the name is the platform's, not always
+-            # "volumio": on moOde this same wait is for mpd.
+             waiting_for = "moode" if _platform() == "moode" else "volumio"
+-            _splash("starting up" if not synced
+-                    else "waiting for %s" % waiting_for)
+-            time.sleep(0.5)
+-        log("boot gate: clock=%s volumio=%s" % (synced, _volumio_ready()))
++            _splash("waiting for %s" % waiting_for if not ready else "starting up")
++            stop.wait(0.5)
++        log("boot gate: clock=%s player=%s" % (app.clock_synced, _volumio_ready()))
++        app.last_input = time.monotonic()
+         app.go("clock")
+ 
+         if stage == "spectrum":
+@@ -1226,7 +1475,7 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
                  hardware.ROTARY,
                  on_scroll=lambda d: app.handle("scroll", d),
                  on_select=lambda: app.handle("select"),
@@ -907,7 +1899,7 @@ index 64d9454..7cd1fd8 100644
              )
              rotary.start()
              log("rotary started (BCM%d/%d/%d)."
-@@ -1244,6 +1489,13 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1244,6 +1493,13 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
              ipc = CommandServer(app.handle, log=log)
              ipc.start()
  
@@ -921,7 +1913,7 @@ index 64d9454..7cd1fd8 100644
              if app.settings.get("controls", "leds_enabled", default=True):
                  from .inputs.buttons import ButtonsLeds
                  buttons = ButtonsLeds(hardware.MCP, app.handle, app.store, app=app, log=log)
-@@ -1264,6 +1516,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1264,6 +1520,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
      finally:
          log("releasing hardware ...")
          stop.set()
@@ -930,7 +1922,7 @@ index 64d9454..7cd1fd8 100644
          # Wait for the render tick to actually stop before touching the panel.
          # stop.set() only ASKS it to; without the join, sleep()/cleanup() below
          # (and cleanup's GPIO.cleanup(), which yanks the pins luma is mid-write
-@@ -1295,6 +1549,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
+@@ -1295,6 +1553,8 @@ def run_hardware(stage="clock", rotate=None, contrast=None,
          log("SPI/GPIO released.")
          if rotary is not None:
              rotary.stop()
@@ -1026,6 +2018,437 @@ index 0000000..61479c6
 +if __name__ == "__main__":
 +    raise SystemExit(main())
 \ No newline at end of file
+diff --git a/src/sable/cd_rip.py b/src/sable/cd_rip.py
+new file mode 100644
+index 0000000..d4fdd46
+--- /dev/null
++++ b/src/sable/cd_rip.py
+@@ -0,0 +1,293 @@
++"""Front-panel CD ripping using installed cdparanoia and ffmpeg.
++
++No global Volumio/abcde configuration is changed. Each job gets a new directory;
++existing music is never overwritten. Track WAVs are temporary and encoders run
++one at a time. HQ is original-resolution lossless FLAC; MP3 is 320 kbit/s.
++"""
++import fcntl
++import json
++import os
++from pathlib import Path
++import re
++import shutil
++import subprocess
++import tempfile
++import threading
++import time
++
++_BUSY = threading.Lock()
++_CANCEL = threading.Event()
++LOCK_FILE = '/tmp/sable-cd-rip.lock'
++_PROGRESS = {}
++
++def progress_snapshot():
++    return dict(_PROGRESS)
++
++
++
++class RipCancelled(Exception):
++    pass
++
++
++def cancel_rip():
++    if not _BUSY.locked():
++        return False
++    _CANCEL.set()
++    return True
++
++
++def _run_command(args, timeout, on_poll=None):
++    """Drain child output while allowing cancellation to stop reading/encoding."""
++    if _CANCEL.is_set():
++        raise RipCancelled()
++    process = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
++    deadline = time.monotonic() + timeout
++    try:
++        while True:
++            if _CANCEL.is_set():
++                raise RipCancelled()
++            if time.monotonic() >= deadline:
++                raise subprocess.TimeoutExpired(args, timeout)
++            if on_poll:
++                on_poll()
++            try:
++                _, stderr = process.communicate(timeout=0.2)
++            except subprocess.TimeoutExpired:
++                continue
++            if process.returncode:
++                raise subprocess.CalledProcessError(process.returncode, args, stderr=stderr)
++            return
++    finally:
++        if process.poll() is None:
++            process.terminate()
++            try:
++                process.communicate(timeout=3)
++            except subprocess.TimeoutExpired:
++                process.kill()
++                process.communicate()
++
++STATUS_FILE = Path(__file__).resolve().parents[2] / 'config' / 'cd-rip-status.json'
++
++
++def destination_path(drive):
++    # Volumio mounts are aliases: INTERNAL -> /data/INTERNAL; USB -> /media.
++    # Resolve the allowed roots as well as the selected path before comparing.
++    raw = drive.get('path')
++    if not isinstance(raw, str) or not raw:
++        raise RuntimeError('Destination unavailable')
++    destination = Path(raw).resolve()
++    internal = Path('/mnt/INTERNAL').resolve()
++    usb = Path('/mnt/USB').resolve()
++    is_internal = destination == internal
++    is_usb = destination != usb and destination.is_relative_to(usb)
++    if not destination.is_dir() or not (is_internal or is_usb):
++        raise RuntimeError('Destination unavailable')
++    if is_usb and not os.path.ismount(destination):
++        raise RuntimeError('USB drive is no longer mounted')
++    return destination
++
++
++def library_path(drive):
++    destination = destination_path(drive)
++    internal = Path('/mnt/INTERNAL').resolve()
++    if destination == internal:
++        return 'INTERNAL/CD Rips'
++    usb = Path('/mnt/USB').resolve()
++    return str(Path('USB') / destination.relative_to(usb) / 'CD Rips')
++
++
++def read_fraction(wav, pcm_bytes):
++    try:
++        return min(1.0, max(0.0, (Path(wav).stat().st_size - 44) / max(1, pcm_bytes)))
++    except OSError:
++        return 0.0
++
++
++def encode_fraction(progress_file, duration):
++    try:
++        values = dict(line.split('=', 1) for line in Path(progress_file).read_text().splitlines() if '=' in line)
++        if values.get('progress') == 'end':
++            return 1.0
++        return min(1.0, max(0.0, float(values.get('out_time_us', 0)) / (max(.001, duration) * 1000000)))
++    except (OSError, ValueError):
++        return 0.0
++
++
++def prepare_rip_info(navigation):
++    """Use browse metadata plus the drive TOC; avoid Volumio's abcde lookup."""
++    if not isinstance(navigation, dict) or not (navigation.get('rip') or {}).get('enabled'):
++        raise RuntimeError('Ripping unavailable for this disc')
++    meta = navigation.get('info') or {}
++    if meta.get('service') != 'cd_controller':
++        raise RuntimeError('Reopen Audio CD first')
++    tracks = [item for listing in navigation.get('lists', [])
++              for item in listing.get('items', [])
++              if isinstance(item, dict) and item.get('type') == 'song'
++              and item.get('service') == 'cd_controller']
++    disc = subprocess.run(['cd-discid', '/dev/cdrom'], capture_output=True,
++                          text=True, check=True, timeout=6).stdout.split()
++    if len(disc) < 2 or not tracks or int(disc[1]) != len(tracks):
++        raise RuntimeError('CD changed - reopen Audio CD')
++    drives = []
++    roots = [(Path('/mnt/INTERNAL'), 'Internal Memory')]
++    usb = Path('/mnt/USB')
++    if usb.is_dir():
++        roots.extend((p, p.name) for p in sorted(usb.iterdir()) if p.is_mount())
++    for path, name in roots:
++        try:
++            actual = destination_path({'path': str(path)})
++            free = shutil.disk_usage(actual).free
++            drives.append({'name': name, 'path': str(path),
++                           'available': os.access(actual, os.W_OK),
++                           'availableSpace': '%.1f GB' % (free / 1024**3)})
++        except (OSError, RuntimeError):
++            continue
++    return {'rippingAvailable': True, 'cdid': disc[0],
++            'artist': meta.get('artist', ''), 'album': meta.get('album', ''),
++            'year': meta.get('year', ''), 'genre': meta.get('genre', ''),
++            'tracks': [{'number': str(i), 'title': item.get('title', ''),
++                        'artist': item.get('artist') or meta.get('artist', '')}
++                       for i, item in enumerate(tracks)],
++            'availableDrives': drives}
++
++
++def safe_name(value, fallback):
++    text = re.sub(r'[<>:"/\\|?*\x00-\x1f]', '_', str(value or '')).strip(' .')
++    return (text or fallback)[:100]
++
++
++def encoder_command(wav, output, fmt, info, track, number):
++    if fmt not in ('flac', 'mp3'):
++        raise ValueError('Unknown rip format')
++    args = ['ffmpeg', '-nostdin', '-hide_banner', '-loglevel', 'error', '-n',
++            '-i', str(wav), '-map', '0:a:0', '-threads', '1']
++    if fmt == 'flac':
++        args += ['-c:a', 'flac', '-compression_level', '8']
++    else:
++        args += ['-c:a', 'libmp3lame', '-b:a', '320k', '-id3v2_version', '3']
++    tags = {'title': track.get('title') or 'Track %d' % number,
++            'artist': track.get('artist') or info.get('artist', ''),
++            'album': info.get('album', ''), 'date': info.get('year', ''),
++            'genre': info.get('genre', ''), 'track': str(number)}
++    for key, value in tags.items():
++        if value:
++            args += ['-metadata', '%s=%s' % (key, value)]
++    return args + ['-f', fmt, str(output)]
++
++
++def start_rip(info, drive, fmt, notify, stop_cd):
++    """Validate the menu selection and launch one background job. Never auto-rip."""
++    if (fmt not in ('flac', 'mp3') or not isinstance(info, dict)
++            or not info.get('rippingAvailable') or not isinstance(drive, dict)
++            or not drive.get('available') or drive not in info.get('availableDrives', [])):
++        return False
++    if not _BUSY.acquire(blocking=False):
++        notify('A CD rip is already running')
++        return True
++    try:
++        _CANCEL.clear()
++        thread = threading.Thread(target=_run, args=(dict(info), dict(drive), fmt,
++                                  notify, stop_cd), daemon=True, name='sable-cd-rip')
++        thread.start()
++        return True
++    except Exception:
++        _BUSY.release()
++        return False
++
++
++def _run(info, drive, fmt, notify, stop_cd):
++    lockfile = None
++    folder = None
++    status_file = STATUS_FILE
++    def report(message, progress=None):
++        global _PROGRESS
++        _PROGRESS = {'progress': progress}
++        try:
++            payload = {'message': message, 'format': fmt,
++                       'folder': str(folder) if folder else '', 'updated': time.time(), 'progress': progress}
++            tmp = status_file.with_suffix('.tmp')
++            tmp.write_text(json.dumps(payload))
++            tmp.replace(status_file)
++        except OSError:
++            pass
++        notify(message)
++    try:
++        lockfile = open(LOCK_FILE, 'a')
++        try:
++            fcntl.flock(lockfile, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError:
++            raise RuntimeError('A CD rip is already running')
++        if subprocess.run(['pgrep', '-x', 'abcde'], stdout=subprocess.DEVNULL).returncode == 0:
++            raise RuntimeError('Volumio is already ripping a CD')
++        for tool in ('cdparanoia', 'cd-discid', 'ffmpeg'):
++            if not shutil.which(tool):
++                raise RuntimeError('Missing ripping tool: ' + tool)
++        destination = destination_path(drive)
++        if not os.access(destination, os.W_OK):
++            raise RuntimeError('Destination is not writable')
++        if shutil.disk_usage(destination).free < 1024**3:
++            raise RuntimeError('At least 1 GB free is needed')
++        disc = subprocess.run(['cd-discid', '/dev/cdrom'], capture_output=True,
++                              text=True, check=True, timeout=20).stdout.split()
++        tracks = info.get('tracks') or []
++        if not disc or disc[0].lower() != str(info.get('cdid', '')).lower():
++            raise RuntimeError('CD changed - reopen Audio CD')
++        if len(disc) < 2 or int(disc[1]) != len(tracks) or not tracks:
++            raise RuntimeError('CD track information is incomplete')
++        if _CANCEL.is_set():
++            raise RipCancelled()
++        offsets = [int(value) for value in disc[2:2 + len(tracks)]]
++        endpoints = offsets[1:] + [int(disc[-1]) * 75]
++        lengths = [max(1, end - start) for start, end in zip(offsets, endpoints)]
++        if len(lengths) != len(tracks):
++            raise RuntimeError('CD timing information is incomplete')
++        stop_cd()
++        parent = destination / 'CD Rips' / safe_name(info.get('artist'), 'Unknown Artist')
++        parent.mkdir(parents=True, exist_ok=True)
++        prefix = safe_name(info.get('album'), 'Unknown Album') + (' - HQ ' if fmt == 'flac' else ' - MP3 ')
++        folder = Path(tempfile.mkdtemp(prefix=prefix, dir=str(parent)))
++        # mkdtemp defaults to 0700; MPD runs as a different user.
++        folder.chmod(0o755)
++        for index, track in enumerate(tracks, 1):
++            if not isinstance(track, dict):
++                raise RuntimeError('Invalid track information')
++            reading = 'Reading track %d/%d' % (index, len(tracks))
++            encoding = 'Encoding track %d/%d' % (index, len(tracks))
++            report(reading, 0.0)
++            with tempfile.TemporaryDirectory(prefix='.track-', dir=str(folder)) as temp:
++                wav = Path(temp) / 'audio.wav'
++                last_update = [0.0]
++                def update(message, fraction):
++                    now = time.monotonic()
++                    if now - last_update[0] >= 0.5:
++                        last_update[0] = now
++                        report(message, fraction)
++                # The bar represents two measured stages, half read / half encode.
++                _run_command(['cdparanoia', '-d', '/dev/cdrom', '-w', str(index), str(wav)],
++                             timeout=1800, on_poll=lambda: update(reading,
++                                 0.5 * read_fraction(wav, lengths[index - 1] * 2352)))
++                report(encoding, 0.5)
++                name = '%02d - %s.%s' % (index, safe_name(track.get('title'), 'Track %d' % index), fmt)
++                output = folder / name
++                partial = folder / (name + '.part')
++                progress_file = Path(temp) / 'encode-progress.txt'
++                command = encoder_command(wav, partial, fmt, info, track, index)
++                command[1:1] = ['-progress', str(progress_file), '-stats_period', '0.25']
++                _run_command(command, timeout=900, on_poll=lambda: update(encoding,
++                    0.5 + 0.5 * encode_fraction(progress_file, lengths[index - 1] / 75.0)))
++                partial.chmod(0o644)
++                partial.rename(output)
++                report('Saved track %d/%d' % (index, len(tracks)), 1.0)
++        report('Rip complete: %d tracks (%s)' % (len(tracks), fmt.upper()), 1.0)
++    except RipCancelled:
++        report('Rip cancelled - saved tracks kept')
++    except subprocess.TimeoutExpired:
++        report('Rip stopped: drive/encoder timed out')
++    except subprocess.CalledProcessError as exc:
++        report('Rip failed: ' + Path(str(exc.cmd[0])).name)
++    except Exception as exc:
++        report('Rip failed: ' + str(exc))
++    finally:
++        if lockfile is not None:
++            lockfile.close()
++        _BUSY.release()
+diff --git a/src/sable/clock_gate.py b/src/sable/clock_gate.py
+index 3af4a0d..553059b 100644
+--- a/src/sable/clock_gate.py
++++ b/src/sable/clock_gate.py
+@@ -4,97 +4,57 @@ The Pi has no battery clock, so at boot the time is wrong until ntpsec steps it.
+ We hold the splash until the clock is trustworthy, so the clock screen never
+ shows a bogus time.
+ 
+-Primary signal: ntpq -c "rv 0 stratum" reporting stratum 1..15. On ntpsec this
+-flips noticeably BEFORE the kernel NTPSynchronized flag, so it is the fastest
+-reliable gate. Fallbacks: timedatectl NTPSynchronized, then a year>=2024 floor.
++Use daemon sync status or three fresh, agreeing peer measurements. Stratum
++alone and the kernel NTPSynchronized flag are not reliable startup indicators.
+ """
+ import subprocess
++import math
+ import time
+ 
+ 
+ def _ntpq_synced():
+-    """True once ntpd has actually DISCIPLINED the clock, not merely picked a
+-    candidate server.
+-
+-    Stratum is not that signal, though it looks like it. ntpd publishes the
+-    stratum of the server it has SELECTED long before it has stepped the clock,
+-    so `rv 0 stratum` reports e.g. stratum=2 within a second of boot while the
+-    system time is still whatever fake-hwclock restored. Measured on this box:
+-    stratum=2 alongside `no_sys_peer` and a clock over an hour wrong. Gating on
+-    it dropped the splash after ~1s, showed a bogus time, then jumped when ntpd
+-    finally stepped -- exactly the behaviour this gate exists to prevent.
+-
+-    The real signal is in the status flags of a full `rv 0`:
+-      sync_unspec / no_sys_peer -> no system peer chosen yet, clock NOT ruled
+-      leap_alarm                -> ntpd itself declaring itself unsynchronised
+-      sync_ntp                  -> disciplined by NTP; the time can be trusted
++    """Accept daemon sync or independently verified recent peer measurements.
++
++    ntpsec can retain leap_alarm/sync_unspec during calibration after a clock
++    step. A stratum or zero system offset alone is not sufficient evidence.
+     """
+     try:
+-        out = subprocess.run(
+-            ["ntpq", "-c", "rv 0"],
+-            capture_output=True, text=True, timeout=3,
+-        ).stdout
++        out = subprocess.run(["ntpq", "-c", "rv 0"],
++                             capture_output=True, text=True, timeout=3).stdout
+     except Exception:
+         return None
+     if not out.strip():
+         return None
+-    if "leap_alarm" in out:
+-        return False
+-    if "sync_ntp" in out:
++    if "sync_ntp" in out and "leap_alarm" not in out:
+         return True
+-
+-    # No system peer selected yet -- but that is NOT the same as a wrong clock,
+-    # and waiting for it would hold the splash far too long. Measured on this
+-    # box: ntpd STEPPED the clock ~40s after boot, then took several more
+-    # MINUTES to promote a peer to sys_peer. The user-visible truth ("the time
+-    # on screen is right") happens at the step, not at the promotion.
+-    #
+-    # So fall back to what ntpd actually measured: a peer we have heard from
+-    # (reach != 0) plus a small system offset means the clock is already
+-    # correct. 128ms is ntpd's own step threshold -- below it ntpd slews rather
+-    # than steps, i.e. it considers the clock right. Before the step the offset
+-    # is huge (or reach is still 0), so this stays False exactly as long as it
+-    # should.
+-    offset_ms = None
+-    for tok in out.replace(",", " ").split():
+-        if tok.startswith("offset="):
+-            try:
+-                offset_ms = abs(float(tok.split("=", 1)[1]))
+-            except ValueError:
+-                offset_ms = None
+-            break
+-    if offset_ms is None:
+-        return None
+-    if not _ntpq_has_reachable_peer():
+-        # reach == 0 everywhere: ntpd has no measurement at all yet, and the
+-        # offset it reports is a meaningless 0.000 that would otherwise look
+-        # like a perfectly synced clock.
+-        return False
+-    return offset_ms < 128.0
++    return _peers_confirm_time()
+ 
+ 
+-def _ntpq_has_reachable_peer():
+-    """True if ntpd has actually heard back from at least one peer.
+-
+-    `reach` is an 8-bit shift register of the last 8 polls; 0 means nothing has
+-    ever been received, so no measurement exists to judge the clock by.
+-    """
++def _peers_confirm_time():
+     try:
+         out = subprocess.run(["ntpq", "-pn"], capture_output=True, text=True,
+                              timeout=3).stdout
+     except Exception:
+         return False
+-    for line in out.splitlines()[2:]:          # skip header + separator
++    offsets = {}
++    for line in out.splitlines()[2:]:
+         cols = line.split()
+-        if len(cols) >= 7 and cols[0].startswith((".", "0", "1", "2", "3", "4",
+-                                                  "5", "6", "7", "8", "9",
+-                                                  "*", "+", "-", "#", "x", " ")):
+-            try:
+-                if int(cols[6]) != 0:
+-                    return True
+-            except ValueError:
+-                continue
+-    return False
++        if len(cols) < 10 or cols[0][0] in "x-~":
++            continue
++        try:
++            stratum = int(cols[2])
++            age = float(cols[4])  # Non-numeric/old minute/hour samples rejected.
++            reach = int(cols[6], 8)
++            offset = float(cols[8])
++            jitter = float(cols[9])
++        except (ValueError, IndexError):
++            continue
++        if (1 <= stratum <= 15 and reach and 0 <= age <= 90
++                and math.isfinite(offset) and abs(offset) < 128
++                and math.isfinite(jitter) and 0 <= jitter < 128):
++            offsets[cols[0].lstrip("*+#o")] = offset
++    values = sorted(offsets.values())
++    return any(values[i + 2] - values[i] < 50 for i in range(len(values) - 2))
+ 
+ 
+ def _timedatectl_synced():
 diff --git a/src/sable/controls.py b/src/sable/controls.py
 index c7f84eb..4843146 100644
 --- a/src/sable/controls.py
@@ -1040,10 +2463,10 @@ index c7f84eb..4843146 100644
  
  
 diff --git a/src/sable/fsm.py b/src/sable/fsm.py
-index 0795afc..faf0315 100644
+index 0795afc..2f14524 100644
 --- a/src/sable/fsm.py
 +++ b/src/sable/fsm.py
-@@ -1,110 +1,119 @@
+@@ -1,110 +1,122 @@
 -"""Small state machine. States are Screen instances; transitions are declarative.
 -
 -TABLE is the single source of truth for event-driven transitions -- no transition
@@ -1272,6 +2695,9 @@ index 0795afc..faf0315 100644
 +        # otherwise the clock. Re-checking current prevents a stale Timer from
 +        # yanking the display away after a user has already navigated elsewhere.
 +        if self.current is not None and self.current.name in ("menu", "home", "browse"):
++            if self.current.name == "browse" and (self.current.loading or self.current.rip_in_progress):
++                self.reset_menu_timer()
++                return
 +            self.app.go(self.app.base_screen())
 diff --git a/src/sable/hardware.py b/src/sable/hardware.py
 index 06fefb6..0a7c944 100755
@@ -1548,10 +2974,17 @@ index 0000000..fc54cdd
 +            self._thread.join(timeout=self.poll_s * 3)
 \ No newline at end of file
 diff --git a/src/sable/screens/browse.py b/src/sable/screens/browse.py
-index d6f071f..adcbc5c 100644
+index d6f071f..2660c54 100644
 --- a/src/sable/screens/browse.py
 +++ b/src/sable/screens/browse.py
-@@ -14,21 +14,28 @@ from .base import Screen
+@@ -10,25 +10,35 @@ Navigation is an internal frame stack (like MenuScreen): each frame holds the
+ items of one level + the cursor. Scroll clamps; LEFT/long-press pops a level or
+ exits to the menu at the root.
+ """
++import time
++import re
++
+ from .base import Screen
  
  # Synthetic top level -- the focused set the user asked for.
  _ROOTS = [
@@ -1582,16 +3015,101 @@ index d6f071f..adcbc5c 100644
      return t.endswith("category") or t in _FOLDER_TYPES
  
  
-@@ -92,6 +99,7 @@ class BrowseScreen(Screen):
+@@ -77,6 +87,12 @@ class BrowseScreen(Screen):
+         self.loading = False
+         self._open = None          # (uri, title) when entered from the home carousel
+         self._replace_top = False
++        self._browse_deadline = None
++        self._browse_uri = ""
++        self._rip_format = "flac"
++        self._rip_waiting = False
++        self._rip_deadline = 0.0
++        self._rip_status_frame = None
+ 
+     def open_source(self, uri, title):
+         """Enter the browser at a Volumio source uri (set by the home carousel
+@@ -92,6 +108,9 @@ class BrowseScreen(Screen):
          return self.stack[-1]
  
      def on_enter(self, **kwargs):
 +        self.app.fsm.reset_menu_timer()
++        self._rip_waiting = False
++        self._rip_status_frame = None
          op = self._open
          self._open = None
          if op and op[0]:
-@@ -136,7 +144,18 @@ class BrowseScreen(Screen):
-             self.app.listener.browse(item.get("uri", ""))
+@@ -100,6 +119,8 @@ class BrowseScreen(Screen):
+             self._pending_title = title
+             self._replace_top = True       # the first result IS the root frame
+             self.loading = True
++            self._browse_uri = uri
++            self._browse_deadline = time.monotonic() + 25.0
+             if self.app.listener is not None:
+                 self.app.listener.browse(uri)
+         else:
+@@ -112,6 +133,9 @@ class BrowseScreen(Screen):
+         if self.loading:
+             return
+         f = self._cur
++        if f is self._rip_status_frame and "_rip_counts" in f:
++            f["index"] = max(1, min(f["index"] + delta, len(f["items"]) - 1))
++            return
+         f["index"] = max(0, min(f["index"] + delta, max(0, len(f["items"]) - 1)))
+ 
+     def handle_select(self):
+@@ -123,6 +147,44 @@ class BrowseScreen(Screen):
+         item = f["items"][f["index"]]
+         if item.get("_back"):
+             self.handle_back()
++        elif item.get("_cancel_rip"):
++            if self.app.listener and self.app.listener.cancel_cd_rip():
++                f["items"][0]["title"] = "Cancelling..."
++                f["items"][f["index"]] = {"title": "Cancelling...", "_notice": True}
++            else:
++                self.on_rip_status({"message": "No rip running"})
++        elif item.get("_retry"):
++            self.loading = True
++            self._replace_top = True
++            self._browse_deadline = time.monotonic() + 25.0
++            self.app.listener.browse(self._browse_uri)
++        elif item.get("_notice"):
++            return
++        elif item.get("_rip_cd"):
++            if self.app.listener is None:
++                return
++            progress = getattr(self.app.listener, "get_rip_progress", None)
++            message = progress() if callable(progress) else None
++            if isinstance(message, str) and message:
++                self._rip_message(message)
++                return
++            self._rip_format = item.get("_rip_format", "flac")
++            self._rip_waiting = True
++            self._rip_deadline = time.monotonic() + 12.0
++            self.loading = True
++            if not self.app.listener.request_cd_rip_info():
++                self._rip_waiting = False
++                self.loading = False
++                self._rip_message("Could not load rip options")
++        elif item.get("_rip_drive"):
++            info = item["_rip_info"]
++            drive = item["_rip_drive"]
++            # The destination row is an explicit action; do not auto-start when
++            # options arrive, or when entering the CD menu.
++            self._rip_message("Rip requested", replace=True)
++            ok = self.app.listener and self.app.listener.rip_cd(info, drive, item["_rip_format"])
++            if not ok:
++                self.on_rip_status({"message": "Could not start rip"})
+         elif item.get("_play_all"):
+             songs = _play_all_tracks(f["items"])
+             if songs and self.app.listener is not None:
+@@ -133,13 +195,30 @@ class BrowseScreen(Screen):
+                 return
+             self._pending_title = item.get("title") or "..."
+             self.loading = True
+-            self.app.listener.browse(item.get("uri", ""))
++            self._browse_uri = item.get("uri", "")
++            self._browse_deadline = time.monotonic() + 25.0
++            self.app.listener.browse(self._browse_uri)
          else:
              if self.app.listener is not None:
 -                self.app.listener.play_item(item)
@@ -1610,11 +3128,38 @@ index d6f071f..adcbc5c 100644
              self.app.go(self.app.nowplaying_screen())
  
      def handle_back(self):
-@@ -153,7 +172,10 @@ class BrowseScreen(Screen):
++        self._browse_deadline = None
++        self._rip_waiting = False
++        self.loading = False
++        self._rip_status_frame = None
+         if len(self.stack) > 1:
+             self.stack.pop()
+             self.loading = False
+@@ -148,12 +227,29 @@ class BrowseScreen(Screen):
+ 
+     # --- async browse result (called on the listener thread) ---
+     def on_browse_data(self, data):
+-        if not self.loading:
++        if not self.loading or self._rip_waiting:
+             return
++        if not isinstance(data, dict) or not isinstance(data.get("navigation"), dict):
++            return  # A transient empty reply is retried/timed out, not a blank menu.
          items, _prev = _items_from_response(data)
          if len(_play_all_tracks(items)) >= 2:     # album/track list (not radio)
              items = [{"title": "Play all", "_play_all": True}] + items
 -        items = [{"title": "Back", "_back": True}] + items
++        nav = data.get("navigation", {}) if isinstance(data, dict) else {}
++        rip = nav.get("rip") or {}
++        action = rip.get("data") if isinstance(rip, dict) else None
++        action = action if isinstance(action, dict) else {}
++        if (isinstance(rip, dict) and rip.get("enabled") is True
++                and action.get("endpoint") == "music_service/cd_controller"
++                and action.get("method") == "getRipInfo"
++                and callable(getattr(self.app.listener, "request_cd_rip_info", None))):
++            index = 1 if items and items[0].get("_play_all") else 0
++            items[index:index] = [
++                {"title": "Rip HQ", "_rip_cd": True, "_rip_format": "flac"},
++                {"title": "Rip MP3", "_rip_cd": True, "_rip_format": "mp3"}]
 +        # Keep Back at the bottom on every browsed level.  That makes it
 +        # reachable without waiting for the menu time-out, while leaving
 +        # the content (and Play all, when present) at the top.
@@ -1622,11 +3167,174 @@ index d6f071f..adcbc5c 100644
          frame = self._frame(getattr(self, "_pending_title", "..."), items)
          if self._replace_top:
              self.stack[-1] = frame       # carousel entry: result becomes the root
+@@ -161,11 +257,154 @@ class BrowseScreen(Screen):
+         else:
+             self.stack.append(frame)     # drilling deeper
+         self.loading = False
++        self._browse_deadline = None
++        self.app.fsm.reset_menu_timer()
++        self.app.render()
++
++    def _rip_message(self, message, replace=False, redraw=True):
++        rows = [{"title": message, "_notice": True}]
++        rows.append({"title": "Back", "_back": True})
++        frame = self._frame("CD ripping", rows)
++        frame["index"] = len(rows) - 1
++        if replace:
++            self.stack[-1] = frame
++        else:
++            self.stack.append(frame)
++        self._rip_status_frame = frame
++        self._update_rip_progress(frame, message)
++        if frame.get("_rip_active"):
++            frame["items"] = [rows[0], {"title": "Cancel", "_cancel_rip": True},
++                              {"title": "Exit and continue", "_back": True}]
++            frame["index"] = 2
++        self.app.fsm.reset_menu_timer()
++        if redraw:
++            self.app.render()
++
++    def on_rip_info(self, data):
++        # Ignore web-UI requests, late replies and requests cancelled with Back.
++        if not self._rip_waiting or self.app.fsm.current is not self:
++            return
++        self._rip_waiting = False
++        self.loading = False
++        if not isinstance(data, dict) or not data.get("rippingAvailable"):
++            self._rip_message((data.get("error") if isinstance(data, dict) else None)
++                              or "Ripping unavailable")
++            return
++        drives = [d for d in data.get("availableDrives", [])
++                  if isinstance(d, dict) and d.get("available") and d.get("path")]
++        if not drives:
++            self._rip_message("No writable destination")
++            return
++        items = [{"title": "Rip to " + str(d.get("name") or d["path"]),
++                  "_rip_drive": d, "_rip_info": data, "_rip_format": self._rip_format} for d in drives]
++        items.append({"title": "Back", "_back": True})
++        self.stack.append(self._frame(data.get("album") or "Rip CD", items))
++        self.app.fsm.reset_menu_timer()
+         self.app.render()
+ 
++    @property
++    def rip_in_progress(self):
++        frame = self._rip_status_frame
++        return bool(frame is not None and self._cur is frame
++                    and frame.get("_rip_active"))
++
++    @staticmethod
++    def _update_rip_progress(frame, message):
++        match = re.match(r"(Reading|Encoding|Saved) track (\d+)/(\d+)", message)
++        if match:
++            phase, number, total = match.groups()
++            total = max(1, int(total))
++            completed = int(number) if phase == "Saved" else int(number) - 1
++            frame["_rip_counts"] = (max(0, min(completed, total)), total)
++            previous = frame.get("_rip_track")
++            frame["_rip_track"] = int(number)
++            if previous != int(number):
++                frame["_track_progress"] = 0.0
++            if phase == "Encoding":
++                frame["_track_progress"] = max(0.5, frame.get("_track_progress", 0.0))
++            elif phase == "Saved":
++                frame["_track_progress"] = 1.0
++            frame["_rip_active"] = True
++        elif message.startswith("Rip complete:"):
++            match = re.search(r"(\d+) tracks", message)
++            total = int(match.group(1)) if match else frame.get("_rip_counts", (0, 1))[1]
++            frame["_rip_counts"] = (total, total)
++            frame["_rip_track"] = total
++            frame["_track_progress"] = 1.0
++            frame["_rip_active"] = False
++        elif message == "Rip requested" or message.startswith("CD rip running"):
++            frame["_rip_counts"] = (0, 0)
++            frame["_rip_active"] = True
++        else:
++            frame["_rip_active"] = False
++
++    def on_rip_status(self, data):
++        frame = self._rip_status_frame
++        if frame is None or self._cur is not frame:
++            return
++        message = data.get("message") if isinstance(data, dict) else data
++        if message:
++            frame["items"][0]["title"] = str(message)
++            was_active = frame.get("_rip_active", False)
++            self._update_rip_progress(frame, str(message))
++            progress = data.get("progress") if isinstance(data, dict) else None
++            if isinstance(progress, (int, float)):
++                frame["_track_progress"] = max(0.0, min(1.0, progress))
++            if was_active and not frame.get("_rip_active"):
++                frame["items"] = [frame["items"][0], {"title": "Back", "_back": True}]
++                frame["index"] = 1
++                self.app.fsm.reset_menu_timer()
++            self.app.render()
++
++    def _render_rip_progress(self, canvas, draw, w, h, frame):
++        self.text(canvas, (4, 1), "CD RIPPING",
++                  self.app.fonts.get("sans_bold", 10), fill=120)
++        self.draw_text_clipped(canvas, "rip_status", frame["items"][0]["title"],
++                               self.app.fonts.get("sans", 12), 4, 17, w - 8, fill=255)
++        completed, total = frame["_rip_counts"]
++        fraction = frame.get("_track_progress", 0.0)
++        draw.rectangle((4, 35, w - 5, 44), outline=160)
++        width = int((w - 12) * fraction)
++        if width:
++            draw.rectangle((6, 37, 5 + width, 42), fill=235)
++        font = self.app.fonts.get("sans", 10)
++        label = "%d/%d" % (frame.get("_rip_track", completed), total) if total else "Preparing..."
++        self.text(canvas, (w - 4 - self.text_width(draw, label, font), 1),
++                  label, font, fill=170)
++        for index, item in enumerate(frame["items"][1:], 1):
++            x = 4 if index == 1 else 95
++            text = item["title"]
++            selected = frame["index"] == index
++            if selected:
++                tw = self.text_width(draw, text, font)
++                draw.rectangle((x - 2, 49, x + tw + 2, 63), fill=210)
++            self.text(canvas, (x, 51), text, font, fill=0 if selected else 170)
++
++
+     # --- render ---
+     def render(self, canvas, draw, w, h):
++        if (self.loading and not self._rip_waiting and self._browse_deadline
++                and time.monotonic() >= self._browse_deadline):
++            self.loading = False
++            self._browse_deadline = None
++            frame = self._frame(getattr(self, "_pending_title", "Browse"), [
++                {"title": "No reply - try again", "_notice": True},
++                {"title": "Retry", "_retry": True},
++                {"title": "Back", "_back": True}])
++            frame["index"] = 1
++            if self._replace_top:
++                self.stack[-1] = frame
++            else:
++                self.stack.append(frame)
++            self.app.fsm.reset_menu_timer()
++        if self._rip_waiting and time.monotonic() >= self._rip_deadline:
++            self._rip_waiting = False
++            self.loading = False
++            self._rip_message("Rip options timed out", redraw=False)
+         f = self._cur
++        if f is self._rip_status_frame and "_rip_counts" in f:
++            self._render_rip_progress(canvas, draw, w, h, f)
++            return
+         if self.loading:
+             self.text(canvas, (4, 1), (f["title"] or "").upper(),
+                       self.app.fonts.get("sans_bold", 10), fill=120)
 diff --git a/src/sable/screens/home.py b/src/sable/screens/home.py
-index f3bfd26..73264ab 100644
+index f3bfd26..c48b077 100644
 --- a/src/sable/screens/home.py
 +++ b/src/sable/screens/home.py
-@@ -39,6 +39,23 @@ def _icon_name(label):
+@@ -22,6 +22,7 @@ _NAME_ICONS = {
+     "library": "music_library",
+     "favourites": "favorites", "favorites": "favorites",
+     "playlists": "playlists",
++    "audio cd": "audio_cd", "audiocd": "audio_cd", "cd": "audio_cd",
+     "artists": "artists", "albums": "albums", "genres": "genres",
+     "web radio": "web_radio", "webradio": "web_radio", "radio": "web_radio",
+     "media servers": "media_servers", "media server": "media_servers",
+@@ -39,6 +40,23 @@ def _icon_name(label):
      return _NAME_ICONS.get((label or "").strip().lower(), "unknown_source")
  
  
@@ -1650,7 +3358,7 @@ index f3bfd26..73264ab 100644
  class HomeScreen(Screen):
      name = "home"
      SEL = 44                       # selected icon px
-@@ -103,7 +120,7 @@ class HomeScreen(Screen):
+@@ -103,7 +121,7 @@ class HomeScreen(Screen):
              return
          browse = self.app.fsm.screens.get("browse")
          if browse is not None:
@@ -1660,21 +3368,22 @@ index f3bfd26..73264ab 100644
              self.app.go("browse")
  
 diff --git a/src/sable/screens/menu.py b/src/sable/screens/menu.py
-index e283aea..7d024cd 100644
+index e283aea..9262a1f 100644
 --- a/src/sable/screens/menu.py
 +++ b/src/sable/screens/menu.py
-@@ -8,6 +8,10 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
+@@ -8,6 +8,11 @@ menu). Scroll clamps at the ends (no wrap); long-press pops one level, or exits
  the clock at the root.
  """
  from .base import Screen
 +from pathlib import Path
 +import re
 +import socket
++import shutil
 +import subprocess
  
  _BACK = "__back__"
  
-@@ -22,12 +26,15 @@ class MenuScreen(Screen):
+@@ -22,12 +27,15 @@ class MenuScreen(Screen):
          super().__init__(app)
          self.root = self._build_tree()
          self.stack = [self._frame("MENU", self.root)]
@@ -1690,7 +3399,7 @@ index e283aea..7d024cd 100644
                  ("Modern: Cinema", lambda: self._set_modern("cinema")),
                  ("Spectrum Bars", lambda: self._set_spectrum("bars")),
                  ("Spectrum Dots", lambda: self._set_spectrum("dots")),
-@@ -36,6 +43,24 @@ class MenuScreen(Screen):
+@@ -36,6 +44,35 @@ class MenuScreen(Screen):
                  ("VU Meter", lambda: self._set_spectrum("vu")),
                  ("Back", _BACK),
              ], self._display_mode_label),
@@ -1707,6 +3416,17 @@ index e283aea..7d024cd 100644
 +                ("Reset 5-7 Defaults", self._reset_shortcuts),
 +                ("Back", _BACK),
 +            ]),
++            ("Storage", self._show_storage),
++            ("Music Library", [
++                ("Refresh now", self._refresh_library),
++                ("Auto refresh", [
++                    ("Off", lambda: self._set_library_refresh(0)),
++                    ("Every 15 minutes", lambda: self._set_library_refresh(15)),
++                    ("Every hour", lambda: self._set_library_refresh(60)),
++                    ("Back", _BACK),
++                ], self._library_refresh_label),
++                ("Back", _BACK),
++            ]),
 +            ("Network", [
 +                ("IP Address", self._show_ip),
 +                ("Wi-Fi Networks", self._scan_wifi),
@@ -1715,7 +3435,7 @@ index e283aea..7d024cd 100644
              ("Brightness", [
                  ("Low", lambda: self._set_brightness("low")),
                  ("Medium", lambda: self._set_brightness("medium")),
-@@ -48,6 +73,11 @@ class MenuScreen(Screen):
+@@ -48,8 +85,64 @@ class MenuScreen(Screen):
                  ("Upside-down", lambda: self._set_rotate(180)),
                  ("Back", _BACK),
              ], self._rotate_label),
@@ -1726,8 +3446,61 @@ index e283aea..7d024cd 100644
 +            ("Back", _BACK),
          ]
  
++    @staticmethod
++    def _storage_rows():
++        roots = [("Internal Storage", Path("/mnt/INTERNAL"))]
++        for location, prefix in (("/mnt/USB", "USB"), ("/mnt/NAS", "Network")):
++            parent = Path(location)
++            try:
++                roots.extend((prefix + ": " + p.name, p) for p in sorted(parent.iterdir())
++                             if p.is_mount())
++            except OSError:
++                pass
++        rows = []
++        for label, path in roots:
++            try:
++                if not path.is_dir():
++                    continue
++                usage = shutil.disk_usage(path)
++                rows.append((label, usage.free, usage.total))
++            except OSError:
++                continue
++        return rows
++
++    def _show_storage(self):
++        items = []
++        for label, free, total in self._storage_rows():
++            value = "%.1f GB free" % (free / 1000**3)
++            detail = "%.1f / %.1f GB FREE" % (free / 1000**3, total / 1000**3)
++            items.append((label, lambda detail=detail: self.app.show_osd("STORAGE", detail),
++                          lambda value=value: value))
++        if not items:
++            items.append(("No storage available", lambda: None))
++        items.append(("Back", _BACK))
++        self.stack.append(self._frame("STORAGE", items))
++        self.app.render()
++
++    def _library_refresh_label(self):
++        minutes = self.app.settings.get("library", "refresh_minutes", default=0)
++        return "%s min" % minutes if minutes else "Off"
++
++    def _set_library_refresh(self, minutes):
++        self.app.settings.set("library", "refresh_minutes", minutes)
++        self.app.show_osd("AUTO REFRESH", self._library_refresh_label().upper())
++        self.app.render()
++
++    def _refresh_library(self):
++        refresh = getattr(self.app.listener, "refresh_library", None)
++        result = refresh() if refresh else "unavailable"
++        message = {"requested": "REFRESH REQUESTED", "ripping": "WAIT FOR CD RIP",
++                   "unavailable": "PLAYER NOT CONNECTED"}.get(result, "UNAVAILABLE")
++        self.app.show_osd("MUSIC LIBRARY", message)
++        self.app.render()
++
      def _rotate_label(self):
-@@ -66,6 +96,197 @@ class MenuScreen(Screen):
+         deg = self.app.settings.get("display", "rotate", default=0)
+         try:
+@@ -66,6 +159,197 @@ class MenuScreen(Screen):
          style = self.app.settings.get("display", "spectrum_style", default="bars")
          return "VU" if style == "vu" else style.capitalize()
  
@@ -1925,7 +3698,7 @@ index e283aea..7d024cd 100644
      @staticmethod
      def _unpack(item):
          """Items are (label, target) or (label, target, value_fn)."""
-@@ -83,16 +304,34 @@ class MenuScreen(Screen):
+@@ -83,16 +367,34 @@ class MenuScreen(Screen):
  
      # --- navigation ---
      def on_enter(self, **kwargs):
@@ -1962,7 +3735,7 @@ index e283aea..7d024cd 100644
          f = self._cur
          _label, target, _vfn = self._unpack(f["items"][f["index"]])
          if target == _BACK:
-@@ -103,7 +342,14 @@ class MenuScreen(Screen):
+@@ -103,7 +405,14 @@ class MenuScreen(Screen):
              target()
  
      def handle_back(self):
@@ -1978,7 +3751,7 @@ index e283aea..7d024cd 100644
          self._pop()
  
      def _pop(self):
-@@ -155,6 +401,28 @@ class MenuScreen(Screen):
+@@ -155,6 +464,28 @@ class MenuScreen(Screen):
          return None              # a leaf action / back -> no affordance
  
      def render(self, canvas, draw, w, h):
@@ -2131,10 +3904,10 @@ index 2623ea7..3d2a74f 100644
          if st.duration_s > 0:
              pyb = h - 3
 diff --git a/src/sable/settings.py b/src/sable/settings.py
-index d39be58..1671b41 100644
+index d39be58..245cd7a 100644
 --- a/src/sable/settings.py
 +++ b/src/sable/settings.py
-@@ -1,152 +1,201 @@
+@@ -1,152 +1,202 @@
 -"""Sable settings -- the ONE source of truth for user preferences.
 -
 -A single JSON file, written atomically (tmp + fsync + rename) to survive power
@@ -2312,6 +4085,7 @@ index d39be58..1671b41 100644
 +}
 +
 +DEFAULTS = {
++    "library": {"refresh_minutes": 0},
 +    "display": {
 +        "screen": "modern",          # modern|spectrum
 +        "theme": "panel",            # panel|performance|cinema (when screen == modern)
@@ -2489,7 +4263,7 @@ index d39be58..1671b41 100644
 +        with self._lock:
 +            return json.loads(json.dumps(self._data))
 diff --git a/src/sable/volumio/listener.py b/src/sable/volumio/listener.py
-index d3e94a2..541066e 100644
+index d3e94a2..81fde78 100644
 --- a/src/sable/volumio/listener.py
 +++ b/src/sable/volumio/listener.py
 @@ -14,6 +14,7 @@ Carry-forward from the old volumio_listener.py:
@@ -2500,26 +4274,42 @@ index d3e94a2..541066e 100644
  import threading
  import time
  
-@@ -35,6 +36,10 @@ class VolumioListener:
+@@ -27,6 +28,7 @@ class VolumioListener:
+         self.store = store
+         self.url = url
+         self.log = log
++        self._library_refresh_at = time.monotonic()
+         self._running = False
+         self._thread = None
+         # Browse callbacks (set by the app so BrowseScreen gets results). Browse
+@@ -35,6 +37,16 @@ class VolumioListener:
          self.on_browse = None
          self.on_sources = None
          self.on_connect = None  # set by the app: fires once per successful connect
 +        self.on_outputs = None
++        self._cd_navigation = None
++        self._rip_info_request = 0
++        self._last_rip_message = ""
++        self.on_rip_info = None
++        self.on_rip_status = None
++        self._pending_browse_uri = None
 +        self._queue_from_browse = None  # collection URI waiting for its browse reply
 +        self.active_collection_uri = ""  # last Sable-started TIDAL collection
 +        self.audio_outputs = []
          self.browse_sources = []   # latest getBrowseSources result (HomeScreen reads it)
          self.sio = socketio.Client(reconnection=False)  # we own reconnect
          self._wire()
-@@ -47,6 +52,7 @@ class VolumioListener:
+@@ -47,6 +59,9 @@ class VolumioListener:
              self.log("volumio: connected", self.url)
              sio.emit("getState")          # query current state
              sio.emit("getBrowseSources")  # query available services
 +            sio.emit("getOutputDevices")  # query connected audio outputs
++            if self._pending_browse_uri is not None:
++                sio.emit("browseLibrary", {"uri": self._pending_browse_uri})
              if self.on_connect:
                  try:
                      self.on_connect()
-@@ -76,6 +82,20 @@ class VolumioListener:
+@@ -76,6 +91,30 @@ class VolumioListener:
          @sio.on("pushBrowseLibrary")
          def _on_push_browse_library(data):
              self.log("  pushBrowseLibrary -> received")
@@ -2537,10 +4327,20 @@ index d3e94a2..541066e 100644
 +                self.log("  collection %s -> %d tracks" % (requested, len(items)))
 +                self.play_all(items)
 +                return
++            nav = data.get("navigation", {}) if isinstance(data, dict) else {}
++            info = nav.get("info", {}) if isinstance(nav, dict) else {}
++            if isinstance(info, dict) and info.get("service") == "cd_controller":
++                self._cd_navigation = nav
++            reply_uri = info.get("uri") if isinstance(info, dict) else None
++            if (self._pending_browse_uri and reply_uri
++                    and reply_uri != self._pending_browse_uri):
++                self.log("  ignoring browse reply for", reply_uri)
++                return
++            self._pending_browse_uri = None
              cb = self.on_browse
              if cb:
                  try:
-@@ -95,6 +115,16 @@ class VolumioListener:
+@@ -95,6 +134,16 @@ class VolumioListener:
                  except Exception as exc:
                      self.log("  on_sources error:", exc)
  
@@ -2557,7 +4357,100 @@ index d3e94a2..541066e 100644
          @sio.on("pushToastMessage")
          def _on_toast(data):
              msg = data.get("message") if isinstance(data, dict) else data
-@@ -167,28 +197,84 @@ class VolumioListener:
+@@ -140,11 +189,92 @@ class VolumioListener:
+             pass
+ 
+     def browse(self, uri=""):
++        # Explicit navigation supersedes an unfinished shortcut collection.
++        self._queue_from_browse = None
++        self._pending_browse_uri = uri
+         try:
+             self.sio.emit("browseLibrary", {"uri": uri})
+         except Exception:
+             pass
+ 
++    def request_cd_rip_info(self):
++        from ..cd_rip import prepare_rip_info
++        from copy import deepcopy
++        self._rip_info_request += 1
++        request = self._rip_info_request
++        navigation = deepcopy(self._cd_navigation)
++        def prepare():
++            try:
++                data = prepare_rip_info(navigation)
++                self.log("CD rip options: %d destinations" % len(data["availableDrives"]))
++            except Exception as exc:
++                self.log("CD rip options failed:", exc)
++                if isinstance(exc, subprocess.TimeoutExpired):
++                    message = "CD drive not responding"
++                elif isinstance(exc, (subprocess.CalledProcessError, FileNotFoundError)):
++                    message = "Cannot read CD - check disc"
++                else:
++                    message = str(exc)
++                data = {"rippingAvailable": False, "error": message}
++            if request == self._rip_info_request and self.on_rip_info:
++                self.on_rip_info(data)
++        threading.Thread(target=prepare, daemon=True, name="sable-rip-options").start()
++        return True
++
++    def refresh_library(self):
++        from ..cd_rip import _BUSY
++        if _BUSY.locked():
++            return "ripping"
++        if not self.sio.connected:
++            return "unavailable"
++        try:
++            self.sio.emit("updateDb")
++            self._library_refresh_at = time.monotonic()
++            return "requested"
++        except Exception as exc:
++            self.log("Library refresh failed:", exc)
++            return "unavailable"
++
++    def tick_library_refresh(self, now, minutes):
++        try:
++            interval = max(0, float(minutes)) * 60
++        except (ValueError, TypeError):
++            return
++        if not interval:
++            self._library_refresh_at = now
++        elif now - self._library_refresh_at >= interval:
++            # Limit retries when disconnected or a rip is in progress.
++            self._library_refresh_at = now - interval + min(60, interval)
++            self.refresh_library()
++
++    def get_rip_progress(self):
++        from ..cd_rip import _BUSY
++        return (self._last_rip_message or "CD rip running") if _BUSY.locked() else None
++
++    def cancel_cd_rip(self):
++        from ..cd_rip import cancel_rip
++        return cancel_rip()
++
++    def rip_cd(self, info, drive, fmt="flac"):
++        from ..cd_rip import start_rip
++        def notify(message):
++            self._last_rip_message = message
++            self.log("CD rip:", message)
++            if self.on_rip_status:
++                from ..cd_rip import progress_snapshot
++                self.on_rip_status(dict(progress_snapshot(), message=message))
++            if message.startswith(("Rip complete:", "Rip cancelled")):
++                from ..cd_rip import library_path
++                try:
++                    self.sio.emit("updateDb", library_path(drive))
++                except Exception as exc:
++                    self.log("CD library refresh failed:", exc)
++        def stop_cd():
++            if (self.store.get().uri or "").startswith(("cdda:", "cdaudio/")):
++                self.sio.emit("stop")
++                time.sleep(1.0)
++        return start_rip(info, drive, fmt, notify, stop_cd)
++
+     def get_sources(self):
+         try:
+             self.sio.emit("getBrowseSources")
+@@ -167,28 +297,84 @@ class VolumioListener:
          dict -- those already carry their own service in the URI scheme, and
          guessing "webradio" for them would break the routing that does work.
          """
@@ -2642,7 +4535,7 @@ index d3e94a2..541066e 100644
              self.sio.emit("replaceAndPlay", item)
          except Exception:
              pass
-@@ -202,6 +288,113 @@ class VolumioListener:
+@@ -202,6 +388,113 @@ class VolumioListener:
          except Exception:
              pass
  
@@ -2783,7 +4676,7 @@ index 0000000..ab3f7de
 diff --git a/systemd/sable.service b/systemd/sable.service
 old mode 100755
 new mode 100644
-index bd5baa7..30e0bc1
+index bd5baa7..3663562
 --- a/systemd/sable.service
 +++ b/systemd/sable.service
 @@ -2,15 +2,10 @@
@@ -2806,13 +4699,11 @@ index bd5baa7..30e0bc1
  Conflicts=quadify.service sable-boot-splash.service
  
  [Service]
-@@ -22,9 +17,17 @@ Environment=PYTHONPATH=/home/volumio/sable/src
+@@ -22,7 +17,16 @@ Environment=PYTHONPATH=/home/volumio/sable/src
  # --stage full = clock + live Volumio listener + rotary + live CAVA spectrum
  # (Sable's own cava on MPD's /tmp/cava.fifo). run_hardware handles SIGTERM and
  # releases SPI/GPIO cleanly in its finally block.
 -ExecStart=/usr/bin/python3 -u -m sable.app --hardware --stage full
--Restart=always
--RestartSec=3
 +ExecStart=/usr/bin/python3 -u -m sable.app --hardware --stage full --fps 20
 +# The display is deliberately a background task: Volumio/MPD audio wins any
 +# contention, while 12fps remains smooth on a 256x64 OLED and cuts redraw work.
@@ -2823,10 +4714,9 @@ index bd5baa7..30e0bc1
 +CPUAffinity=2
 +CPUWeight=25
 +IOSchedulingClass=idle
-+Restart=alwaysRestartSec=3
+ Restart=always
+ RestartSec=3
  KillSignal=SIGTERM
- TimeoutStopSec=8
- 
 diff --git a/tests/test_browse.py b/tests/test_browse.py
 index 977a92c..6b7f98e 100644
 --- a/tests/test_browse.py
@@ -2872,6 +4762,499 @@ index 977a92c..6b7f98e 100644
  def main():
      tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
      for t in tests:
+diff --git a/tests/test_cd_boot.py b/tests/test_cd_boot.py
+new file mode 100644
+index 0000000..7b7ac7a
+--- /dev/null
++++ b/tests/test_cd_boot.py
+@@ -0,0 +1,253 @@
++"""CD integration and independent clock startup regression tests."""
++import os
++import sys
++import time
++from unittest.mock import Mock, patch
++sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
++from PIL import Image, ImageDraw
++from sable.app import build_sim_app, _boot_ready
++from sable.screens.home import _icon_name
++from sable.screens.browse import _play_all_tracks
++from sable.volumio.listener import VolumioListener
++
++def setup():
++    app = build_sim_app(frames_dir=None)
++    app.display.ascii_preview = False
++    app.listener = Mock()
++    app.listener.browse_sources = []
++    app.go("browse")
++    return app, app.fsm.screens["browse"]
++
++def response(enabled=True):
++    return {"navigation": {"lists": [{"items": [
++        {"title": "Track 1", "uri": "cdaudio/track0", "type": "song"},
++        {"title": "Track 2", "uri": "cdaudio/track1", "type": "song"}]}],
++        "rip": {"enabled": enabled, "data": {
++            "endpoint": "music_service/cd_controller", "method": "getRipInfo"}}}}
++
++def options():
++    return {"album": "Document", "artist": "R.E.M.", "cdid": "c70fdf11",
++            "tracks": [{"number": "0", "title": "Track 1"}],
++            "rippingAvailable": True, "availableDrives": [
++                {"path": "/mnt/INTERNAL", "name": "Internal Memory", "available": True}]}
++
++def load_cd(b, enabled=True):
++    b.loading = True
++    b._replace_top = True
++    b._pending_title = "Audio CD"
++    b.on_browse_data(response(enabled))
++
++def test_cd_menu_and_rip_destination():
++    app, b = setup()
++    load_cd(b)
++    assert [i["title"] for i in b._cur["items"]][:3] == ["Play all", "Rip HQ", "Rip MP3"]
++    assert len(_play_all_tracks(b._cur["items"])) == 2
++    b._cur["index"] = 1
++    b.handle_select()
++    app.listener.request_cd_rip_info.assert_called_once()
++    b.on_rip_info(options())
++    app.listener.rip_cd.assert_not_called()
++    assert b._cur["title"] == "Document"
++    assert b._cur["items"][0]["title"] == "Rip to Internal Memory"
++    b.handle_select()
++    app.listener.rip_cd.assert_called_once_with(options(), options()["availableDrives"][0], "flac")
++    assert b._cur["items"][0]["title"] == "Rip requested"
++    b.on_rip_status({"message": "Ripping finished"})
++    assert b._cur["items"][0]["title"] == "Ripping finished"
++
++def test_disabled_ripping_not_offered():
++    app, b = setup()
++    load_cd(b, False)
++    assert not any(i.get("_rip_cd") for i in b._cur["items"])
++
++def test_cancel_ignores_late_options():
++    app, b = setup()
++    load_cd(b)
++    b._cur["index"] = 1
++    b.handle_select()
++    b.handle_back()
++    b.on_rip_info(options())
++    app.listener.rip_cd.assert_not_called()
++    assert app.fsm.current.name == "home"
++
++def test_no_drive_and_timeout():
++    app, b = setup()
++    load_cd(b)
++    b._cur["index"] = 1
++    b.handle_select()
++    b.on_rip_info(dict(options(), availableDrives=[]))
++    assert b._cur["items"][0]["title"] == "No writable destination"
++    app.listener.rip_cd.assert_not_called()
++    app, b = setup()
++    load_cd(b)
++    b._cur["index"] = 1
++    b.handle_select()
++    b._rip_deadline = time.monotonic() - 1
++    app.render()
++    assert not b.loading
++    assert b._cur["items"][0]["title"] == "Rip options timed out"
++
++def test_rip_format_reaches_worker():
++    listener = VolumioListener(Mock(), log=lambda *args: None)
++    with patch("sable.cd_rip.start_rip", return_value=True) as start:
++        assert listener.rip_cd(options(), options()["availableDrives"][0], "mp3")
++        assert start.call_args.args[:3] == (options(), options()["availableDrives"][0], "mp3")
++
++def test_player_startup_waits_for_ntp():
++    assert not _boot_ready("full", True, False)
++    assert not _boot_ready("full", False, True)
++    assert _boot_ready("full", True, True)
++    assert not _boot_ready("clock", True, False)
++    assert _boot_ready("clock", True, True)
++
++def test_loading_timeout_offers_retry():
++    app, b = setup()
++    b.open_source("audiocd", "Audio CD")
++    b.on_enter()
++    b._browse_deadline = time.monotonic() - 1
++    app.render()
++    assert not b.loading
++    assert b._cur["items"][1].get("_retry")
++    b.handle_select()
++    assert b.loading
++    app.listener.browse.assert_called_with("audiocd")
++    b.on_browse_data(response())
++    assert not b.loading
++    assert b._cur["items"][1]["title"] == "Rip HQ"
++
++def test_loading_does_not_trigger_menu_auto_exit():
++    app, b = setup()
++    b.loading = True
++    app.fsm._menu_expired()
++    assert app.fsm.current is b
++    b.loading = False
++    app.fsm._menu_expired()
++    assert app.fsm.current is not b
++
++def test_cd_navigation_supersedes_shortcut_and_reconnects():
++    listener = VolumioListener(Mock(), log=lambda *args: None)
++    actual_sio = listener.sio
++    listener.sio = Mock()
++    listener._queue_from_browse = "tidal://old"
++    listener.browse("audiocd")
++    assert listener._queue_from_browse is None
++    assert listener._pending_browse_uri == "audiocd"
++    with patch.object(actual_sio, "emit") as emit:
++        actual_sio.handlers["/"]["connect"]()
++        assert any(call.args == ("browseLibrary", {"uri": "audiocd"}) for call in emit.call_args_list)
++    listener.on_browse = Mock()
++    actual_sio.handlers["/"]["pushBrowseLibrary"]({"navigation": {"info": {"uri": "tidal://old"}}})
++    listener.on_browse.assert_not_called()
++
++def test_active_rip_reopens_progress_without_querying_drive():
++    app, b = setup()
++    app.listener.get_rip_progress.return_value = "Reading track 2/17"
++    load_cd(b)
++    b._cur["index"] = 1
++    b.handle_select()
++    assert b._cur["items"][0]["title"] == "Reading track 2/17"
++    app.listener.request_cd_rip_info.assert_not_called()
++    app.listener.rip_cd.assert_not_called()
++
++def test_mp3_menu_keeps_chosen_format():
++    app, b = setup()
++    load_cd(b)
++    b._cur["index"] = 2
++    b.handle_select()
++    b.on_rip_info(options())
++    b.handle_select()
++    app.listener.rip_cd.assert_called_once_with(options(), options()["availableDrives"][0], "mp3")
++
++def test_clock_restored_after_boot_timeout():
++    app, b = setup()
++    app.clock_synced = False
++    screen = app.fsm.screens["clock"]
++    screen.text = Mock()
++    canvas = Image.new("L", (256, 64))
++    screen.render(canvas, ImageDraw.Draw(canvas), 256, 64)
++    labels = [call.args[2] for call in screen.text.call_args_list]
++    assert any(label == time.strftime("%H:%M") for label in labels)
++    assert "Ready to play" not in labels
++
++def test_rip_timeout_does_not_show_running_advice():
++    app, b = setup()
++    b._rip_message("Rip options timed out")
++    assert [i["title"] for i in b._cur["items"]] == ["Rip options timed out", "Back"]
++
++def test_rip_progress_stays_visible_and_awake():
++    app, b = setup()
++    b._rip_message("Reading track 4/17")
++    assert b.rip_in_progress
++    assert b._cur["_rip_counts"] == (3, 17)
++    app.fsm._menu_expired()
++    assert app.fsm.current is b
++    app.last_input = time.monotonic() - 10000
++    app.tick_idle(time.monotonic())
++    assert not app.asleep and app._idle_tier == "awake"
++    b.on_rip_status({"message": "Encoding track 4/17"})
++    assert b._cur["_rip_counts"] == (3, 17)
++    b.on_rip_status({"message": "Saved track 4/17"})
++    assert b._cur["_rip_counts"] == (4, 17)
++    b.on_rip_status({"message": "Rip complete: 17 tracks (FLAC)"})
++    assert b._cur["_rip_counts"] == (17, 17)
++    assert not b.rip_in_progress
++    app.fsm._menu_expired()
++    assert app.fsm.current is not b
++
++
++def test_rip_progress_back_and_failure():
++    app, b = setup()
++    b._rip_message("Reading track 2/17")
++    b.handle_select()  # Exit and continue is selected by default.
++    assert not b.rip_in_progress
++    app.listener.rip_cd.assert_not_called()
++    b._rip_message("Reading track 2/17")
++    b.on_rip_status({"message": "Rip failed: cdparanoia"})
++    assert not b.rip_in_progress
++    assert b._cur["_rip_counts"] == (1, 17)
++
++def test_cancel_rip_control():
++    app, b = setup()
++    b._rip_message("Reading track 2/17")
++    assert [i["title"] for i in b._cur["items"][1:]] == ["Cancel", "Exit and continue"]
++    b.handle_scroll(-1)
++    b.handle_select()
++    app.listener.cancel_cd_rip.assert_called_once()
++    assert b._cur["items"][0]["title"] == "Cancelling..."
++    assert b.rip_in_progress
++    b.on_rip_status({"message": "Rip cancelled - saved tracks kept"})
++    assert not b.rip_in_progress
++    assert b._cur["items"][-1]["title"] == "Back"
++
++def test_cd_icon_is_distinct_and_present():
++    app, b = setup()
++    assert _icon_name("Audio CD") == "audio_cd"
++    icon = app.fsm.screens["home"]._icon("audio_cd", 44)
++    assert icon is not None and icon.getbbox()
++    assert _icon_name("Audio CD") != _icon_name("Web Radio")
++
++def test_progress_is_per_track_and_keeps_counter():
++    app, b = setup()
++    b._rip_message("Reading track 4/17")
++    b.on_rip_status({"message": "Reading track 4/17", "progress": .32})
++    assert b._cur["_track_progress"] == .32
++    assert b._cur["_rip_track"] == 4
++    b.on_rip_status({"message": "Encoding track 4/17", "progress": .72})
++    assert b._cur["_track_progress"] == .72
++    assert b._cur["_rip_counts"] == (3, 17)
++    canvas = Image.new("L", (256, 64))
++    b.render(canvas, ImageDraw.Draw(canvas), 256, 64)
++    assert canvas.getpixel((100, 39)) > 0
++    assert canvas.getpixel((230, 39)) == 0
++    b.on_rip_status({"message": "Saved track 4/17", "progress": 1.0})
++    b.on_rip_status({"message": "Reading track 5/17", "progress": 0.0})
++    assert b._cur["_track_progress"] == 0.0
++    assert b._cur["_rip_track"] == 5
++    assert b._cur["_rip_counts"] == (4, 17)
++
++if __name__ == "__main__":
++    tests = [v for k,v in sorted(globals().items()) if k.startswith("test_")]
++    for test in tests:
++        test()
++        print("PASS", test.__name__)
++    print("All %d CD/boot tests passed." % len(tests))
+diff --git a/tests/test_cd_rip.py b/tests/test_cd_rip.py
+new file mode 100644
+index 0000000..fdec5b0
+--- /dev/null
++++ b/tests/test_cd_rip.py
+@@ -0,0 +1,149 @@
++"""Run the real FLAC/MP3 encoders on synthetic PCM; never read the CD drive."""
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++import threading
++import time
++import wave
++from unittest.mock import Mock, patch
++sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
++from sable import cd_rip
++
++
++def info():
++    return {"rippingAvailable": True, "cdid": "12345678", "artist": "Test Artist",
++            "album": "Test Album", "year": "2026", "tracks": [{"title": "Test Track"}],
++            "availableDrives": [{"available": True, "path": "/mnt/INTERNAL"}]}
++
++
++def test_invalid_requests_do_not_launch():
++    data = info()
++    notify = Mock()
++    assert not cd_rip.start_rip(data, data['availableDrives'][0], 'unknown', notify, Mock())
++    assert not cd_rip.start_rip(data, {'available': True, 'path': '/other'}, 'flac', notify, Mock())
++    assert not cd_rip._BUSY.locked()
++
++
++def test_real_encoding_and_lossless_samples():
++    real_run = subprocess.run
++    for fmt in ('flac', 'mp3'):
++        with tempfile.TemporaryDirectory(prefix='sable-rip-test-') as temp:
++            folder = Path(temp)
++            data = info()
++            notices = []
++            stop = Mock()
++            pcm = b'\x01\x02\x03\x04' * 44100
++            def run(args, **kwargs):
++                if args[0] == 'pgrep':
++                    return subprocess.CompletedProcess(args, 1)
++                if args[0] == 'cd-discid':
++                    return subprocess.CompletedProcess(args, 0, '12345678 1 150 60')
++                if args[0] == 'cdparanoia':
++                    with wave.open(args[-1], 'wb') as wav:
++                        wav.setnchannels(2); wav.setsampwidth(2); wav.setframerate(44100)
++                        wav.writeframes(pcm)
++                    return subprocess.CompletedProcess(args, 0)
++                return real_run(args, **kwargs)
++            with patch.object(cd_rip, 'destination_path', return_value=folder), \
++                 patch.object(cd_rip, 'STATUS_FILE', folder / 'status.json'), \
++                 patch.object(cd_rip, 'LOCK_FILE', str(folder / 'test.lock')), \
++                 patch.object(cd_rip, '_run_command', side_effect=lambda args, timeout, on_poll=None: run(args, timeout=timeout, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)), \
++                 patch.object(cd_rip.subprocess, 'run', side_effect=run):
++                assert cd_rip._BUSY.acquire(blocking=False)
++                cd_rip._run(data, data['availableDrives'][0], fmt, notices.append, stop)
++            assert not cd_rip._BUSY.locked()
++            assert notices[-1].startswith('Rip complete:'), notices
++            stop.assert_called_once()
++            outputs = list(folder.rglob('*.' + fmt))
++            assert len(outputs) == 1
++            assert outputs[0].parent.stat().st_mode & 0o777 == 0o755
++            assert outputs[0].stat().st_mode & 0o777 == 0o644
++            probe = json.loads(real_run(['ffprobe', '-v', 'quiet', '-show_format',
++                '-show_streams', '-of', 'json', str(outputs[0])], capture_output=True,
++                text=True, check=True).stdout)
++            stream = probe['streams'][0]
++            assert stream['sample_rate'] == '44100'
++            assert stream['channels'] == 2
++            tags = {k.lower():v for k,v in probe['format']['tags'].items()}
++            assert tags['title'] == 'Test Track' and tags['album'] == 'Test Album'
++            if fmt == 'mp3':
++                assert stream['codec_name'] == 'mp3' and int(stream['bit_rate']) == 320000
++            else:
++                assert stream['codec_name'] == 'flac'
++                decoded = real_run(['ffmpeg', '-v', 'error', '-i', str(outputs[0]),
++                    '-f', 's16le', '-'], capture_output=True, check=True).stdout
++                assert decoded == pcm, 'HQ rip must preserve PCM samples exactly'
++            assert not list(folder.rglob('*.part'))
++            assert not list(folder.rglob('.track-*'))
++
++
++def test_wrong_disc_does_not_stop_playback_or_write_music():
++    with tempfile.TemporaryDirectory(prefix='sable-rip-test-') as temp:
++        folder = Path(temp); stop = Mock(); notices = []
++        data = info()
++        def run(args, **kwargs):
++            return subprocess.CompletedProcess(args, 1 if args[0] == 'pgrep' else 0,
++                                               'different 1 150 60')
++        with patch.object(cd_rip, 'destination_path', return_value=folder), \
++             patch.object(cd_rip, 'STATUS_FILE', folder / 'status.json'), \
++                 patch.object(cd_rip, 'LOCK_FILE', str(folder / 'test.lock')), \
++                 patch.object(cd_rip, '_run_command', side_effect=lambda args, timeout, on_poll=None: run(args, timeout=timeout, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)), \
++             patch.object(cd_rip.subprocess, 'run', side_effect=run):
++            assert cd_rip._BUSY.acquire(blocking=False)
++            cd_rip._run(data, data['availableDrives'][0], 'flac', notices.append, stop)
++        assert 'CD changed' in notices[-1]
++        stop.assert_not_called()
++        assert not (folder / 'CD Rips').exists()
++        assert not cd_rip._BUSY.locked()
++
++
++def test_cancel_terminates_child_process():
++    real_popen = subprocess.Popen
++    children = []
++    def spawn(*args, **kwargs):
++        child = real_popen(*args, **kwargs)
++        children.append(child)
++        return child
++    cd_rip._CANCEL.clear()
++    timer = threading.Timer(0.3, cd_rip._CANCEL.set)
++    timer.start()
++    started = time.monotonic()
++    try:
++        with patch.object(cd_rip.subprocess, 'Popen', side_effect=spawn):
++            try:
++                cd_rip._run_command([sys.executable, '-c', 'import time; time.sleep(30)'], timeout=40)
++            except cd_rip.RipCancelled:
++                pass
++            else:
++                raise AssertionError('Cancellation was not propagated')
++        assert time.monotonic() - started < 5
++        assert children and children[0].poll() is not None
++    finally:
++        timer.cancel()
++        cd_rip._CANCEL.clear()
++
++
++def test_measured_track_progress():
++    with tempfile.TemporaryDirectory(prefix='sable-progress-test-') as temp:
++        wav = Path(temp) / 'track.wav'
++        progress = Path(temp) / 'progress.txt'
++        assert cd_rip.read_fraction(wav, 1000) == 0
++        wav.write_bytes(bytes(544))
++        assert cd_rip.read_fraction(wav, 1000) == .5
++        assert cd_rip.encode_fraction(progress, 10) == 0
++        progress.write_text('out_time_us=2500000\nprogress=continue\n')
++        assert cd_rip.encode_fraction(progress, 10) == .25
++        progress.write_text('out_time_us=10000000\nprogress=end\n')
++        assert cd_rip.encode_fraction(progress, 10) == 1
++        polls = []
++        cd_rip._run_command([sys.executable, '-c', 'import time; time.sleep(.3)'],
++                            timeout=5, on_poll=lambda: polls.append(True))
++        assert len(polls) >= 2
++
++if __name__ == '__main__':
++    for name, test in sorted(globals().copy().items()):
++        if name.startswith('test_'):
++            test(); print('PASS', name)
+diff --git a/tests/test_clock_storage.py b/tests/test_clock_storage.py
+new file mode 100644
+index 0000000..8264174
+--- /dev/null
++++ b/tests/test_clock_storage.py
+@@ -0,0 +1,73 @@
++"""Clock verification and Volumio storage alias regressions."""
++import os
++from pathlib import Path
++import sys
++import tempfile
++from types import SimpleNamespace
++from unittest.mock import patch
++sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
++from sable import clock_gate, cd_rip
++
++
++def peers(offsets=(2, -3, 1), age='2', reach='17', jitter=1):
++    lines=['remote refid st t when poll reach delay offset jitter', '==========']
++    for i, offset in enumerate(offsets):
++        lines.append('192.0.2.%d ref 2 u %s 64 %s 12 %s %s' %
++                     (i+1, age, reach, offset, jitter))
++    return '\n'.join(lines)
++
++
++def check_peers(text):
++    with patch.object(clock_gate.subprocess, 'run', return_value=SimpleNamespace(stdout=text)):
++        return clock_gate._peers_confirm_time()
++
++
++def test_three_fresh_agreeing_peers_confirm_time():
++    assert check_peers(peers())
++    with patch.object(clock_gate.subprocess, 'run', side_effect=[
++            SimpleNamespace(stdout='leap_alarm sync_unspec offset=0.0'),
++            SimpleNamespace(stdout=peers())]):
++        assert clock_gate._ntpq_synced()
++
++
++def test_wrong_stale_unreachable_and_sparse_samples_rejected():
++    assert not check_peers(peers((26000,26001,25999)))
++    assert not check_peers(peers(age='2m'))
++    assert not check_peers(peers(age='100'))
++    assert not check_peers(peers(reach='0'))
++    assert not check_peers(peers((1,2)))
++    assert not check_peers(peers((-100,0,100)))
++    assert not check_peers(peers(jitter=999))
++    assert not check_peers(peers((float('nan'),1,2)))
++
++
++def test_volumio_aliases_and_library_paths():
++    with tempfile.TemporaryDirectory() as temp:
++        root=Path(temp); internal=root/'data'/'INTERNAL'; usb=root/'media'; pen=usb/'MYUSB'
++        internal.mkdir(parents=True);pen.mkdir(parents=True)
++        original=Path.resolve
++        def resolve(path, *args, **kwargs):
++            return {'/mnt/INTERNAL':internal, '/data/INTERNAL':internal,
++                    '/mnt/USB':usb, '/mnt/USB/MYUSB':pen,
++                    '/media/MYUSB':pen}.get(str(path), original(path,*args,**kwargs))
++        with patch.object(Path,'resolve',resolve), patch.object(cd_rip.os.path,'ismount',return_value=True):
++            for alias in ('/mnt/INTERNAL','/data/INTERNAL'):
++                assert cd_rip.destination_path({'path':alias}) == internal
++                assert cd_rip.library_path({'path':alias}) == 'INTERNAL/CD Rips'
++            for alias in ('/mnt/USB/MYUSB','/media/MYUSB'):
++                assert cd_rip.destination_path({'path':alias}) == pen
++                assert cd_rip.library_path({'path':alias}) == 'USB/MYUSB/CD Rips'
++            for bad in ('', '/', '/etc', '/mnt/USB'):
++                try: cd_rip.destination_path({'path':bad})
++                except RuntimeError: pass
++                else: raise AssertionError('Unsafe destination accepted: '+bad)
++        with patch.object(Path,'resolve',resolve), patch.object(cd_rip.os.path,'ismount',return_value=False):
++            try: cd_rip.destination_path({'path':'/media/MYUSB'})
++            except RuntimeError: pass
++            else: raise AssertionError('Unmounted USB accepted')
++
++
++if __name__ == '__main__':
++    for name,test in sorted(globals().copy().items()):
++        if name.startswith('test_'):
++            test(); print('PASS',name)
 diff --git a/tests/test_home.py b/tests/test_home.py
 index 514253f..8c69355 100644
 --- a/tests/test_home.py
@@ -2976,6 +5359,70 @@ index f820449..98688a8 100644
  
  
  def main():
+diff --git a/tests/test_library_storage.py b/tests/test_library_storage.py
+new file mode 100644
+index 0000000..35d783a
+--- /dev/null
++++ b/tests/test_library_storage.py
+@@ -0,0 +1,58 @@
++import sys
++from pathlib import Path
++from unittest.mock import Mock, patch
++sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
++from sable.volumio.listener import VolumioListener
++from sable.screens.menu import MenuScreen
++from sable.app import build_sim_app
++from sable.settings import DEFAULTS, _deep_merge
++from PIL import Image, ImageDraw
++
++
++def test_refresh_schedule_and_rip_guard():
++    listener = VolumioListener(Mock(), log=lambda *a: None)
++    listener.sio = Mock(connected=True)
++    listener._library_refresh_at = 0
++    with patch("sable.cd_rip._BUSY") as busy, patch("sable.volumio.listener.time.monotonic", return_value=901):
++        busy.locked.return_value = False
++        listener.tick_library_refresh(899, 15)
++        listener.sio.emit.assert_not_called()
++        listener.tick_library_refresh(901, 15)
++        listener.sio.emit.assert_called_once_with("updateDb")
++        listener.sio.emit.reset_mock()
++        busy.locked.return_value = True
++        listener.tick_library_refresh(1802, 15)
++        listener.sio.emit.assert_not_called()
++        busy.locked.return_value = False
++        listener.sio.connected = False
++        assert listener.refresh_library() == "unavailable"
++        listener.sio.emit.assert_not_called()
++        listener.tick_library_refresh(1900, 0)
++        assert listener._library_refresh_at == 1900
++
++
++def test_menu_and_saved_preference():
++    assert _deep_merge(DEFAULTS, {"library": {"refresh_minutes": 15}})["library"]["refresh_minutes"] == 15
++    app = build_sim_app(frames_dir=None)
++    app.display.ascii_preview = False
++    app.listener = Mock()
++    app.listener.refresh_library.return_value = "requested"
++    app.show_osd = Mock()
++    menu = app.fsm.screens["menu"]
++    menu._refresh_library()
++    app.listener.refresh_library.assert_called_once()
++    app.show_osd.assert_called_with("MUSIC LIBRARY", "REFRESH REQUESTED")
++    with patch.object(menu, "_storage_rows", return_value=[("Internal Storage", 200000000000, 250000000000), ("USB: Music", 3000000000, 16000000000)]):
++        menu._show_storage()
++        assert menu._cur["items"][0][2]() == "200.0 GB free"
++        assert menu._cur["items"][1][2]() == "3.0 GB free"
++        menu._cur["items"][0][1]()
++        app.show_osd.assert_called_with("STORAGE", "200.0 / 250.0 GB FREE")
++    with patch.object(menu, "_storage_rows", return_value=[]):
++        menu._show_storage()
++        assert menu._cur["items"][0][0] == "No storage available"
++
++if __name__ == "__main__":
++    for name, test in sorted(globals().copy().items()):
++        if name.startswith("test_"):
++            test(); print("PASS", name)
 diff --git a/tests/test_menu.py b/tests/test_menu.py
 index 9385363..e0ae223 100644
 --- a/tests/test_menu.py

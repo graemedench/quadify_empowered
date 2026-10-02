@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03
+
+- Added Audio CD browsing with a distinct disc icon and HQ FLAC / 320kbps MP3 ripping to internal storage or mounted USB drives.
+- Added per-track reading/encoding progress, the track counter, Cancel, and Exit and continue; the rip screen stays awake.
+- Corrected storage alias handling and ripped-album permissions so Volumio can index and play completed files.
+- Added Settings > Music Library with manual and configurable automatic refresh, and Settings > Storage with free/total space.
+- Improved clock readiness detection and CD menu recovery after slow startup or reconnects.
+- Verified the generated patch on the clean supported Sable base, with 33 focused checks passing, including real FLAC/MP3 encoding.
+
 ## 2026-10-01
 
 - Hardened the installer against executable-bit changes made by Volumio's Sable plugin deployment.

@@ -56,6 +56,16 @@ The installer checks the Sable revision before it applies anything. If it is not
 - A long encoder press returns directly to Now Playing from any menu/browse depth.
 - The panel menu provides display, output, network/IP and emergency Wi-Fi setup.
 
+## CD ripping and library tools
+
+Audio CD offers **Rip HQ** (lossless FLAC) and **Rip MP3** (320kbps), with a choice of internal storage or a mounted USB drive. This uses `cdparanoia`, `cd-discid`, and `ffmpeg` already available on the development Volumio image; other installations need these tools available. Rips are saved under `CD Rips/<artist>/<album>` in a unique folder.
+
+The progress bar follows each track through reading and encoding, alongside a track counter. **Cancel** keeps completed songs; **Exit and continue** returns to the panel while ripping continues. Volumio's library is refreshed after completion or cancellation.
+
+**Settings > Music Library** offers **Refresh now** and automatic refresh: Off, every 15 minutes, or hourly. Automatic refresh defaults to Off on a fresh installation and waits while a CD rip is active. Enable it to pick up files copied over the network.
+
+**Settings > Storage** lists internal storage and mounted USB/network drives with free space. Select a drive for free/total capacity; reopen the list to refresh it.
+
 ## Output-menu presets
 
 The default **general** menu detects usable Volumio outputs, hides HDMI, shows the built-in headphone output as variable-volume, and lists external outputs by their detected name.
